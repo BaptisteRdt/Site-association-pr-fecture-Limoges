@@ -145,12 +145,14 @@ Voir documentation : [composer install](https://getcomposer.org/doc/03-cli.md#in
 
 Normalement, l'installation des dépendances devrait prendre quelques secondes, voir quelques minutes. Une fois l'installation des dépendances terminée, vous pouvez tenter de vous reconnecter sur [localhost:8080](http://localhost:8080) Et normalement, cette erreur disparaît. Cependant, il reste une petite manipulation à faire.
 
-Il faut lier le projet symfony avec la base de données, pour ça, copier le fichier `/app/.env` et renommez le en `/app/.env.local` et dans ce dernier décommenter la ligne correspondante a l'URL de connexion pour MySQL (ligne 30) en renseignant les bonnes valeurs :
+Il faut lier le projet symfony avec la base de données, pour ça, copier le fichier `/app/.env` et renommez le en `/app/.env.local` et dans ce dernier décommenter la ligne correspondante a l'URL de connexion pour MySQL (ligne 30) en remplacant les valeurs suivantes :
 
 - `db_user` : symfony
 - `db_password` : symfony
 - `127.0.0.1:3306` : database
 - `db_name` : symfony
+
+> en cas de problèmes reconstruisez les conteneurs
 
 Maintenant votre application est prête, tout est bon 🎉!!!
 
