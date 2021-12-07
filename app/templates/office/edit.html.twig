@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Office{% endblock %}
+
+{% block body %}
+    <h1>Edit Office</h1>
+
+    {{ include('office/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('office_index') }}">back to list</a>
+
+    {{ include('office/_delete_form.html.twig') }}
+{% endblock %}

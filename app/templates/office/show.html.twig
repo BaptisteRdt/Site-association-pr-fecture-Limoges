@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Office{% endblock %}
+
+{% block body %}
+    <h1>Office</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ office.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('office_index') }}">back to list</a>
+
+    <a href="{{ path('office_edit', {'id': office.id}) }}">edit</a>
+
+    {{ include('office/_delete_form.html.twig') }}
+{% endblock %}
