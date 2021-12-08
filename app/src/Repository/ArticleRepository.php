@@ -23,6 +23,7 @@ class ArticleRepository extends ServiceEntityRepository
     //  * @return Article[] Returns an array of Article objects
     //  */
     /*
+
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('a')
