@@ -16,12 +16,28 @@
                 <td>{{ user.username }}</td>
             </tr>
             <tr>
+                <th>FirstName</th>
+                <td>{{ user.FirstName }}</td>
+            </tr>
+            <tr>
+                <th>LastName</th>
+                <td>{{ user.LastName }}</td>
+            </tr>
+            <tr>
                 <th>Roles</th>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
             </tr>
             <tr>
                 <th>Password</th>
                 <td>{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ user.mail }}</td>
+            </tr>
+            <tr>
+                <th>Date Renewal</th>
+                <td>{{ user.dateRenewal }}</td>
             </tr>
         </tbody>
     </table>

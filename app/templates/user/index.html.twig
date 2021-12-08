@@ -10,8 +10,12 @@
             <tr>
                 <th>Id</th>
                 <th>Username</th>
+                <th>FirstName</th>
+                <th>LastName</th>
                 <th>Roles</th>
                 <th>Password</th>
+                <th>Mail</th>
+                <th>date renewal</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,8 +24,12 @@
             <tr>
                 <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
+                <td>{{ user.FirstName }}</td>
+                <td>{{ user.LastName }}</td>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                 <td>{{ user.password }}</td>
+                <td>{{ user.mail }}</td>
+                <td>{{ user.dateRenewal }}</td>
                 <td>
                     <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>

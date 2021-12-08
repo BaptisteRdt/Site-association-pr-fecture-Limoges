@@ -57,8 +57,11 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
+            $user->setPassword(
 
+            );
+
+            $entityManager->flush();
             return $this->redirectToRoute('user_index', [], Response::HTTP_SEE_OTHER);
         }
 
