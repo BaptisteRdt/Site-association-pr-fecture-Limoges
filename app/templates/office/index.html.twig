@@ -19,18 +19,22 @@
         Maecenas porttitor, tellus porttitor ullamcorper mattis, ante elit commodo metus, nec pharetra nisi quam eu ipsum.
         Curabitur porttitor auctor neque, venenatis vehicula nulla auctor vitae. Quisque sagittis justo a urna ultrices, volutpat sodales felis scelerisque.
     </p>
-    {#
+
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>actions</th>
+                <th>Poste</th>
+                <th>Descriptions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for office in offices %}
             <tr>
                 <td>{{ office.id }}</td>
+                <td>{{ office.role }}</td>
+                <td>{{ office.description }}</td>
                 <td>
                     <a href="{{ path('office_show', {'id': office.id}) }}">show</a>
                     <a href="{{ path('office_edit', {'id': office.id}) }}">edit</a>
@@ -43,6 +47,5 @@
         {% endfor %}
         </tbody>
     </table>
-    #}
     <a href="{{ path('office_new') }}">Create new</a>
 {% endblock %}
