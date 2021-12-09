@@ -22,6 +22,7 @@
                 {% if app.user is null %}
                 <li><a href="{{ path("app_login") }}">login</a></li>
                 {% else %}
+                <li><a href="{{ path("profile") }}">profil</a></li>
                 <li><a href="{{ path("app_logout") }}">logout</a></li>
                 {% endif %}
             </ul>
