@@ -19,3 +19,6 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+# node module file similar to vendor but for npm
+/node_modules/
