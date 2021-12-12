@@ -10,6 +10,7 @@
 - PHP (8.0.13)
 - PHP-FPM
 - Docker
+- Tailwindcss (3.0)
 
 ### Pourquoi utilisons-nous ces technologies ?
 
@@ -44,9 +45,12 @@ PROJET-TUT
 
 ```
 
-## Installation
+## Démarrer
 
-Pour commencer, clonez le répertoire sur votre machine  
+### installation
+Pour commencer, installer docker depuis le [site officiel](https://docs.docker.com/get-docker/).
+
+Puis clonez le répertoire sur votre machine  
 
 ```bash
 git clone https://github.com/DenisChon/Projet-Tut.git 
@@ -143,18 +147,43 @@ composer install
 
 Voir documentation : [composer install](https://getcomposer.org/doc/03-cli.md#install-i)
 
-Normalement, l'installation des dépendances devrait prendre quelques secondes, voir quelques minutes. Une fois l'installation des dépendances terminée, vous pouvez tenter de vous reconnecter sur [localhost:8080](http://localhost:8080) Et normalement, cette erreur disparaît. Cependant, il reste une petite manipulation à faire.
+Normalement, l'installation des dépendances devrait prendre quelques secondes, voir quelques minutes. Une fois l'installation des dépendances terminée, vous pouvez tenter de vous reconnecter sur [localhost:8080](http://localhost:8080) Et normalement, cette erreur disparaît. Cependant, il reste quelques petites manipulations à faire.
 
 Il faut lier le projet symfony avec la base de données, pour ça, copier le fichier `/app/.env` et renommez le en `/app/.env.local` et dans ce dernier décommenter la ligne correspondante a l'URL de connexion pour MySQL (ligne 30) en remplacant les valeurs suivantes :
 
-- `db_user` : symfony
-- `db_password` : symfony
+- `db_user` : root
+- `db_password` : root
 - `127.0.0.1:3306` : database
 - `db_name` : symfony
 
 > en cas de problèmes reconstruisez les conteneurs
 
-Maintenant votre application est prête, tout est bon 🎉!!!
+Maintenant votre application est liée a votre base de données. Cependant, votre base de données est vide, elle ne contient pas les tables dont l'application symfony a besoin. Pour resoudre ce probleme, vous devez vous placer dans le conteneur php 
+
+```bash
+docker exec -it php bash
+```
+
+- `exec` Permet d'exécuter une commande dans un conteneur
+- `-i` Maintient STDIN ouvert même en mode détaché
+- `-t` Alloue un pseudo-TTY
+- `php` Le nom du conteneur
+- `bash` La commande à executer
+
+Voir documentation : [docker exec](https://docs.docker.com/engine/reference/commandline/exec/)
+
+Puis il vous faut executer la commande suivante
+
+```bash
+php bin/console doctrine:migration:migrate
+```
+Voir documentation : [doctrine](https://www.doctrine-project.org/projects/doctrine-migrations/en/3.3/index.html)
+
+Pour terminer votre installation, il ne reste plus qu'un utilisateur admin a créer, pour cela, executez les commandes suivantes (sur la machine hôtes, pas dans un conteneur):
+ 
+> TODO 
+
+ Félicitation, votre projet est prêt, tout est bon 🎉!!!
 
 > En cas d'erreur, contactez un membre de l'équipe de dev !
 
@@ -174,6 +203,24 @@ Une fois dans votre conteneur, vous pouvez exécuter toutes les commandes que vo
 
 Voir documentation : [Symfony](https://symfony.com/legacy/doc/cookbook/1_0/en/cli)
 Voir documentation : [Composer](https://getcomposer.org/doc/03-cli.md)
+
+Pour modifier le css, etant donner que dans notre projet, nous utilisont [tailwindcss](https://tailwindcss.com/) il faut l'installer avec le package manager de node qui ets npm qui vas lire le fichier package.json pour installer tout ce dont il a besoin.
+
+```bash
+npm install
+```
+
+Voir documentation : [npm install ](https://docs.npmjs.com/cli/v8/commands/npm-install)
+
+maintenant, il ne reste plus qu'a demarrer tailwind pour qu'il genere le css en tant réel, pour cela il faut executer le script npm
+
+```bash
+npm run watch 
+```
+
+Voir documentation : [npm run](https://docs.npmjs.com/cli/v8/commands/npm-run-script)
+
+Vous pouvez a présent modifier les fichier se trouvant dans le repertoire `./templates`, a chaque sauvegarde, tailwind vas regenerer le css dans le fichier `./public/styles/output.css`
 
 ## Docker dans le projet
 
