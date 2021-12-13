@@ -30,8 +30,11 @@ class UserController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
+
+
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $user->setCart(array());
             $form->getData()->setPassword(
                 $passwordHasher->hashPassword(
                     $user,

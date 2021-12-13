@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -60,6 +62,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string", length=255)
      */
     private $LastName;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Article::class, inversedBy="users")
+     */
+    private $article;
+
+    /**
+     * @ORM\Column(type="array")
+     */
+    private $cart = [];
+
+    public function __construct()
+    {
+        $this->article = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -186,5 +203,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getPlainPassword()
     {
         return $this->plainPassword;
+    }
+
+
+    public function getCart(): ?array
+    {
+        return $this->cart;
+    }
+
+    public function setCart(array $cart): self
+    {
+        $this->cart = $cart;
+
+        return $this;
     }
 }

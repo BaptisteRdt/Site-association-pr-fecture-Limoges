@@ -10,6 +10,8 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Description</th>
+                <th>Quantité</th>
                 <th>Prix</th>
                 <th>actions</th>
             </tr>
@@ -19,6 +21,8 @@
             <tr>
                 <td>{{ article.id }}</td>
                 <td>{{ article.name }}</td>
+                <td>{{ article.description }}</td>
+                <td>{{ article.quantite }}</td>
                 <td>{{ article.prix }}</td>
                 <td>
                     <a href="{{ path('article_show', {'id': article.id}) }}">show</a>

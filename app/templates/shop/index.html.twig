@@ -12,6 +12,8 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Description</th>
+            <th>Quantite</th>
             <th>Prix</th>
             <th>actions</th>
         </tr>
@@ -21,10 +23,15 @@
             <tr>
                 <td>{{ articles.id }}</td>
                 <td>{{ articles.name }}</td>
+                <td>{{ articles.description }}</td>
+                <td>{{ articles.quantite }}</td>
                 <td>{{ articles.prix }}</td>
+
                 <td>
-                    <a href="{{ path('article_show', {'id': articles.id}) }}">show</a>
-                    <a href="{{ path('article_edit', {'id': articles.id}) }}">edit</a>
+
+                    <a href="{{ path('panier_add', {'id':articles.id}) }}">Ajouter</a>
+                    <a href="{{ path('panier_remove', {'id':articles.id}) }}">Retirer</a>
+
                 </td>
             </tr>
         {% else %}
