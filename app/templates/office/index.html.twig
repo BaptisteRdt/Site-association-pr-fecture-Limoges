@@ -3,22 +3,6 @@
 {% block title %}Office index{% endblock %}
 
 {% block body %}
-    <h1>Bureau de l'association</h1>
-
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia sodales tempus. Ut facilisis ante eu sem congue euismod.
-        Nunc ac vestibulum justo, in auctor velit. Curabitur lectus augue, gravida a eros non, dignissim scelerisque augue.
-        Ut euismod eget orci sed cursus. Nullam ac orci purus. Sed tincidunt gravida eros. Nullam ut felis vel velit vehicula congue eget at justo.
-        Vestibulum aliquam euismod justo, et placerat mauris finibus vel.
-        Sed ullamcorper purus ante, at euismod augue cursus a. Curabitur vel purus diam. Quisque vel euismod nibh, eget imperdiet ipsum.
-        Vivamus gravida nunc at laoreet aliquet. Praesent sit amet bibendum nibh.
-        In vitae mauris in mauris varius molestie.
-        Etiam blandit lobortis dapibus. Fusce scelerisque porttitor ipsum, in efficitur urna rutrum sit amet.
-        Vestibulum viverra nisl a justo placerat, et lacinia metus accumsan. Sed condimentum ante a eros auctor, et ornare erat fermentum.
-        Fusce nibh eros, ultricies eget eros sed, accumsan iaculis lorem. Integer imperdiet, enim a sagittis commodo, quam nulla sagittis tellus, at suscipit est velit a enim.
-        Vestibulum non vestibulum libero, vitae condimentum libero. Praesent pharetra ligula eu urna euismod, quis venenatis erat blandit.
-        Maecenas porttitor, tellus porttitor ullamcorper mattis, ante elit commodo metus, nec pharetra nisi quam eu ipsum.
-        Curabitur porttitor auctor neque, venenatis vehicula nulla auctor vitae. Quisque sagittis justo a urna ultrices, volutpat sodales felis scelerisque.
-    </p>
 
     <table class="table">
         <thead>
@@ -47,5 +31,7 @@
         {% endfor %}
         </tbody>
     </table>
+    {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('office_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}

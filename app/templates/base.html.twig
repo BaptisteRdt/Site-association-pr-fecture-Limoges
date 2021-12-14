@@ -17,14 +17,17 @@
     <body>
         <nav class="bg-green-500">
             <ul>
-                <li><a href="{{ path("home") }}">Home</a></li>
-                <li><a href="{{ path("office_index") }}">Bureau</a></li>
-                <li><a href="{{ path("article_index") }}">Article</a></li>
+                <li><a href="{{ path("home") }}">Accueil</a></li>
+                <li><a href="{{ path("bureau") }}">Bureau</a></li>
                 {% if app.user is null %}
-                <li><a href="{{ path("app_login") }}">login</a></li>
+                <li><a href="{{ path("app_login") }}">Connexion</a></li>
                 {% else %}
-                <li><a href="{{ path("profile") }}">profil</a></li>
-                <li><a href="{{ path("app_logout") }}">logout</a></li>
+                <li><a href="{{ path("shop") }}">Boutique</a></li>
+                {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{ path("admin") }}">Administration</a></li>
+                {% endif %}
+                <li><a href="{{ path("profile") }}">Profil</a></li>
+                <li><a href="{{ path("app_logout") }}">Déconnexion</a></li>
                 {% endif %}
             </ul>
         </nav>

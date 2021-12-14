@@ -9,7 +9,7 @@ use App\Repository\ArticleRepository;
 
 class ShopController extends AbstractController
 {
-    #[Route('/shop', name: 'shop')]
+    #[Route('/boutique', name: 'shop')]
     public function index(ArticleRepository $articleRepository): Response
     {
 
