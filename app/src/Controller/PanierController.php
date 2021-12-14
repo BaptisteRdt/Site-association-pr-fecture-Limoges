@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -25,6 +26,8 @@ class PanierController extends AbstractController
             'articles'=>$articles,
         ]);
     }
+
+
     #[Route('/panier/add/{id}', name: 'panier_add')]
     public function add($id, EntityManagerInterface $em){
         $user = $this->getUser();

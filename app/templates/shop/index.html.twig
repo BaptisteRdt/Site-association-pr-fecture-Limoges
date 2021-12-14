@@ -12,6 +12,7 @@
         <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>Photo</th>
             <th>Description</th>
             <th>Quantite</th>
             <th>Prix</th>
@@ -19,18 +20,20 @@
         </tr>
         </thead>
         <tbody>
-        {% for articles in article %}
+        {% for article in articles %}
             <tr>
-                <td>{{ articles.id }}</td>
-                <td>{{ articles.name }}</td>
-                <td>{{ articles.description }}</td>
-                <td>{{ articles.quantite }}</td>
-                <td>{{ articles.prix }}</td>
+                <td>{{ article.id }}</td>
+                <td>{{ article.name }}</td>
+                <td><img src="{{ asset('/ImageArticle/'~article.imageName) }}"></td>
+                <td>{{ article.description }}</td>
+                <td>{{ article.quantite }}</td>
+                <td>{{ article.prix }}</td>
+
 
                 <td>
 
-                    <a href="{{ path('panier_add', {'id':articles.id}) }}">Ajouter</a>
-                    <a href="{{ path('panier_remove', {'id':articles.id}) }}">Retirer</a>
+                    <a href="{{ path('panier_add', {'id':article.id}) }}">Ajouter</a>
+                    <a href="{{ path('panier_remove', {'id':article.id}) }}">Retirer</a>
 
                 </td>
             </tr>

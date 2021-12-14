@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Article;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -15,7 +17,23 @@ class ArticleType extends AbstractType
             ->add('name')
             ->add('prix')
             ->add('description')
+
             ->add('quantite')
+            ->add('image', FileType::class, [
+                'label' => 'Image article',
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new File([
+                        'maxSize' => '2m',
+                        'mimeTypes' => [
+                            'image/jpeg',
+                            'image/png',
+                        ],
+                        'mimeTypesMessage' => 'Choisissez un fichier valide',
+                    ])
+                ],
+            ])
         ;
     }
 

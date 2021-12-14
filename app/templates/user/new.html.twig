@@ -3,9 +3,20 @@
 {% block title %}New User{% endblock %}
 
 {% block body %}
+
     <h1>Create new User</h1>
 
     {{ include('user/_form.html.twig') }}
+    <p class="unmask">👀</p>
 
     <a href="{{ path('user_index') }}">back to list</a>
+
+    <script>
+        let unmask = document.querySelector(".unmask");
+        unmask.onclick = (_)=> {
+            let input = document.querySelector("#user_password");
+            input.type==="password"?input.type="text":input.type="password";
+            console.log("suce");
+        };
+    </script>
 {% endblock %}

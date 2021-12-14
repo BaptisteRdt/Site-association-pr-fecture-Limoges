@@ -30,6 +30,13 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $image = $form->get("image")->getData();
+            $name = md5(uniqid()).'.'.$image->guessExtension();
+            $image->move('ImageArticle', $name);
+
+            $article->setImageName($name);
+
+
             $entityManager->persist($article);
             $entityManager->flush();
 
@@ -57,6 +64,13 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $image = $form->get("image")->getData();
+            $name = md5(uniqid()).'.'.$image->guessExtension();
+            $image->move('ImageArticle', $name);
+
+            $article->setImageName($name);
+
             $entityManager->flush();
 
             return $this->redirectToRoute('article_index', [], Response::HTTP_SEE_OTHER);

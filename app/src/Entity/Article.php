@@ -44,6 +44,11 @@ class Article
      */
     private $users;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageName;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -125,6 +130,18 @@ class Article
         if ($this->users->removeElement($user)) {
             $user->removeArticle($this);
         }
+
+        return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(?string $imageName): self
+    {
+        $this->imageName = $imageName;
 
         return $this;
     }
