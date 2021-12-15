@@ -423,7 +423,7 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
-.border {
+.border, .border-4, .border-2, .border-0 {
   --tw-border-opacity: 1;
   border-color: rgb(229 231 235 / var(--tw-border-opacity));
 }
@@ -499,8 +499,23 @@ Ensure the default browser behavior of the `hidden` attribute.
   position: fixed;
 }
 
+.relative {
+  position: relative;
+}
+
+.inset-0 {
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+}
+
 .col-auto {
   grid-column: auto;
+}
+
+.m-auto {
+  margin: auto;
 }
 
 .mb-3 {
@@ -529,6 +544,14 @@ Ensure the default browser behavior of the `hidden` attribute.
 
 .mr-2 {
   margin-right: 0.5rem;
+}
+
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.box-content {
+  box-sizing: content-box;
 }
 
 .block {
@@ -567,12 +590,122 @@ Ensure the default browser behavior of the `hidden` attribute.
   display: none;
 }
 
+.h-32 {
+  height: 8rem;
+}
+
+.h-16 {
+  height: 4rem;
+}
+
+.h-8 {
+  height: 2rem;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
+.h-14 {
+  height: 3.5rem;
+}
+
+.h-screen {
+  height: 100vh;
+}
+
+.h-full {
+  height: 100%;
+}
+
+.h-fit {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
+.h-min {
+  height: -webkit-min-content;
+  height: -moz-min-content;
+  height: min-content;
+}
+
+.h-max {
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
+}
+
+.h-64 {
+  height: 16rem;
+}
+
 .w-full {
   width: 100%;
 }
 
+.w-32 {
+  width: 8rem;
+}
+
+.w-48 {
+  width: 12rem;
+}
+
+.w-14 {
+  width: 3.5rem;
+}
+
+.w-64 {
+  width: 16rem;
+}
+
+.w-auto {
+  width: auto;
+}
+
+.w-96 {
+  width: 24rem;
+}
+
+.w-\[30rem\] {
+  width: 30rem;
+}
+
+.w-\[40rem\] {
+  width: 40rem;
+}
+
+.flex-initial {
+  flex: 0 1 auto;
+}
+
+.flex-none {
+  flex: none;
+}
+
+.flex-1 {
+  flex: 1 1 0%;
+}
+
+.flex-auto {
+  flex: 1 1 auto;
+}
+
+.shrink-0 {
+  flex-shrink: 0;
+}
+
 .flex-grow {
   flex-grow: 1;
+}
+
+.grow-0 {
+  flex-grow: 0;
+}
+
+.basis-6\/12 {
+  flex-basis: 50%;
 }
 
 .select-none {
@@ -592,16 +725,92 @@ Ensure the default browser behavior of the `hidden` attribute.
   resize: both;
 }
 
+.flex-col {
+  flex-direction: column;
+}
+
 .flex-wrap {
   flex-wrap: wrap;
+}
+
+.content-center {
+  align-content: center;
+}
+
+.content-around {
+  align-content: space-around;
+}
+
+.content-evenly {
+  align-content: space-evenly;
 }
 
 .items-center {
   align-items: center;
 }
 
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.gap-5 {
+  gap: 1.25rem;
+}
+
+.space-y-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1rem * var(--tw-space-y-reverse));
+}
+
+.space-x-4 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1rem * var(--tw-space-x-reverse));
+  margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+
+.self-center {
+  align-self: center;
+}
+
+.justify-self-center {
+  justify-self: center;
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
 .border {
   border-width: 1px;
+}
+
+.border-4 {
+  border-width: 4px;
+}
+
+.border-2 {
+  border-width: 2px;
+}
+
+.border-0 {
+  border-width: 0px;
 }
 
 .border-gray-300 {
@@ -614,9 +823,42 @@ Ensure the default browser behavior of the `hidden` attribute.
   border-color: rgb(185 28 28 / var(--tw-border-opacity));
 }
 
+.border-indigo-600 {
+  --tw-border-opacity: 1;
+  border-color: rgb(79 70 229 / var(--tw-border-opacity));
+}
+
+.border-black {
+  --tw-border-opacity: 1;
+  border-color: rgb(0 0 0 / var(--tw-border-opacity));
+}
+
 .bg-green-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(34 197 94 / var(--tw-bg-opacity));
+}
+
+.bg-blue-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 58 138 / var(--tw-bg-opacity));
+}
+
+.bg-blue-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 64 175 / var(--tw-bg-opacity));
+}
+
+.bg-gray-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+
+.p-4 {
+  padding: 1rem;
+}
+
+.p-2 {
+  padding: 0.5rem;
 }
 
 .text-center {
@@ -627,12 +869,30 @@ Ensure the default browser behavior of the `hidden` attribute.
   text-align: right;
 }
 
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
 .font-thin {
   font-weight: 100;
 }
 
 .font-normal {
   font-weight: 400;
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
 .text-yellow-500 {
@@ -660,14 +920,9 @@ Ensure the default browser behavior of the `hidden` attribute.
   color: rgb(185 28 28 / var(--tw-text-opacity));
 }
 
-.text-slate-500 {
+.text-white {
   --tw-text-opacity: 1;
-  color: rgb(100 116 139 / var(--tw-text-opacity));
-}
-
-.text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
+  color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
 .invert {
@@ -685,4 +940,39 @@ Ensure the default browser behavior of the `hidden` attribute.
   transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-backdrop-filter;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 150ms;
+}
+
+.hover\:border-blue-800:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(30 64 175 / var(--tw-border-opacity));
+}
+
+.hover\:bg-blue-900:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 58 138 / var(--tw-bg-opacity));
+}
+
+.focus\:border-blue-800:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(30 64 175 / var(--tw-border-opacity));
+}
+
+.focus\:border-blue-500:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity));
+}
+
+.focus\:border-white:focus {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
+}
+
+.active\:border-blue-500:active {
+  --tw-border-opacity: 1;
+  border-color: rgb(59 130 246 / var(--tw-border-opacity));
+}
+
+.active\:border-white:active {
+  --tw-border-opacity: 1;
+  border-color: rgb(255 255 255 / var(--tw-border-opacity));
 }
