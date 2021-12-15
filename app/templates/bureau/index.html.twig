@@ -8,9 +8,9 @@
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
-    <h1>Bureau de l'association</h1>
+    <h1 class="text-5xl my-8 text-center">Bureau de l'association</h1>
 
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia sodales tempus. Ut facilisis ante eu sem congue euismod.
+    <p class="my-8 mx-10 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia sodales tempus. Ut facilisis ante eu sem congue euismod.
         Nunc ac vestibulum justo, in auctor velit. Curabitur lectus augue, gravida a eros non, dignissim scelerisque augue.
         Ut euismod eget orci sed cursus. Nullam ac orci purus. Sed tincidunt gravida eros. Nullam ut felis vel velit vehicula congue eget at justo.
         Vestibulum aliquam euismod justo, et placerat mauris finibus vel.
@@ -21,30 +21,26 @@
         Vestibulum viverra nisl a justo placerat, et lacinia metus accumsan. Sed condimentum ante a eros auctor, et ornare erat fermentum.
         Fusce nibh eros, ultricies eget eros sed, accumsan iaculis lorem. Integer imperdiet, enim a sagittis commodo, quam nulla sagittis tellus, at suscipit est velit a enim.
         Vestibulum non vestibulum libero, vitae condimentum libero. Praesent pharetra ligula eu urna euismod, quis venenatis erat blandit.
-        Maecenas porttitor, tellus porttitor ullamcorper mattis, ante elit commodo metus, nec pharetra nisi quam eu ipsum.
-        Curabitur porttitor auctor neque, venenatis vehicula nulla auctor vitae. Quisque sagittis justo a urna ultrices, volutpat sodales felis scelerisque.
     </p>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Poste</th>
-            <th>Descriptions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for office in offices %}
-            <tr>
-                <td>{{ office.id }}</td>
-                <td>{{ office.role }}</td>
-                <td>{{ office.description }}</td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="2">Pas de bureau</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <div class="flex flex-wrap justify-center">
+    {% for office in offices %}
+        <div class="w-2/5">
+            <div class="odd:border-r-2 flex flex-row justify-center content-between">
+                {% if office.imageName is null %}
+                    <img class="w-[200px] h-[200px] border border-black" src="{{ asset('/ImageOffice/office_default.png') }}"/>
+                {% else %}
+                    <img class="w-[200px] h-[200px]" src="{{ asset('/ImageOffice/'~office.imageName) }}"/>
+                {% endif %}
+                <div class="ml-8">
+                    <p class="font-bold text-2xl">{{ office.role }}</p>
+
+                    <p class="pt-4">{{ office.description }}</p>
+                </div>
+                <hr>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
 {% endblock %}
