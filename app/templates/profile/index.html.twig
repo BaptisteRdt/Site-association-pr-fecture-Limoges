@@ -1,47 +1,39 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Profile{% endblock %}
+{% block title %}Profil{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
 
-    <table class="table">
-        <tbody>
-        <tr>
-            <th>Id</th>
-            <td>{{ user.id }}</td>
-        </tr>
-        <tr>
-            <th>Username</th>
-            <td>{{ user.username }}</td>
-        </tr>
-        <tr>
-            <th>FirstName</th>
-            <td>{{ user.FirstName }}</td>
-        </tr>
-        <tr>
-            <th>LastName</th>
-            <td>{{ user.LastName }}</td>
-        </tr>
-        <tr>
-            <th>Roles</th>
-            <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-        </tr>
-        <tr>
-            <th>Password</th>
-            <td>{{ user.password }}</td>
-        </tr>
-        <tr>
-            <th>Mail</th>
-            <td>{{ user.mail }}</td>
-        </tr>
-        <tr>
-            <th>Date Renewal</th>
-            <td>{{ user.dateRenewal }}</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="flex flex-col justify-evenly w-[30rem] h-screen m-auto">
+        <h1 class="self-center text-4xl font-bold">Profil</h1>
 
-    <a href="{{ path('profile_edit') }}">edit</a>
+        <div class="flex flex-col">
+                <p class="font-medium">Identifiant</p>
+                <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.username }}</p>
 
+                <p class="font-medium">Nom</p>
+                <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.LastName }}</p>
+                
+                <p class="font-medium">Prénom</p>
+                <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.FirstName }}</p>
+
+                <p class="font-medium">Mail</p>
+                <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.mail }}</p>
+
+                <p class="font-medium">Mot de passe</p>
+                <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.password }}</p>
+
+                <p class="font-medium">Renouvellement de l'adhésion</p>
+                <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.dateRenewal }}</p>
+
+                {#
+                <p>{{ user.roles ? user.roles|json_encode : '' }}</p>
+                <p>{{ user.id }}</p>
+                #}
+        </div>
+
+        <a href="{{ path('profile_edit') }}" class="self-center hover:text-blue-900">
+            Modifier profil
+        </a>
+    </div>
 {% endblock %}
