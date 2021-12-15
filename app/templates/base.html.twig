@@ -20,21 +20,21 @@
                 <ul class="flex items-center justify-between h-[65px]">
                     <div class="flex space-x-4">
                         <div class="hidden md:flex items-center space-x-1">
-                            <li><a class="py-5 px-3 text-white" href="{{ path("home") }}">Accueil</a></li>
+                            <li><a class="transition hover:underline font-semibold py-5 px-3 text-white" href="{{ path("home") }}">Accueil</a></li>
                         </div>
                     </div>
 
                     <div class="hidden md:flex items-center space-x-20">
-                        <li><a class="py-5 px-3 text-white" href="{{ path("bureau") }}">Bureau</a></li>
+                        <li><a class="transition hover:underline font-semibold py-5 px-3 text-white" href="{{ path("bureau") }}">Bureau</a></li>
                         {% if app.user is null %}
-                        <li><a class="py-5 px-3 text-white" href="{{ path("app_login") }}">Connexion</a></li>
+                        <li><a class="transition hover:underline font-semibold py-5 px-3 text-white" href="{{ path("app_login") }}">Connexion</a></li>
                         {% else %}
-                        <li><a class="py-5 px-3 text-white" href="{{ path("shop") }}">Boutique</a></li>
+                        <li><a class="transition hover:underline font-semibold py-5 px-3 text-white" href="{{ path("shop") }}">Boutique</a></li>
                         {% if is_granted('ROLE_ADMIN') %}
-                        <li><a class="py-5 px-3 text-white" href="{{ path("admin") }}">Administration</a></li>
+                        <li><a class="transition hover:underline font-semibold py-5 px-3 text-white" href="{{ path("admin") }}">Administration</a></li>
                         {% endif %}
-                        <li><a class="py-5 px-3 text-white" href="{{ path("profile") }}">Profil</a></li>
-                        <li><a class="py-5 px-3 text-white" href="{{ path("app_logout") }}">Déconnexion</a></li>
+                        <li><a class="transition hover:underline font-semibold py-5 px-3 text-white" href="{{ path("profile") }}">Profil</a></li>
+                        <li><a class="transition hover:underline font-semibold py-5 px-3 text-white" href="{{ path("app_logout") }}">Déconnexion</a></li>
                         {% endif %}
                     </div>
                 </ul>

@@ -4,16 +4,16 @@
 
 {% block body %}
 
-    <div class="flex justify-center">
+    <div class="flex justify-start">
         <div class="w-1/5 py-20 text-lg">
             <ul class="text-right px-10 font-bold text-[#C4C4C4]">
-                <li class="py-3"><a href="{{ path("article_index") }}">Utilisateurs</a></li>
-                <li class="py-3"><a href="{{ path("user_index") }}">Boutique</a></li>
-                <li class="py-3"><a href="{{ path("office_index") }}">Bureau</a></li>
+                <li class="py-3 transition hover:scale-105 hover:text-navbar-background"><a href="{{ path("article_index") }}">Utilisateurs</a></li>
+                <li class="py-3 transition hover:scale-105 hover:text-navbar-background"><a href="{{ path("user_index") }}">Boutique</a></li>
+                <li class="py-3 transition hover:scale-105 hover:text-navbar-background"><a href="{{ path("office_index") }}">Bureau</a></li>
             </ul>
         </div>
 
-        <div class="w-4/5 py-20 px-20">
+        <div class="w-3/5 py-20 px-20">
             {% block content %}
 
             {% endblock %}
