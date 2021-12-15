@@ -1,16 +1,71 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
 {% block title %}Hello AdminController!{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+{% block content %}
 
+    <div class="bg-gray-100 w-52 px-4 py-5 rounded drop-shadow">
+        <div class="bg-[#CBD8E5] rounded-full relative h-44 w-full flex">
+            <div class="bg-[#374779] rounded-full w-full h-full m-auto graph1"></div>
+            <div class="bg-gray-100 rounded-full w-4/6 h-4/6 absolute m-auto inset-0 flex justify-center items-center">
+                <p class="percentage text-[#7C7C7C] text-xl font-bold w-fit h-fit">%</p>
+            </div>
+        </div>
+        <h3 class="text-lg text-[#374779] font-bold text-center py-4">Pourcentage des utilisateurs adhérent</h3>
+    </div>
 
-    <a href="{{ path("article_index") }}">Tableau des articles</a>
-    <a href="{{ path("user_index") }}">Tableau des users</a>
-    <a href="{{ path("office_index") }}">Tableau des postes de l'association</a>
+    <script>
+
+        const graph = (pourcentage) => {
+            let p = [
+                [50 ,50],   // 1
+                [50 ,0],    // 2
+                [50 ,0],    // 3
+                [50 ,50],   // 4
+                [50 ,50],   // 5
+                [50 ,50],   // 6
+                [50 ,50],   // 7
+            ];
+
+            // % to angle (radian.s)
+            let angle = pourcentage / 100 * 360;
+            let radian =  angle * Math.PI / 180;
+
+            let position = [1 / Math.tan(radian)  , Math.tan(radian)]; // x, y
+            console.log({x: position[0], y: position[1]});
+
+            if (angle <= 45) {
+                p[2] = [50 + position[1] * 50 , 0];
+            }
+            else if (angle <= 135) {
+                p[2] = [100 , 0];
+                p[3] = [100 , 50 - position[0] * 50];
+            }
+            else if (angle <= 225) {
+                p[2] = [100 , 0];
+                p[3] = [100 , 100];
+                p[4] = [50 - position[1] * 50 , 100];
+            }
+            else if (angle <= 315) {
+                p[2] = [100 , 0];
+                p[3] = [100 , 100];
+                p[4] = [0 , 100];
+                p[5] = [0 , 50 + position[0] * 50];
+            }else {
+                p[2] = [100 , 0];
+                p[3] = [100 , 100];
+                p[4] = [0 , 100];
+                p[5] = [0 , 0];
+                p[6] = [50 + position[1] * 50 , 0];
+            }
+
+            let path = p.map(p => p[0]+"% "+p[1]+"%").join(',');
+
+            document.querySelector(".graph1").style.clipPath = `polygon(${path})`;
+            document.querySelector(".percentage").innerHTML = `${Math.round(pourcentage)}%`;
+        }
+        graph(Math.random()*100);
+
+    </script>
 
 {% endblock %}
