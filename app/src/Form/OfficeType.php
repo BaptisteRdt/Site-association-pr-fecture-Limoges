@@ -4,10 +4,12 @@ namespace App\Form;
 
 use App\Entity\Office;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class OfficeType extends AbstractType
@@ -26,6 +28,21 @@ class OfficeType extends AbstractType
             'constraints' => [
                 new NotBlank([
                     'message' => 'Entrer votre description']),
+            ],
+        ])
+        ->add('image', FileType::class, [
+            'label' => 'Image article',
+            'mapped' => false,
+            'required' => false,
+            'constraints' => [
+                new File([
+                    'maxSize' => '2m',
+                    'mimeTypes' => [
+                        'image/jpeg',
+                        'image/png',
+                    ],
+                    'mimeTypesMessage' => 'Choisissez un fichier valide',
+                ])
             ],
         ])
         ;

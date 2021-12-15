@@ -30,6 +30,16 @@ class OfficeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $image = $form->get("image")->getData();
+
+            if ($image != null){
+                $name = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move('ImageOffice', $name);
+
+                $office->setImageName($name);
+            }
+
             $entityManager->persist($office);
             $entityManager->flush();
 
@@ -57,6 +67,16 @@ class OfficeController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $image = $form->get("image")->getData();
+
+            if ($image != null){
+                $name = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move('ImageOffice', $name);
+
+                $office->setImageName($name);
+            }
+
             $entityManager->flush();
 
             return $this->redirectToRoute('office_index', [], Response::HTTP_SEE_OTHER);

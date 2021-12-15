@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Filesystem\Filesystem;
 
 #[Route('/admin/article')]
 class ArticleController extends AbstractController
@@ -30,11 +31,15 @@ class ArticleController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $image = $form->get("image")->getData();
-            $name = md5(uniqid()).'.'.$image->guessExtension();
-            $image->move('ImageArticle', $name);
 
-            $article->setImageName($name);
+            $image = $form->get("image")->getData();
+
+            if ($image != null){
+                $name = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move('ImageArticle', $name);
+
+                $article->setImageName($name);
+            }
 
 
             $entityManager->persist($article);
@@ -66,10 +71,12 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
 
             $image = $form->get("image")->getData();
-            $name = md5(uniqid()).'.'.$image->guessExtension();
-            $image->move('ImageArticle', $name);
+            if ($image != null){
+                $name = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move('ImageArticle', $name);
 
-            $article->setImageName($name);
+                $article->setImageName($name);
+            }
 
             $entityManager->flush();
 
@@ -86,6 +93,11 @@ class ArticleController extends AbstractController
     public function delete(Request $request, Article $article, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
+            if($article->getImageName() != null){
+                $filesystem = new Filesystem();
+                #dd("ImageArticle/" .$article->getImageName());
+                $filesystem->remove("ImageArticle/" .$article->getImageName());
+            }
             $entityManager->remove($article);
             $entityManager->flush();
         }

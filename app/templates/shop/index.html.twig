@@ -24,7 +24,11 @@
             <tr>
                 <td>{{ article.id }}</td>
                 <td>{{ article.name }}</td>
+                {% if article.imageName is null %}
+                <td><img src="{{ asset('/ImageArticle/article_default.png') }}"></td>
+                {% else %}
                 <td><img src="{{ asset('/ImageArticle/'~article.imageName) }}"></td>
+                {% endif %}
                 <td>{{ article.description }}</td>
                 <td>{{ article.quantite }}</td>
                 <td>{{ article.prix }}</td>

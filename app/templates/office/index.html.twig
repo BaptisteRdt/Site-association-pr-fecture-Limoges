@@ -9,6 +9,7 @@
             <tr>
                 <th>Id</th>
                 <th>Poste</th>
+                <th>Photo</th>
                 <th>Descriptions</th>
                 <th>Actions</th>
             </tr>
@@ -18,6 +19,11 @@
             <tr>
                 <td>{{ office.id }}</td>
                 <td>{{ office.role }}</td>
+                {% if office.imageName is null %}
+                    <td><img src="{{ asset('/ImageOffice/office_default.png') }}"></td>
+                {% else %}
+                    <td><img src="{{ asset('/ImageOffice/'~office.imageName) }}"></td>
+                {% endif %}
                 <td>{{ office.description }}</td>
                 <td>
                     <a href="{{ path('office_show', {'id': office.id}) }}">show</a>
