@@ -1,7 +1,11 @@
 module.exports = {
   content: ["./**/*.{html.twig, html}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        "navbar-background": "var(--navbar-background)",
+      },
+    },
   },
   plugins: [],
 }

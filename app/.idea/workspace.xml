@@ -2,17 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4259b4be-24e1-4ae9-959f-98ec138558c4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/public/ImageOffice/office_default.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/app.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/OfficeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/OfficeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Office.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Office.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/OfficeType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/OfficeType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/office/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/office/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/shop/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/shop/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/styles/input.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/input.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/styles/output.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/styles/output.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tailwind.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/tailwind.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/bureau/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/bureau/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -207,6 +202,7 @@
       <workItem from="1639499768735" duration="4825000" />
       <workItem from="1639509032868" duration="14642000" />
       <workItem from="1639571789338" duration="3276000" />
+      <workItem from="1639586684704" duration="18195000" />
     </task>
     <servers />
   </component>
