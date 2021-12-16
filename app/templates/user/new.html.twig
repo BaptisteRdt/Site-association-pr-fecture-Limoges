@@ -8,6 +8,8 @@
 
         <h1 class="self-center text-4xl font-bold my-8">Ajouter un utilisateur</h1>
 
+        {% set edit = false %}
+
         {{ include('user/_form.html.twig') }}
 
         <a href="{{ path('user_index') }}" class="self-center transition underline hover:text-blue-900 my-8">Retour à la liste des utilisateurs</a>
