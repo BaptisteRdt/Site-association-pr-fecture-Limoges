@@ -1,48 +1,44 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
 {% block title %}User index{% endblock %}
 
-{% block body %}
-    <h1>User index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Username</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>Mail</th>
-                <th>date renewal</th>
-                <th>actions</th>
+{% block content %}
+    <table class="w-4/5 table">
+        <thead class="border-b-[3px] border-navbar-background">
+            <tr class="w-fit">
+                <th class="p-3 space-x-8 text-left">Id</th>
+                <th class="p-3 space-x-8 text-left">Nom d'utilisateur</th>
+                <th class="p-3 space-x-8 text-left">Adresse e-mail</th>
+                <th class="p-3 space-x-8 text-left">Adherent</th>
+                <th class="p-3 space-x-8 text-center">actions</th>
             </tr>
         </thead>
         <tbody>
+        <tr class="h-14">
+            <td colspan="4"></td>
+            <td class=" transition text-center font-bold text-[#7C7C7C]">
+                <a class="border-2 border-[#374779] py-[.15rem] px-3 font-medium transition text-white bg-[#374779] hover:bg-[#CBD8E5] hover:text-[#374779]" href="{{ path('user_new') }}">Ajouter</a>
+            </td>
+        </tr>
         {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.username }}</td>
-                <td>{{ user.FirstName }}</td>
-                <td>{{ user.LastName }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.mail }}</td>
-                <td>{{ user.dateRenewal }}</td>
-                <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-                    <a href="{{ path('show_cart', {'id': user.id}) }}">Panier</a>
+            <tr class="border-b-2 border-[#C4C4C4] text-[#7C7C7C] transition font-bold hover:bg-[#E4E4E4]">
+                <td class="px-3 py-1 ">{{ user.id }}</td>
+                <td class="px-3 py-1 ">{{ user.username }}</td>
+                <td class="px-3 py-1 ">{{ user.mail }}</td>
+                <td class="px-3 py-1 ">false</td>
+                <td class="px-3 py-1 text-center transition font-normal">
+                    <a class="hover:text-[#374779]" href="{{ path('user_show', {'id': user.id}) }}">👁</a>
+                    <a class="hover:text-[#374779]" href="{{ path('user_edit', {'id': user.id}) }}">📝</a>
+                    <a class="hover:text-[#374779]" href="{{ path('show_cart', {'id': user.id}) }}">🛒</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Pas d'utilisateur trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('user_new') }}">Create new</a>
+
 {% endblock %}

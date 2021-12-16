@@ -9,38 +9,42 @@
 </style>
 
 <h1 class="text-5xl my-8 text-center">Boutique de l'association</h1>
+<div class="text-right text-2xl mr-6">
+    <a class="font-bold" href="{{ path("panier") }}">Voir mon panier</a>
+</div>
+
 <div class="grid place-items-center">
-    <div class="w-4/5 flex flex-wrap text-center">
+    <div class="w-4/5 flex flex-wrap justify-between text-center">
         {% for article in articles %}
-            <div class="w-1/3 border border-2">
-                <h2>{{ article.name }}</h2>
-                <div class="grid place-items-center">
-                    {% if article.imageName is null %}
-                    <img class="w-[200px] h-[200px]" src="{{ asset('/ImageArticle/article_default.png') }}"/>
-                    {% else %}
-                    <img class="w-[200px] h-[200px]" src="{{ asset('/ImageArticle/'~article.imageName) }}"/>
-                    {% endif %}
-                </div>
-                <p>{{ article.description }}</p>
-                <div class="bg">
-                    <p>{{ article.quantite }}</p>
-                    <p>{{ article.prix }}</p>
-                </div>
-                <div>
-                    <a href="{{ path('panier_add', {'id':article.id}) }}">➕</a>
-                    <a href="{{ path('panier_remove', {'id':article.id}) }}">➖</a>
+            <div class="w-1/3 p-8">
+                <div class="drop-shadow transition hover:scale-105 rounded-[16px] bg-gray-200">
+                    <h2 class="text-3xl font-bold pt-6">{{ article.name }}</h2>
+                    <div class="grid place-items-center p-4">
+                        {% if article.imageName is null %}
+                        <img class="w-[200px] h-[200px]" src="{{ asset('/ImageArticle/article_default.png') }}"/>
+                        {% else %}
+                        <img class="w-[200px] h-[200px]" src="{{ asset('/ImageArticle/'~article.imageName) }}"/>
+                        {% endif %}
+                    </div>
+                    <p class="text-xl text-justify p-6">{{ article.description }}</p>
+                    <p class="text-2xl mb-2 ">Quantité : {{ article.quantite }}</p>
+                    <div class="bg-article-price-background h-20 flex flex-wrap rounded-b-lg items-center justify-center">
+                        <div class="bg-navbar-background grid place-items-center w-10 h-10 rounded-full">
+                            <a class="text-3xl text-white absolute" href="{{ path('panier_remove', {'id':article.id}) }}">-</a>
+                        </div>
+                        <p class="text-2xl mx-[40px]">{{ article.prix }} €</p>
+                        <div class="bg-navbar-background grid place-items-center w-10 h-10 rounded-full">
+                            <a class="text-3xl text-white absolute" href="{{ path('panier_add', {'id':article.id}) }}">+</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
+            <td colspan="4">no records found</td>
         {% endfor %}
     </div>
 </div>
-<div class="text-center">
-    <a class="font-bold" href="{{ path("panier") }}">Voir mon panier</a>
-</div>
+
 
 
 {% endblock %}
