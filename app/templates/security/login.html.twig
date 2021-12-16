@@ -3,7 +3,7 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-<form method="post" class="flex flex-col justify-evenly w-[40rem] h-screen m-auto">
+<form method="post" class="flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto my-8 rounded-lg shadow-md bg-gray-100"">
     {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
@@ -14,7 +14,7 @@
         </div>
     {% endif %}
 
-    <h1 class="self-center text-4xl font-bold">Connexion</h1>
+    <h1 class="self-center text-4xl font-bold my-8">Connexion</h1>
     <div class="flex flex-col">
         <label for="inputUsername" class="font-medium">Identifiant</label>
         <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="mb-8 form-control p-2 border rounded-md border-black" autocomplete="username" required autofocus>
@@ -37,7 +37,7 @@
         </div>
     #}
 
-    <button class="self-center btn btn-lg btn-primary bg-navbar-background hover:bg-blue-900 text-white box-content h-5 w-48 p-4" type="submit">
+    <button class="self-center btn btn-lg btn-primary text-white font-bold box-content my-8 h-5 w-48 p-4 border-2 border-[#374779] transition text-white bg-[#374779] hover:bg-[#CBD8E5] hover:text-[#374779]" type="submit">
         CONNEXION
     </button>
 </form>
