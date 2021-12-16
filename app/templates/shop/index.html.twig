@@ -10,7 +10,7 @@
 
 <h1 class="text-5xl my-8 text-center">Boutique de l'association</h1>
 <div class="grid place-items-center">
-    <div class="w-4/5 flex flex-wrap justify-center text-center">
+    <div class="w-4/5 flex flex-wrap text-center">
         {% for article in articles %}
             <div class="w-1/3 border border-2">
                 <h2>{{ article.name }}</h2>
@@ -39,7 +39,7 @@
     </div>
 </div>
 <div class="text-center">
-    <a href="{{ path("panier") }}">Voir mon panier</a>
+    <a class="font-bold" href="{{ path("panier") }}">Voir mon panier</a>
 </div>
 
 
