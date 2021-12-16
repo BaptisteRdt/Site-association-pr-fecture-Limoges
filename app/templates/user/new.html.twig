@@ -3,16 +3,11 @@
 {% block title %}New User{% endblock %}
 
 {% block body %}
-<div class="flex justify-center h-screen py-4">
-    <div class="flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto shadow-md bg-gray-100">
+    <div class="flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto my-4 rounded-lg shadow-md bg-gray-100">
         <h1 class="self-center text-4xl font-bold my-8">Ajouter un utilisateur</h1>
 
         {{ include('user/_form.html.twig') }}
 
-        <a href="{{ path('user_index') }}" class="self-center hover:text-blue-900 my-8">Retour à la liste des utilisateurs</a>
-
-
+        <a href="{{ path('user_index') }}" class="self-center transition underline hover:text-blue-900 my-8">Retour à la liste des utilisateurs</a>
     </div>
-</div>
-
 {% endblock %}
