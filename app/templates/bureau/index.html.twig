@@ -10,7 +10,7 @@
 
     <h1 class="text-5xl my-8 text-center">Bureau de l'association</h1>
 
-    <p class="my-8 mx-10 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia sodales tempus. Ut facilisis ante eu sem congue euismod.
+    <p class="my-8 mx-10 py-8 px-16 text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque lacinia sodales tempus. Ut facilisis ante eu sem congue euismod.
         Nunc ac vestibulum justo, in auctor velit. Curabitur lectus augue, gravida a eros non, dignissim scelerisque augue.
         Ut euismod eget orci sed cursus. Nullam ac orci purus. Sed tincidunt gravida eros. Nullam ut felis vel velit vehicula congue eget at justo.
         Vestibulum aliquam euismod justo, et placerat mauris finibus vel.
@@ -23,24 +23,76 @@
         Vestibulum non vestibulum libero, vitae condimentum libero. Praesent pharetra ligula eu urna euismod, quis venenatis erat blandit.
     </p>
 
-    <div class="flex flex-wrap justify-center">
-    {% for office in offices %}
-        <div class="w-2/5">
-            <div class="odd:border-r-2 flex flex-row justify-center content-between">
-                {% if office.imageName is null %}
-                    <img class="w-[200px] h-[200px] border border-black" src="{{ asset('/ImageOffice/office_default.png') }}"/>
-                {% else %}
-                    <img class="w-[200px] h-[200px]" src="{{ asset('/ImageOffice/'~office.imageName) }}"/>
-                {% endif %}
-                <div class="ml-8">
-                    <p class="font-bold text-2xl">{{ office.role }}</p>
+    <div class="grid place-items-center">
+        <div class="flex flex-wrap justify-center">
+        {% set iterator = 0 %}
+            {% set iteratorRow = 0 %}
+        {% for office in offices %}
+            <div class="w-2/5">
+                {% if iteratorRow % 2 == 0 %}
+                    {% if iterator % 2 == 0 %}
+                        <div class="flex flex-row justify-center content-between pb-12 border-r-2">
+                            {% if office.imageName is null %}
+                                <img class="w-[200px] h-[200px] border border-black" src="{{ asset('/ImageOffice/office_default.png') }}"/>
+                            {% else %}
+                                <img class="w-[200px] h-[200px]" src="{{ asset('/ImageOffice/'~office.imageName) }}"/>
+                            {% endif %}
+                            <div class="ml-8 mr-8">
+                                <p class="font-bold text-2xl text-center">{{ office.role }}</p>
 
-                    <p class="pt-4">{{ office.description }}</p>
-                </div>
-                <hr>
+                                <p class="pt-4 text-justify">{{ office.description }}</p>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="flex flex-row justify-center content-between pb-12 ml-8">
+                            <div class="mr-8">
+                                <p class="font-bold text-2xl text-center">{{ office.role }}</p>
+
+                                <p class="pt-4 text-justify">{{ office.description }}</p>
+                            </div>
+                            {% if office.imageName is null %}
+                                <img class="w-[200px] h-[200px] border border-black" src="{{ asset('/ImageOffice/office_default.png') }}"/>
+                            {% else %}
+                                <img class="w-[200px] h-[200px]" src="{{ asset('/ImageOffice/'~office.imageName) }}"/>
+                            {% endif %}
+                        </div>
+                        {% set iteratorRow = iteratorRow + 1 %}
+                    {% endif %}
+                {% else %}
+                    {% if iterator % 2 != 0 %}
+                        <div class="flex flex-row justify-center content-between pb-12 ml-8">
+                            {% if office.imageName is null %}
+                                <img class="w-[200px] h-[200px] border border-black" src="{{ asset('/ImageOffice/office_default.png') }}"/>
+                            {% else %}
+                                <img class="w-[200px] h-[200px]" src="{{ asset('/ImageOffice/'~office.imageName) }}"/>
+                            {% endif %}
+                            <div class="ml-8">
+                                <p class="font-bold text-2xl text-center">{{ office.role }}</p>
+
+                                <p class="pt-4 text-justify">{{ office.description }}</p>
+                            </div>
+
+                        </div>
+                        {% set iteratorRow = iteratorRow + 1 %}
+                    {% else %}
+                        <div class="flex flex-row justify-center content-between pb-12 border-r-2">
+                            <div class="mr-8">
+                                <p class="font-bold text-2xl text-center">{{ office.role }}</p>
+
+                                <p class="pt-4 text-justify">{{ office.description }}</p>
+                            </div>
+                            {% if office.imageName is null %}
+                                <img class="w-[200px] h-[200px] mr-8 border border-black" src="{{ asset('/ImageOffice/office_default.png') }}"/>
+                            {% else %}
+                                <img class="w-[200px] h-[200px] mr-8" src="{{ asset('/ImageOffice/'~office.imageName) }}"/>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endif %}
             </div>
+            {% set iterator = iterator + 1 %}
+        {% endfor %}
         </div>
-    {% endfor %}
     </div>
 
 {% endblock %}
