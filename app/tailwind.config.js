@@ -4,6 +4,7 @@ module.exports = {
     extend: {
       colors: {
         "navbar-background": "var(--navbar-background)",
+        "article-price-background": "var(--article-price-background)",
       },
     },
   },
