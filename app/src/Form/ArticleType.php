@@ -17,8 +17,6 @@ class ArticleType extends AbstractType
             ->add('name')
             ->add('prix')
             ->add('description')
-
-            ->add('quantite')
             ->add('image', FileType::class, [
                 'label' => 'Image article',
                 'mapped' => false,
@@ -34,6 +32,8 @@ class ArticleType extends AbstractType
                     ])
                 ],
             ])
+            ->add('quantite')
+
         ;
     }
 

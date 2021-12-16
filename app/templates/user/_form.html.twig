@@ -7,7 +7,7 @@
         row_class: 'mb-2',
         label_class: 'font-medium block',
         error_item_class: 'text-red-700 ',
-        widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 hover:bg-gray-100 w-full',
+        widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 transition hover:bg-gray-100 w-full',
         widget_disabled_class: 'border-dashed text-gray-200 ',
         widget_errors_class: 'border-double border-red-500 bg-red-50',
     }) }}
@@ -16,7 +16,7 @@
         row_class: 'mb-2',
         label_class: 'font-medium block',
         error_item_class: 'text-red-700 ',
-        widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 hover:bg-gray-100 w-full',
+        widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 transition hover:bg-gray-100 w-full',
         widget_disabled_class: 'border-dashed text-gray-200 ',
         widget_errors_class: 'border-double border-red-500 bg-red-50',
     }) }}
@@ -25,7 +25,7 @@
         row_class: 'mb-2',
         label_class: 'font-medium block',
         error_item_class: 'text-red-700 ',
-        widget_class: ' p-2 border rounded-md border-black bg-white focus:bg-gray-200 hover:bg-gray-100 w-full',
+        widget_class: ' p-2 border rounded-md border-black bg-white focus:bg-gray-200 transition hover:bg-gray-100 w-full',
         widget_disabled_class: 'border-dashed text-gray-200 ',
         widget_errors_class: 'border-double border-red-500 bg-red-50',
     }) }}
@@ -34,31 +34,44 @@
         row_class: 'mb-2',
         label_class: 'font-medium block',
         error_item_class: 'text-red-700 ',
-        widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 hover:bg-gray-100 w-full',
+        widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 transition hover:bg-gray-100 w-full',
         widget_disabled_class: 'border-dashed text-gray-200 ',
         widget_errors_class: 'border-double border-red-500 bg-red-50',
     }) }}
 
+
+    {% if edit %}
+    {{ form_row(form.plainPassword, {
+        row_class: 'mb-2',
+        label_class: 'font-medium block',
+        error_item_class: 'text-red-700 ',
+        widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 focus:border-[374779] transition hover:bg-gray-100 w-full',
+        widget_disabled_class: 'border-dashed text-gray-200 ',
+        widget_errors_class: 'border-double border-red-500 bg-red-50',
+    }) }}
+
+    {% else %}
     {{ form_row(form.password, {
         row_class: 'mb-2',
         label_class: 'font-medium block',
         error_item_class: 'text-red-700 ',
-        widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 hover:bg-gray-100 w-full',
+        widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 focus:border-[374779] transition hover:bg-gray-100 w-full',
         widget_disabled_class: 'border-dashed text-gray-200 ',
         widget_errors_class: 'border-double border-red-500 bg-red-50',
     }) }}
-    <p class="self-center unmask hover:text-blue-900 mb-2 cursor-pointer">Afficher le mot de passe</p>
+    {% endif %}
+    <p class="self-center unmask hover:text-blue-900 mb-2 cursor-pointer transition underline">Afficher le mot de passe</p>
 
     {{ form_row(form.roles, {
-        row_class: 'mb-8',
+        row_class: 'mb-8 accent-[#374779] h6 w6',
         label_class: 'font-medium block',
         error_item_class: 'text-red-700 ',
-        widget_class: 'mb-2 p-2 border rounded-md border-black bg-white w-full',
+        widget_class: 'mb-2 p-2 w-16',
         widget_disabled_class: 'border-dashed text-gray-200 ',
         widget_errors_class: 'border-double border-red-500 bg-red-50',
     }) }}
 
-    <button  class="self-center btn btn-lg btn-primary bg-navbar-background hover:bg-blue-900 text-white box-content h-5 w-48 p-4">{{ button_label|default('AJOUTER') }}</button>
+    <button class="self-center btn btn-lg btn-primary mb-6 text-white font-bold box-content h-5 w-48 p-4 border-2 border-[#374779] transition text-white bg-[#374779] hover:bg-[#CBD8E5] hover:text-[#374779]">{{ button_label|default('AJOUTER') }}</button>
 </div>
 
 <script>

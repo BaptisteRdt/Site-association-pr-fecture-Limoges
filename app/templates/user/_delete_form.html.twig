@@ -1,4 +1,7 @@
-<form class="m-auto w-fit text-red-500" method="post" action="{{ path('user_delete', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
-    <button class="self-center btn btn-lg btn-primary text-white font-bold box-content h-5 w-48 p-4 border-2 border-[#C83C3C] transition text-white bg-[#C83C3C] hover:bg-[#FFA9A9] hover:text-[#AC2D2D]">Supprimer</button>
-</form>
+<div class="text-center">
+
+    <form method="post" action="{{ path('user_delete', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+        <button class="self-center btn btn-lg btn-primary text-white font-bold box-content h-5 w-48 p-4 border-2 border-[#C83C3C] transition text-white bg-[#C83C3C] hover:bg-[#FFA9A9] hover:text-[#AC2D2D]">Delete</button>
+    </form>
+</div>
