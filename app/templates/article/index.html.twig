@@ -1,41 +1,43 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
 {% block title %}Article index{% endblock %}
 
-{% block body %}
-    <h1>Article index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Quantité</th>
-                <th>Prix</th>
-                <th>actions</th>
+{% block content %}
+        <table class="w-4/5 table">
+            <thead class="border-b-[3px] border-navbar-background">
+            <tr class="w-fit">
+                <th class="p-3 space-x-8 text-left">Id</th>
+                <th class="p-3 space-x-8 text-left">Nom du produit</th>
+                <th class="p-3 space-x-8 text-left">Prix</th>
+                <th class="p-3 space-x-8 text-left">Quantité</th>
+                <th class="p-3 space-x-8 text-left">Image</th>
+                <th class="p-3 space-x-8 text-center">actions</th>
             </tr>
-        </thead>
-        <tbody>
+            </thead>
+            <tbody>
+            <tr class="h-14">
+                <td colspan="5"></td>
+                <td class=" transition text-center font-bold text-[#7C7C7C]">
+                    <a class="border-2 border-[#374779] py-[.15rem] px-3 font-medium transition text-white bg-[#374779] hover:bg-[#CBD8E5] hover:text-[#374779]" href="{{ path('article_new') }}">Ajouter</a>
+                </td>
+            </tr>
         {% for article in articles %}
-            <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.name }}</td>
-                <td>{{ article.description }}</td>
-                <td>{{ article.quantite }}</td>
-                <td>{{ article.prix }}</td>
-                <td>
-                    <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+            <tr class="border-b-2 border-[#C4C4C4] text-[#7C7C7C] transition font-bold hover:bg-[#E4E4E4]">
+                <td class="px-3 py-1 ">{{ article.id }}</td>
+                <td class="px-3 py-1 ">{{ article.name }}</td>
+                <td class="px-3 py-1 ">{{ article.prix }}</td>
+                <td class="px-3 py-1 ">{{ article.quantite }}</td>
+                <td class="px-3 py-1 ">{{ article.imageName }}</td>
+                <td class="px-3 py-1 text-center transition font-normal">
+                    <a class="hover:text-[#374779]" href="{{ path('article_show', {'id': article.id}) }}">👁</a>
+                    <a class="hover:text-[#374779]" href="{{ path('article_edit', {'id': article.id}) }}">📝</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="6">Pas de produit trouvé dans la boutique</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('article_new') }}">Create new</a>
 {% endblock %}
