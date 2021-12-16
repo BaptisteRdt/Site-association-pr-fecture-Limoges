@@ -3,22 +3,23 @@
 {% block title %}Office{% endblock %}
 
 {% block body %}
-    <h1>Office</h1>
+    <div class=" flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto shadow-md bg-gray-100 py-8 my-8">
+        <h1 class="self-center text-4xl font-bold mb-8">{{ office.role }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id: </th>
-                <td>{{ office.id }}|</td>
-                <td>{{ office.role }}</td>
-                <td>{{ office.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <p class=" text-center px-1 text-navbar-background font-bold">id: <span class="font-normal text-black">{{ office.id }}</span></p>
+            <p class=" text-center px-1 font-bold text-navbar-background">Description</p>
+            <p class=" text-center px-1 font-medium text-[#7C7C7C]">{{ office.description }}</p>
 
-    <a href="{{ path('office_index') }}">back to list</a>
 
-    <a href="{{ path('office_edit', {'id': office.id}) }}">edit</a>
+            <p class="h-10"></p>
 
-    {{ include('office/_delete_form.html.twig') }}
+        <a class="self-center mb-2 text-center btn btn-lg btn-primary text-white font-bold box-content h-5 w-48 p-4 border-2 border-[#374779] transition text-white bg-[#374779] hover:bg-[#CBD8E5] hover:text-[#374779]" href="{{ path('office_edit', {'id': office.id}) }}">modifier</a>
+        {{ include('office/_delete_form.html.twig') }}
+        <a class="text-[#7C7C7C] transition hover:text-[#374779] font-medium mt-3 text-center" href="{{ path('office_index') }}">Retour</a>
+    </div>
+
+
+
+
+
 {% endblock %}
