@@ -3,48 +3,46 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ user.id }}</td>
-            </tr>
-            <tr>
-                <th>Username</th>
-                <td>{{ user.username }}</td>
-            </tr>
-            <tr>
-                <th>FirstName</th>
-                <td>{{ user.FirstName }}</td>
-            </tr>
-            <tr>
-                <th>LastName</th>
-                <td>{{ user.LastName }}</td>
-            </tr>
-            <tr>
-                <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
-            </tr>
-            <tr>
-                <th>Mail</th>
-                <td>{{ user.mail }}</td>
-            </tr>
-            <tr>
-                <th>Date Renewal</th>
-                <td>{{ user.dateRenewal }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('user_index') }}">back to list</a>
 
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+    <div class=" flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto shadow-md bg-gray-100 py-8 my-8">
+        <h1 class="self-center text-4xl font-bold mb-8">{{ user.username }}</h1>
+        <div class="w-fit max-w-[80%] m-auto mb-4">
+                {% for role in user.roles %}
+                    <div class="inline bg-[#CBD8E5] w-fit px-3 rounded-full border-[2px] border-navbar-background text-navbar-background font-bold mx-1">
+                        {{ role|replace({"ROLE_": ""})|raw|capitalize }}
+                    </div>
 
-    {{ include('user/_delete_form.html.twig') }}
+                {% endfor %}
+        </div>
+        <table>
+            <tr>
+                <th class="text-right px-1 text-navbar-background">Id</th>
+                <td class="px-1">{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th class="text-right px-1 text-navbar-background">Prénom</th>
+                <td class="px-1">{{ user.FirstName }}</td>
+            </tr>
+            <tr>
+                <th class="text-right px-1 text-navbar-background">Nom de famille</th>
+                <td class="px-1">{{ user.LastName }}</td>
+            </tr>
+            <tr>
+                <th class="text-right px-1 text-navbar-background">Mail</th>
+                <td class="px-1">{{ user.mail }}</td>
+            </tr>
+            <tr>
+                <th class="text-right px-1 text-navbar-background">Période d'adhésion</th>
+                <td class="px-1">{{ user.dateRenewal }}</td>
+            </tr>
+            <tr class="h-10"></tr>
+        </table>
+        <a class="self-center mb-2 text-center btn btn-lg btn-primary text-white font-bold box-content h-5 w-48 p-4 border-2 border-[#374779] transition text-white bg-[#374779] hover:bg-[#CBD8E5] hover:text-[#374779]" href="{{ path('user_edit', {'id': user.id}) }}">modifier</a>
+        {{ include('user/_delete_form.html.twig') }}
+        <a class="text-[#7C7C7C] transition hover:text-[#374779] font-medium mt-3 text-center" href="{{ path('user_index') }}">Retour</a>
+
+    </div>
+
 {% endblock %}

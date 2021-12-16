@@ -3,42 +3,38 @@
 {% block title %}Hello PanierController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
+    <div class="font-medium transition text-[#7C7C7C] m-16 hover:text-[#374779]">
+        <a href="{{ path("shop") }}">🠔 Retour a la boutique</a>
+    </div>
 
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Quantité</th>
-            <th>Prix</th>
-
+    <table class="w-1/2 table m-auto">
+        <thead class="border-b-[3px] border-navbar-background">
+        <tr class="w-fit">
+            <th class="p-3 space-x-8 text-left">Nom</th>
+            <th class="p-3 space-x-8 text-left">Quantité</th>
+            <th class="p-3 space-x-8 text-left">Prix</th>
         </tr>
         </thead>
         <tbody>
         {% set prix = 0 %}
+        <tr class="h-5"></tr>
         {% for article in articles %}
             {% if article.quantite > 0 %}
-            <tr>
-                <td>{{ article.name }}</td>
-                <td>{{ article.quantite }}</td>
-                <td>{{ article.prix * article.quantite }}</td>
-
+                <tr class="border-b-2 border-[#C4C4C4] text-[#7C7C7C] transition font-bold hover:bg-[#E4E4E4]">
+                    <td class="px-3 py-1 ">{{ article.name }}</td>
+                    <td class="px-3 py-1 ">{{ article.quantite }}</td>
+                    <td class="px-3 py-1 ">{{ article.prix * article.quantite }}</td>
+                </tr>
                 {%  set prix = prix + article.prix * article.quantite %}
-
-            </tr>
             {% endif %}
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td>Pas d'article dans ce panier</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <p class="font-thin  text-yellow-500">Total : {{ prix }} €</p>
+    <p class="font-bold text-right w-1/2 m-auto">Total : {{ prix }} €</p>
 
 {% endblock %}
