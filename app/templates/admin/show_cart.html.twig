@@ -1,53 +1,45 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
 {% block title %}Hello AdminController!{% endblock %}
 
-{% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-
-
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Nom</th>
-            <th>Quantité</th>
-            <th>Prix</th>
-            <th>Actions</th>
-
+{% block content %}
+    <table class="w-4/5 table">
+        <thead class="border-b-[3px] border-navbar-background">
+        <tr class="w-fit">
+            <th class="p-3 space-x-8 text-left">Nom</th>
+            <th class="p-3 space-x-8 text-left">Quantité</th>
+            <th class="p-3 space-x-8 text-left">Prix</th>
+            <th class="p-3 space-x-8 text-left">Actions</th>
         </tr>
         </thead>
         <tbody>
         {% set prix = 0 %}
+        <tr class="h-14">
+        </tr>
         {% for article in articles %}
             {% if article.quantite > 0 %}
-                <tr>
-                    <td>{{ article.name }}</td>
-                    <td>{{ article.quantite }}</td>
-                    <td>{{ article.prix * article.quantite }}</td>
+                <tr class="border-b-2 border-[#C4C4C4] text-[#7C7C7C] transition font-bold hover:bg-[#E4E4E4]">
+                    <td class="px-3 py-1 ">{{ article.name }}</td>
+                    <td class="px-3 py-1 ">{{ article.quantite }}</td>
+                    <td class="px-3 py-1 ">{{ article.prix * article.quantite }}</td>
 
                     {%  set prix = prix + article.prix * article.quantite %}
-                    <td>
-                        <a href="{{ path('confirm_purchase', {'id':article.id, 'user':user.id}) }}">Confirmer Achat</a>
-                        <a href="{{ path('remove_reservation', {'id':article.id, 'user':user.id}) }}">Retirer</a>
+                    <td class="px-3 py-1 text-center transition font-normal">
+                        <a class="hover:text-[#374779]" href="{{ path('confirm_purchase', {'id':article.id, 'user':user.id}) }}">Confirmer Achat</a>
+                        <a class="hover:text-[#374779]" href="{{ path('remove_reservation', {'id':article.id, 'user':user.id}) }}">Retirer</a>
                     </td>
 
                 </tr>
             {% endif %}
+
         {% else %}
             <tr>
-                <td colspan="4">Aucun élement dans le panier</td>
+                <td>Pas d'article dans ce panier</td>
             </tr>
         {% endfor %}
+
         </tbody>
     </table>
-
-    <p class="font-thin  text-yellow-500">Total : {{ prix }} €</p>
-
-
-
+    <p class="font-bold text-right w-4/5">Total : {{ prix }} €</p>
 {% endblock %}
 
