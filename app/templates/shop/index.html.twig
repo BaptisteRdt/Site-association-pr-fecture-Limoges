@@ -17,7 +17,7 @@
     <div class="w-4/5 flex flex-wrap justify-between text-center">
         {% for article in articles %}
             <div class="w-1/3 p-8">
-                <div class="drop-shadow transition hover:scale-105 rounded-[16px] bg-gray-200">
+                <div class="drop-shadow transition  hover:scale-105 rounded-[16px] bg-gray-200">
                     <h2 class="text-3xl font-bold pt-6">{{ article.name }}</h2>
                     <div class="grid place-items-center p-4">
                         {% if article.imageName is null %}
@@ -28,7 +28,7 @@
                     </div>
                     <p class="text-xl text-justify p-6">{{ article.description }}</p>
                     <p class="text-2xl mb-2 ">Quantité : {{ article.quantite }}</p>
-                    <div class="bg-article-price-background h-20 flex flex-wrap rounded-b-lg items-center justify-center">
+                    <div class="bg-article-price-background h-20 flex flex-wrap rounded-b-[16px] items-center justify-center">
                         <div class="bg-navbar-background grid place-items-center w-10 h-10 rounded-full">
                             <a class="text-3xl text-white absolute" href="{{ path('panier_remove', {'id':article.id}) }}">-</a>
                         </div>

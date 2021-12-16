@@ -23,7 +23,7 @@
         Vestibulum non vestibulum libero, vitae condimentum libero. Praesent pharetra ligula eu urna euismod, quis venenatis erat blandit.
     </p>
 
-    <div class="grid place-items-center">
+    <div class="grid place-items-center mb-14">
         <div class="flex flex-wrap justify-center">
         {% set iterator = 0 %}
             {% set iteratorRow = 0 %}
@@ -31,7 +31,7 @@
             <div class="w-2/5">
                 {% if iteratorRow % 2 == 0 %}
                     {% if iterator % 2 == 0 %}
-                        <div class="flex flex-row justify-center content-between pb-12 border-r-2">
+                        <div class="flex flex-row justify-center content-between pb-12 border-black border-r-4">
                             {% if office.imageName is null %}
                                 <img class="w-[200px] h-[200px] border border-black" src="{{ asset('/ImageOffice/office_default.png') }}"/>
                             {% else %}
@@ -75,7 +75,7 @@
                         </div>
                         {% set iteratorRow = iteratorRow + 1 %}
                     {% else %}
-                        <div class="flex flex-row justify-center content-between pb-12 border-r-2">
+                        <div class="flex flex-row justify-center content-between pb-12 border-black border-r-4">
                             <div class="mr-8">
                                 <p class="font-bold text-2xl text-center">{{ office.role }}</p>
 
