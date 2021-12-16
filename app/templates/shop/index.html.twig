@@ -7,48 +7,40 @@
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Photo</th>
-            <th>Description</th>
-            <th>Quantite</th>
-            <th>Prix</th>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
+
+<h1 class="text-5xl my-8 text-center">Boutique de l'association</h1>
+<div class="grid place-items-center">
+    <div class="w-4/5 flex flex-wrap justify-center text-center">
         {% for article in articles %}
-            <tr>
-                <td>{{ article.id }}</td>
-                <td>{{ article.name }}</td>
-                {% if article.imageName is null %}
-                <td><img src="{{ asset('/ImageArticle/article_default.png') }}"></td>
-                {% else %}
-                <td><img src="{{ asset('/ImageArticle/'~article.imageName) }}"></td>
-                {% endif %}
-                <td>{{ article.description }}</td>
-                <td>{{ article.quantite }}</td>
-                <td>{{ article.prix }}</td>
-
-
-                <td>
-
-                    <a href="{{ path('panier_add', {'id':article.id}) }}">Ajouter</a>
-                    <a href="{{ path('panier_remove', {'id':article.id}) }}">Retirer</a>
-
-                </td>
-            </tr>
+            <div class="w-1/3 border border-2">
+                <h2>{{ article.name }}</h2>
+                <div class="grid place-items-center">
+                    {% if article.imageName is null %}
+                    <img class="w-[200px] h-[200px]" src="{{ asset('/ImageArticle/article_default.png') }}"/>
+                    {% else %}
+                    <img class="w-[200px] h-[200px]" src="{{ asset('/ImageArticle/'~article.imageName) }}"/>
+                    {% endif %}
+                </div>
+                <p>{{ article.description }}</p>
+                <div class="bg">
+                    <p>{{ article.quantite }}</p>
+                    <p>{{ article.prix }}</p>
+                </div>
+                <div>
+                    <a href="{{ path('panier_add', {'id':article.id}) }}">➕</a>
+                    <a href="{{ path('panier_remove', {'id':article.id}) }}">➖</a>
+                </div>
+            </div>
         {% else %}
             <tr>
                 <td colspan="4">no records found</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
-
+    </div>
+</div>
+<div class="text-center">
     <a href="{{ path("panier") }}">Voir mon panier</a>
+</div>
+
 
 {% endblock %}
