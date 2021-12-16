@@ -3,10 +3,13 @@
 {% block title %}Edit Profile{% endblock %}
 
 {% block body %}
-    <h1>Edit User</h1>
+    <div class="flex flex-col justify-evenly w-[30rem] h-screen m-auto">
+        <h1 class="self-center text-4xl font-bold">Modifier Profil</h1>
 
-    {{ include('article/_form.html.twig', {'button_label': 'Update'}) }}
+        {{ 
+            include('profile/_form.html.twig', {'button_label': 'MODIFIER'}) 
+        }}
 
-    <a href="{{ path('profile') }}">back to profile</a>
-
+        <a href="{{ path('profile') }}" class="self-center hover:text-blue-900">Retourner au profil</a>
+    </div>
 {% endblock %}

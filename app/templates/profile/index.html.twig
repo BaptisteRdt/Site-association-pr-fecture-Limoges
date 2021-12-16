@@ -8,28 +8,28 @@
         <h1 class="self-center text-4xl font-bold">Profil</h1>
 
         <div class="flex flex-col">
-                <p class="font-medium">Identifiant</p>
-                <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.username }}</p>
+            <p class="font-medium">Identifiant</p>
+            <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.username }}</p>
 
-                <p class="font-medium">Nom</p>
-                <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.LastName }}</p>
-                
-                <p class="font-medium">Prénom</p>
-                <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.FirstName }}</p>
+            <p class="font-medium">Nom</p>
+            <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.LastName }}</p>
+            
+            <p class="font-medium">Prénom</p>
+            <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.FirstName }}</p>
 
-                <p class="font-medium">Mail</p>
-                <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.mail }}</p>
+            <p class="font-medium">Mail</p>
+            <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.mail }}</p>
 
-                <p class="font-medium">Mot de passe</p>
-                <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.password }}</p>
+            <p class="font-medium">Mot de passe</p>
+            <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.password }}</p>
 
-                <p class="font-medium">Renouvellement de l'adhésion</p>
-                <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.dateRenewal }}</p>
+            <p class="font-medium">Renouvellement de l'adhésion</p>
+            <p class="mb-6 p-2 border rounded-md border-black bg-blue-100">{{ user.dateRenewal }}</p>
 
-                {#
-                <p>{{ user.roles ? user.roles|json_encode : '' }}</p>
-                <p>{{ user.id }}</p>
-                #}
+            {#
+            //pour recuperer roles
+            <p>{{ user.roles ? user.roles|json_encode : '' }}</p>
+            #}
         </div>
 
         <a href="{{ path('profile_edit') }}" class="self-center hover:text-blue-900">

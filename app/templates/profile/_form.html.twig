@@ -1,4 +1,22 @@
+{% form_theme form 'tailwind_2_layout.html.twig' %}
+
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="flex flex-col"> 
+        
+        {{ form_row(form.mail, {
+            row_class: 'mt-2',
+            label_class: 'font-medium block',
+            error_item_class: 'text-red-700 ',
+            widget_class: 'mb-6 p-2 border rounded-md border-black bg-white w-full',
+            widget_disabled_class: 'border-dashed text-gray-200 ',
+            widget_errors_class: 'border-double border-red-500 bg-red-50',
+        }) }}
+
+        {{ form_label(form.plainPassword.first, 'Mot de passe', { 'label_attr': {'class': 'font-medium block'} }) }}
+        {{ form_widget(form.plainPassword.first, {'attr': {'class': 'mb-6 p-2 border rounded-md border-black bg-white'}}) }}
+        {{ form_label(form.plainPassword.second, 'Confirmer mot de passe', { 'label_attr': {'class': 'font-medium block'} }) }}
+        {{ form_widget(form.plainPassword.second, {'attr': {'class': 'mb-6 p-2 border rounded-md border-black bg-white'}}) }}
+
+        <button class="self-center btn btn-lg btn-primary bg-navbar-background hover:bg-blue-900 text-white box-content h-5 w-48 p-4">{{ button_label|default('Save') }}</button>
+    </div>
 {{ form_end(form) }}
