@@ -1,43 +1,45 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
 {% block title %}Office index{% endblock %}
 
-{% block body %}
+{% block content %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Poste</th>
-                <th>Photo</th>
-                <th>Descriptions</th>
-                <th>Actions</th>
-            </tr>
+    <table class="w-4/5 table">
+        <thead class="border-b-[3px] border-navbar-background">
+        <tr class="w-fit">
+            <th class="p-3 space-x-8 text-left">Id</th>
+            <th class="p-3 space-x-8 text-left">Poste</th>
+            <th class="p-3 space-x-8 text-left">Description</th>
+            <th class="p-3 space-x-8 text-left">Image</th>
+            <th class="p-3 space-x-8 text-center">actions</th>
+        </tr>
         </thead>
         <tbody>
+        <tr class="h-14">
+            <td colspan="4"></td>
+            <td class=" transition text-center font-bold text-[#7C7C7C]">
+                <a class="border-2 border-[#374779] py-[.15rem] px-3 font-medium transition text-white bg-[#374779] hover:bg-[#CBD8E5] hover:text-[#374779]"
+                   href="{{ path('office_new') }}">Ajouter</a>
+            </td>
+        </tr>
         {% for office in offices %}
-            <tr>
-                <td>{{ office.id }}</td>
-                <td>{{ office.role }}</td>
-                {% if office.imageName is null %}
-                    <td><img src="{{ asset('/ImageOffice/office_default.png') }}"></td>
-                {% else %}
-                    <td><img src="{{ asset('/ImageOffice/'~office.imageName) }}"></td>
-                {% endif %}
-                <td>{{ office.description }}</td>
-                <td>
-                    <a href="{{ path('office_show', {'id': office.id}) }}">show</a>
-                    <a href="{{ path('office_edit', {'id': office.id}) }}">edit</a>
+            <tr class="border-b-2 border-[#C4C4C4] text-[#7C7C7C] transition font-bold hover:bg-[#E4E4E4]">
+                <td class="px-3 py-1 ">{{ office.id }}</td>
+                <td class="px-3 py-1 ">{{ office.role }}</td>
+                <td class="px-3 py-1 ">{{ office.description|length > 50 ? office.description|slice(0, 50) ~ '...' : office.description  }}</td>
+                <td class="px-3 py-1 ">{{ office.imageName }}</td>
+
+                <td class="px-3 py-1 text-center transition font-normal">
+                    <a class="hover:text-[#374779]" href="{{ path('office_show', {'id': office.id}) }}">show</a>
+                    <a class="hover:text-[#374779]" href="{{ path('office_edit', {'id': office.id}) }}">edit</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="2">no records found</td>
+                <td colspan="5">Pas de poste trouvé dans l'association</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-    {% if is_granted('ROLE_ADMIN') %}
-    <a href="{{ path('office_new') }}">Create new</a>
-    {% endif %}
+
 {% endblock %}
