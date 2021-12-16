@@ -19,6 +19,7 @@ class OfficeType extends AbstractType
 
         $builder
         ->add('role', TextType::class, [
+            'label' => 'Poste',
             'constraints' => [
                 new NotBlank([
                     'message' => 'Entrer votre poste']),
@@ -31,7 +32,7 @@ class OfficeType extends AbstractType
             ],
         ])
         ->add('image', FileType::class, [
-            'label' => 'Image article',
+            'label' => 'Photo',
             'mapped' => false,
             'required' => false,
             'constraints' => [
