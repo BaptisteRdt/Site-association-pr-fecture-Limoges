@@ -23,27 +23,7 @@
                     <p class="percentage2 text-[#7C7C7C] text-xl font-bold w-fit h-fit">%</p>
                 </div>
             </div>
-            <h3 class="text-lg text-[#374779] font-bold text-center py-4">Pourcentage des utilisateurs adhérent</h3>
-        </div>
-
-        <div class="bg-gray-100 w-56 px-4 py-5 rounded drop-shadow transition hover:scale-105">
-            <div class="bg-[#CBD8E5] rounded-full relative h-44 w-44 flex">
-                <div class="bg-[#374779] rounded-full w-full h-full m-auto graph3"></div>
-                <div class="bg-gray-100 rounded-full w-4/6 h-4/6 absolute m-auto inset-0 flex justify-center items-center">
-                    <p class="percentage3 text-[#7C7C7C] text-xl font-bold w-fit h-fit">%</p>
-                </div>
-            </div>
-            <h3 class="text-lg text-[#374779] font-bold text-center py-4">Pourcentage des utilisateurs adhérent</h3>
-        </div>
-
-        <div class="bg-gray-100 w-56 px-4 py-5 rounded drop-shadow transition hover:scale-105">
-            <div class="bg-[#CBD8E5] rounded-full relative h-44 w-44 flex">
-                <div class="bg-[#374779] rounded-full w-full h-full m-auto graph4"></div>
-                <div class="bg-gray-100 rounded-full w-4/6 h-4/6 absolute m-auto inset-0 flex justify-center items-center">
-                    <p class="percentage4 text-[#7C7C7C] text-xl font-bold w-fit h-fit">%</p>
-                </div>
-            </div>
-            <h3 class="text-lg text-[#374779] font-bold text-center py-4">Pourcentage des utilisateurs adhérent</h3>
+            <h3 class="text-lg text-[#374779] font-bold text-center py-4">Pourcentage d'objet réservés dans la boutique</h3>
         </div>
 
     </div>
@@ -96,8 +76,8 @@
             document.querySelector(percentage).innerHTML = `${Math.round(pourcentage)}%`;
         }
 
-        for (let j = 1; j <= 4; j++) {
-            for (let i = 0; i <  (Math.random() * 1000)/10; i+= .1) {
+        for (let j = 1; j <= 2; j++) {
+            for (let i = 0; i <  0.1; i+= .1) {
                 setTimeout(function() {
                     graph(i, `.graph${j}`, `.percentage${j}`);
                 }, 10 * i);

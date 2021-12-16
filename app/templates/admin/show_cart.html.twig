@@ -25,8 +25,8 @@
 
                     {%  set prix = prix + article.prix * article.quantite %}
                     <td class="px-3 py-1 text-center transition font-normal">
-                        <a class="hover:text-[#374779]" href="{{ path('confirm_purchase', {'id':article.id, 'user':user.id}) }}">Confirmer Achat</a>
-                        <a class="hover:text-[#374779]" href="{{ path('remove_reservation', {'id':article.id, 'user':user.id}) }}">Retirer</a>
+                        <a class="hover:text-[#374779]" href="{{ path('confirm_purchase', {'id':article.id, 'user':user.id}) }}">✔</a>
+                        <a class="hover:text-[#374779]" href="{{ path('remove_reservation', {'id':article.id, 'user':user.id}) }}">🗑</a>
                     </td>
 
                 </tr>

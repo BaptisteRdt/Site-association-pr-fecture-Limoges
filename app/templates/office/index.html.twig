@@ -23,20 +23,20 @@
             </td>
         </tr>
         {% for office in offices %}
-            <tr class="border-b-2 border-[#C4C4C4] text-[#7C7C7C] transition font-bold hover:bg-[#E4E4E4]">
+            <tr class="border-b-2 border-[#C4C4C4] text-[#7C7C7C] transition font-medium hover:bg-[#E4E4E4]">
                 <td class="px-3 py-1 ">{{ office.id }}</td>
                 <td class="px-3 py-1 ">{{ office.role }}</td>
                 <td class="px-3 py-1 ">{{ office.description|length > 50 ? office.description|slice(0, 50) ~ '...' : office.description  }}</td>
                 <td class="px-3 py-1 ">{{ office.imageName }}</td>
 
                 <td class="px-3 py-1 text-center transition font-normal">
-                    <a class="hover:text-[#374779]" href="{{ path('office_show', {'id': office.id}) }}">show</a>
-                    <a class="hover:text-[#374779]" href="{{ path('office_edit', {'id': office.id}) }}">edit</a>
+                    <a class="hover:text-[#374779]" href="{{ path('office_show', {'id': office.id}) }}">👁</a>
+                    <a class="hover:text-[#374779]" href="{{ path('office_edit', {'id': office.id}) }}">📝</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">Pas de poste trouvé dans l'association</td>
+                <td colspan="5" class="text-[#7C7C7C] font-medium ">Pas de poste trouvé dans l'association</td>
             </tr>
         {% endfor %}
         </tbody>
