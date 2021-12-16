@@ -3,9 +3,14 @@
 {% block title %}New Article{% endblock %}
 
 {% block body %}
-    <h1>Create new Article</h1>
+
+<div class=" py-4 mt-16 flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto shadow-md bg-gray-100">
+
+    <h1 class="self-center text-4xl font-bold my-8">Ajouter un produit</h1>
 
     {{ include('article/_form.html.twig') }}
 
-    <a href="{{ path('article_index') }}">back to list</a>
+    <a class="self-center transition underline hover:text-blue-900 my-8" href="{{ path('article_index') }}">Retour à la liste des produits</a>
+</div>
+
 {% endblock %}
