@@ -22,30 +22,35 @@ class UserType extends AbstractType
                     new NotBlank([
                         'message' => 'Entrer le nom d\'utilisateur']),
                 ],
+                'label' => 'Identifiant'
             ])
             ->add('FirstName', TextType::class,[
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Entrer le prénom']),
                 ],
+                'label' => 'Prénom'
             ])
             ->add('LastName', TextType::class,[
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Entrer le nom']),
                 ],
+                'label' => 'Nom'
             ])
             ->add('mail', EmailType::class,[
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Entrer le mail']),
                 ],
+                'label' => 'Mail'
             ])
             ->add('password', PasswordType::class,[
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Entrer le mot de passe']),
                 ],
+                'label' => 'Mot de passe'
             ])
             ->add('roles', ChoiceType::class, [
                 'choices' => [

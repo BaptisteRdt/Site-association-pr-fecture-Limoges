@@ -1,4 +1,72 @@
+{% form_theme form 'tailwind_2_layout.html.twig' %}
+
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+<div class="flex flex-col"> 
+
+    {{ form_row(form.username, {
+        row_class: 'mb-2',
+        label_class: 'font-medium block',
+        error_item_class: 'text-red-700 ',
+        widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 hover:bg-gray-100 w-full',
+        widget_disabled_class: 'border-dashed text-gray-200 ',
+        widget_errors_class: 'border-double border-red-500 bg-red-50',
+    }) }}
+
+    {{ form_row(form.FirstName, {
+        row_class: 'mb-2',
+        label_class: 'font-medium block',
+        error_item_class: 'text-red-700 ',
+        widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 hover:bg-gray-100 w-full',
+        widget_disabled_class: 'border-dashed text-gray-200 ',
+        widget_errors_class: 'border-double border-red-500 bg-red-50',
+    }) }}
+
+    {{ form_row(form.LastName, {
+        row_class: 'mb-2',
+        label_class: 'font-medium block',
+        error_item_class: 'text-red-700 ',
+        widget_class: ' p-2 border rounded-md border-black bg-white focus:bg-gray-200 hover:bg-gray-100 w-full',
+        widget_disabled_class: 'border-dashed text-gray-200 ',
+        widget_errors_class: 'border-double border-red-500 bg-red-50',
+    }) }}
+
+    {{ form_row(form.mail, {
+        row_class: 'mb-2',
+        label_class: 'font-medium block',
+        error_item_class: 'text-red-700 ',
+        widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 hover:bg-gray-100 w-full',
+        widget_disabled_class: 'border-dashed text-gray-200 ',
+        widget_errors_class: 'border-double border-red-500 bg-red-50',
+    }) }}
+
+    {{ form_row(form.password, {
+        row_class: 'mb-2',
+        label_class: 'font-medium block',
+        error_item_class: 'text-red-700 ',
+        widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 hover:bg-gray-100 w-full',
+        widget_disabled_class: 'border-dashed text-gray-200 ',
+        widget_errors_class: 'border-double border-red-500 bg-red-50',
+    }) }}
+    <p class="self-center unmask hover:text-blue-900 mb-2 cursor-pointer">Afficher le mot de passe</p>
+
+    {{ form_row(form.roles, {
+        row_class: 'mb-8',
+        label_class: 'font-medium block',
+        error_item_class: 'text-red-700 ',
+        widget_class: 'mb-2 p-2 border rounded-md border-black bg-white w-full',
+        widget_disabled_class: 'border-dashed text-gray-200 ',
+        widget_errors_class: 'border-double border-red-500 bg-red-50',
+    }) }}
+
+    <button  class="self-center btn btn-lg btn-primary bg-navbar-background hover:bg-blue-900 text-white box-content h-5 w-48 p-4">{{ button_label|default('AJOUTER') }}</button>
+</div>
+
+<script>
+    let unmask = document.querySelector(".unmask");
+    unmask.onclick = (_)=> {
+        let input = document.querySelector("#user_password");
+        input.type==="password"?input.type="text":input.type="password";
+    };
+</script>
+
 {{ form_end(form) }}
