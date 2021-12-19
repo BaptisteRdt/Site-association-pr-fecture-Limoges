@@ -6,10 +6,26 @@
 
     <div class="flex justify-start">
         <div class="w-1/5 py-20 text-lg">
-            <ul class="text-right px-10 font-bold text-[#C4C4C4]">
-                <li class="py-3 transition hover:scale-105 hover:text-navbar-background"><a href="{{ path("user_index") }}">Utilisateurs</a></li>
-                <li class="py-3 transition hover:scale-105 hover:text-navbar-background"><a href="{{ path("article_index") }}">Boutique</a></li>
-                <li class="py-3 transition hover:scale-105 hover:text-navbar-background"><a href="{{ path("office_index") }}">Bureau</a></li>
+            <ul class="text-right px-10 font-bold">
+                {% set currentPath = path(app.request.attributes.get('_route'),
+                    app.request.attributes.get('_route_params')) %}
+                {% if currentPath == "/admin/user/"  %}
+                    <li class="py-3 transition text-navbar-background"><a href="{{ path("user_index") }}">Utilisateurs</a></li>
+                {% else %}
+                    <li class="py-3 transition hover:scale-105  text-[#C4C4C4]  hover:text-navbar-background"><a href="{{ path("user_index") }}">Utilisateurs</a></li>
+                {% endif %}
+
+                {% if currentPath == "/admin/article/"  %}
+                    <li class="py-3 transition text-navbar-background"><a href="{{ path("article_index") }}">Boutique</a></li>
+                {% else %}
+                <li class="py-3 transition hover:scale-105  text-[#C4C4C4] hover:text-navbar-background"><a href="{{ path("article_index") }}">Boutique</a></li>
+                {% endif %}
+
+                {% if currentPath == "/admin/bureau/"  %}
+                    <li class="py-3 transition text-navbar-background"><a href="{{ path("office_index") }}">Bureau</a></li>
+                {% else %}
+                <li class="py-3 transition hover:scale-105  text-[#C4C4C4] hover:text-navbar-background"><a href="{{ path("office_index") }}">Bureau</a></li>
+                {% endif %}
             </ul>
         </div>
 
@@ -19,7 +35,6 @@
             {% endblock %}
         </div>
     </div>
-
 
 
 {% endblock %}
