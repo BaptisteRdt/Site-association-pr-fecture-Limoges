@@ -7,8 +7,8 @@
         <h1 class="self-center text-4xl font-bold mb-8">{{ office.role }}</h1>
 
             <p class=" text-center px-1 text-navbar-background font-bold">id: <span class="font-normal text-black">{{ office.id }}</span></p>
-            <p class=" text-center px-1 font-bold text-navbar-background">Description</p>
-            <p class=" text-center px-1 font-medium text-[#7C7C7C]">{{ office.description }}</p>
+            <p class=" text-center px-1 font-bold text-navbar-background">Description: </p>
+            <p class=" text-justify px-1 font-medium text-[#7C7C7C]">{{ office.description }}</p>
 
 
             <p class="h-10"></p>
@@ -17,9 +17,4 @@
         {{ include('office/_delete_form.html.twig') }}
         <a class="text-[#7C7C7C] transition hover:text-[#374779] font-medium mt-3 text-center" href="{{ path('office_index') }}">Retour</a>
     </div>
-
-
-
-
-
 {% endblock %}

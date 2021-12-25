@@ -4,19 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-<<<<<<< HEAD
-    <list default="true" id="4259b4be-24e1-4ae9-959f-98ec138558c4" name="Changes" comment="" />
-=======
     <list default="true" id="4259b4be-24e1-4ae9-959f-98ec138558c4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/migrations/Version20211219184249.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20211219184249.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/admin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/article/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/office/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/office/_delete_form.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/office/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/office/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/security/login.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/security/login.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/office/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/office/show.html.twig" afterDir="false" />
     </list>
->>>>>>> 5a17ca67df2b3a45d12704c4e9fbc7e3c05f6c3a
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -229,12 +228,8 @@
       <workItem from="1639509032868" duration="14642000" />
       <workItem from="1639571789338" duration="3276000" />
       <workItem from="1639586684704" duration="18195000" />
-<<<<<<< HEAD
-      <workItem from="1639654616714" duration="24303000" />
-=======
       <workItem from="1639654616714" duration="23864000" />
       <workItem from="1639936267622" duration="12690000" />
->>>>>>> 5a17ca67df2b3a45d12704c4e9fbc7e3c05f6c3a
     </task>
     <servers />
   </component>

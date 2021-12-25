@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit News{% endblock %}
+
+{% block body %}
+
+    <div class="flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto my-8 rounded-lg shadow-md bg-gray-100">
+        <h1 class="self-center text-4xl font-bold my-8">Modifier l'article</h1>
+
+        {{ include('news/_form.html.twig', {'button_label': 'METTRE A JOUR'}) }}
+
+        {{ include('news/_delete_form.html.twig', {'button_label': 'SUPPRIMER'}) }}
+
+        <a href="{{ path('news_index') }}" class="my-8 self-center unmask hover:text-blue-900 mb-2 cursor-pointer transition underline">Retour</a>
+    </div>
+{% endblock %}

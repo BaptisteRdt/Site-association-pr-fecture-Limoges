@@ -1,6 +1,6 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Office index{% endblock %}
+{% block title %}News index{% endblock %}
 
 {% block content %}
 
@@ -8,9 +8,8 @@
         <thead class="border-b-[3px] border-navbar-background">
         <tr class="w-fit">
             <th class="p-3 space-x-8 text-left">Id</th>
-            <th class="p-3 space-x-8 text-left">Poste</th>
-            <th class="p-3 space-x-8 text-left">Description</th>
-            <th class="p-3 space-x-8 text-left">Image</th>
+            <th class="p-3 space-x-8 text-left">Titre</th>
+            <th class="p-3 space-x-8 text-left">Contenu</th>
             <th class="p-3 space-x-8 text-center">actions</th>
         </tr>
         </thead>
@@ -19,19 +18,18 @@
             <td colspan="4"></td>
             <td class=" transition text-center font-bold text-[#7C7C7C]">
                 <a class="border-2 border-[#374779] py-[.15rem] px-3 font-medium transition text-white bg-[#374779] shadow-lg shadow-blue-900/50 hover:bg-[#CBD8E5] hover:text-[#374779]"
-                   href="{{ path('office_new') }}">Ajouter</a>
+                   href="{{ path('news_new') }}">Ajouter</a>
             </td>
         </tr>
-        {% for office in offices %}
+        {% for new in news %}
             <tr class="border-b-2 border-[#C4C4C4] text-[#7C7C7C] transition font-medium hover:bg-[#E4E4E4]">
-                <td class="px-3 py-1 ">{{ office.id }}</td>
-                <td class="px-3 py-1 ">{{ office.role }}</td>
-                <td class="px-3 py-1 ">{{ office.description|length > 50 ? office.description|slice(0, 50) ~ '...' : office.description  }}</td>
-                <td class="px-3 py-1 ">{{ office.imageName }}</td>
+                <td class="px-3 py-1 ">{{ new.id }}</td>
+                <td class="px-3 py-1 ">{{ new.title }}</td>
+                <td class="px-3 py-1 ">{{ new.textContent|length > 50 ? new.textContent|slice(0, 50) ~ '...' : textContent.description  }}</td>
 
                 <td class="px-3 py-1 text-center transition font-normal">
-                    <a class="hover:text-[#374779]" href="{{ path('office_show', {'id': office.id}) }}">👁</a>
-                    <a class="hover:text-[#374779]" href="{{ path('office_edit', {'id': office.id}) }}">📝</a>
+                    <a class="hover:text-[#374779]" href="{{ path('news_show', {'id': new.id}) }}">👁</a>
+                    <a class="hover:text-[#374779]" href="{{ path('news_edit', {'id': new.id}) }}">📝</a>
                 </td>
             </tr>
         {% else %}
@@ -41,5 +39,4 @@
         {% endfor %}
         </tbody>
     </table>
-
 {% endblock %}

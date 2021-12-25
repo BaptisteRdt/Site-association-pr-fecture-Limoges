@@ -1,7 +1,6 @@
-
 <div class="text-center">
-    <form class="flex flex-col" method="post" action="{{ path('office_delete', {'id': office.id}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer ce poste ?');">
-        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ office.id) }}">
+    <form method="post" action="{{ path('news_delete', {'id': news.id}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer cet article ?')">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ news.id) }}">
         <button  class="my-4 self-center btn btn-lg btn-primary text-white font-bold box-content h-5 w-48 p-4 border-2 border-red-600 transition text-white bg-red-600 hover:bg-red-300 hover:text-red-600">{{ button_label|default('SUPPRIMER') }}</button>
     </form>
 </div>
