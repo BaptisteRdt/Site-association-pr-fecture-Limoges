@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4259b4be-24e1-4ae9-959f-98ec138558c4" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/office/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/office/_delete_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/office/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/office/show.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/panier/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/panier/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/_delete_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/user/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/show.html.twig" afterDir="false" />
-    </list>
+    <list default="true" id="4259b4be-24e1-4ae9-959f-98ec138558c4" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -217,7 +209,7 @@
       <workItem from="1639509032868" duration="14642000" />
       <workItem from="1639571789338" duration="3276000" />
       <workItem from="1639586684704" duration="18195000" />
-      <workItem from="1639654616714" duration="23864000" />
+      <workItem from="1639654616714" duration="24303000" />
     </task>
     <servers />
   </component>
@@ -234,5 +226,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
