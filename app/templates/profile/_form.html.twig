@@ -12,10 +12,8 @@
             widget_errors_class: 'border-double border-red-500 bg-red-50',
         }) }}
 
-        {{ form_label(form.plainPassword.first, 'Mot de passe', { 'label_attr': {'class': 'font-medium block'} }) }}
-        {{ form_widget(form.plainPassword.first, {'attr': {'class': 'mb-2 p-2 border rounded-md border-black bg-white focus:bg-gray-200 transition hover:bg-gray-100 w-full'}}) }}
-        {{ form_label(form.plainPassword.second, 'Confirmer mot de passe', { 'label_attr': {'class': 'font-medium block'} }) }}
-        {{ form_widget(form.plainPassword.second, {'attr': {'class': 'mb-2 p-2 border rounded-md border-black bg-white focus:bg-gray-200 transition hover:bg-gray-100 w-full'}}) }}
+        {{ form_label(form.plainPassword, 'Mot de passe', { 'label_attr': {'class': 'font-medium block'} }) }}
+        {{ form_widget(form.plainPassword, {'attr': {'class': 'mb-2 p-2 border rounded-md border-black bg-white focus:bg-gray-200 transition hover:bg-gray-100 w-full'}}) }}
 
         <button class="self-center btn btn-lg btn-primary text-white font-bold box-content my-8 h-5 w-48 p-4 border-2 border-[#374779] transition text-white bg-[#374779] hover:bg-[#CBD8E5] hover:text-[#374779]">{{ button_label|default('Save') }}</button>
     </div>

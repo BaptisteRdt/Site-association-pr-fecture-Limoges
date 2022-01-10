@@ -73,6 +73,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $cart = [];
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $ImageName;
+
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    private $telephone;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $address;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $birthDate;
+
     public function __construct()
     {
         $this->article = new ArrayCollection();
@@ -214,6 +234,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCart(array $cart): self
     {
         $this->cart = $cart;
+
+        return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->ImageName;
+    }
+
+    public function setImageName(string $ImageName): self
+    {
+        $this->ImageName = $ImageName;
+
+        return $this;
+    }
+
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(?string $telephone): self
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getBirthDate(): ?string
+    {
+        return $this->birthDate;
+    }
+
+    public function setBirthDate(string $birthDate): self
+    {
+        $this->birthDate = $birthDate;
 
         return $this;
     }

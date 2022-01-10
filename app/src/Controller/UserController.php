@@ -36,6 +36,15 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $image = $form->get("image")->getData();
+
+            if ($image != null){
+                $name = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move('ImageProfil', $name);
+
+                $user->setImageName($name);
+            }
+
             $user->setCart(array());
             $form->getData()->setPassword(
                 $passwordHasher->hashPassword(
@@ -77,6 +86,15 @@ class UserController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $image = $form->get("image")->getData();
+
+            if ($image != null){
+                $name = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move('ImageProfil', $name);
+
+                $user->setImageName($name);
+            }
+
             $user = $form->getData();
             if ($user->getPlainPassword() !== null) {
                     $user->setPassword($passwordHasher->hashPassword(
@@ -95,6 +113,7 @@ class UserController extends AbstractController
             'form' => $form,
         ]);
     }
+    
 
     #[Route('/{id}', name: 'user_delete', methods: ['POST'])]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response

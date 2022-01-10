@@ -4,21 +4,81 @@
 
 {% block body %}
 
-    <div class="flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto my-8 rounded-lg shadow-md bg-gray-100">
-        <h1 class="self-center text-4xl font-bold my-8">Profil</h1>
+    {% set fullName = "#{user.FirstName} #{user.LastName}" %}
 
-        <div class="flex flex-col">
-            <p class="font-medium">Identifiant</p>
-            <p class="mb-6 p-2 rounded-md bg-white text-black">{{ user.username }}</p>
 
-            <p class="font-medium">Nom</p>
-            <p class="mb-6 p-2 rounded-md bg-white text-black">{{ user.LastName }}</p>
-            
-            <p class="font-medium">Prénom</p>
-            <p class="mb-6 p-2 rounded-md bg-white text-black">{{ user.FirstName }}</p>
+    {# class="flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto my-8 rounded-lg shadow-md bg-gray-100"> #}
+    <div class="flex flex-col justify-evenly h-fit  w-[65rem] m-auto my-8 rounded-lg shadow-md bg-gray-100">
+        <div class="align-start blur-sm w-[65rem]">
+            <img src="{{ asset('/ImageProfil/imageBackgroundProfile.png') }}"  alt="backgroundProfil">
+        </div>
 
-            <p class="font-medium">Mail</p>
-            <p class="mb-6 p-2 rounded-md bg-white text-black">{{ user.mail }}</p>
+        <div class="w-28 h-28 -mt-14 z-50 mx-auto border border-gray-100 border-4 rounded-full">
+            <img class="rounded-full" src="{{ asset('/ImageProfil/'~user.imageName)}}"  alt="imageProfil">
+        </div>
+
+        <div class="pb-5">
+            <h1 class="font-bold text-xl text-center">{{ fullName }}</h1>
+            <p class="text-xl text-center">{{ user.username }}</p>
+        </div>
+
+
+        <div class="flex flex-row px-32">
+            <div class="w-[50%] border-r-4 p-3">
+                <h1 class="font-bold text-2xl text-center mb-3">Informations générales</h1>
+                <table class="border border-black bg-white">
+                    <tr class=" border border-black">
+                        <th class="p-4 w-[40%]">Nom et prénom</th>
+                        <td class="p-4 w-[60%]">{{ fullName }}</td>
+                    </tr>
+                    <tr class="border border-black">
+                        <th class="p-4 w-[40%]" >Mail</th>
+                        {% set lengthArobaseSplit = user.mail|split('@') %}
+                        {% set lengthMail1 = lengthArobaseSplit[0]|length %}
+                        {% set lengthMail2 = lengthArobaseSplit[1]|length %}
+                        {% set nvMail = user.mail|slice(0, 3) %}
+
+                        {% for i in 3..lengthMail1-1 %}
+                            {% set nvMail = nvMail ~ '*' %}
+                        {% endfor %}
+
+                        {% set nvMail = nvMail ~ '@' %}
+
+                        {% for i in 0..lengthMail2-1 %}
+                            {% set nvMail = nvMail ~ '*' %}
+                        {% endfor %}
+
+                        <td class="p-4 w-[60%]">{{ nvMail }}</td>
+                        <td>✏</td>
+                    </tr>
+                    <tr class=" border border-black">
+                        <th class="p-4 w-[40%]">Mot de passe</th>
+                        <td class="p-4 w-[60%]">Changer le mot de passe</td>
+                    </tr>
+
+                </table>
+            </div>
+
+            <div class="w-[50%] p-3">
+                <h1 class="font-bold text-2xl  text-center mb-3">Informations complémentaires</h1>
+                <table class="border border-black bg-white">
+                    <tr class="border border-black">
+                        <th class="p-4 w-[40%]" >Téléphone</th>
+                        <td class="p-4 w-[60%]">{{ user.telephone }}</td>
+                        <td>✏</td>
+                    </tr>
+                    <tr class="border border-black">
+                        <th class="p-4 w-[40%]">Adresse</th>
+                        <td class="p-4 w-[60%]">{{ user.address }}</td>
+                        <td><a href="{{ path('verif_mail')}}">✏</a></td>
+                    </tr>
+                    <tr class="border border-black">
+                        <th class="p-4 w-[40%]">Date de Naissance</th>
+                        <td class="p-4 w-[60%]">{{ user.birthDate }}</td>
+                    </tr>
+
+                </table>
+            </div>
 
             {#
             <p class="font-medium">Renouvellement de l'adhésion</p>

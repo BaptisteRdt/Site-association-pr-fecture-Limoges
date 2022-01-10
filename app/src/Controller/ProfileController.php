@@ -23,6 +23,43 @@ class ProfileController extends AbstractController
         ]);
     }
 
+
+    #[Route('/verifMail', name: 'verif_mail', methods: ['GET','POST'])]
+    public function verifMail(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $passwordHasher): Response
+    {
+        $user = $this->getUser();
+        $entity = $em->getRepository(User::class)->findOneBy(['username' => $user->getUserIdentifier()]);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find User entity.');
+        }
+
+        $form = $this->createForm(ProfileType::class, $user);
+        $form->handleRequest($request);
+
+        $userData = $form->getData();
+        $hash = $passwordHasher->hashPassword($userData, $userData->getPlainPassword());
+        if ($hash !== $user->getPassword()) {
+            
+        }
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            if ($hash !== $user->getPassword()) {
+
+            }
+
+            return $this->redirectToRoute('profile', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $em->refresh($user);
+
+        return $this->render('profile/edit.html.twig', [
+            'controller_name' => 'ProfileController',
+            'form' => $form->createView(),
+        ]);
+    }
+
+
     #[Route('/edit', name: 'profile_edit', methods: ['GET','POST'])]
     public function edit(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $passwordHasher): Response
     {

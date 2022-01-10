@@ -39,6 +39,37 @@
         widget_errors_class: 'border-double border-red-500 bg-red-50',
     }) }}
 
+    {{ form_row(form.telephone, {
+        row_class: 'mb-2',
+        label_class: 'font-medium block',
+        error_item_class: 'text-red-700 ',
+        widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 transition hover:bg-gray-100 w-full',
+        widget_disabled_class: 'border-dashed text-gray-200 ',
+        widget_errors_class: 'border-double border-red-500 bg-red-50',
+    }) }}
+
+    {{ form_row(form.address, {
+        row_class: 'mb-2',
+        label_class: 'font-medium block',
+        error_item_class: 'text-red-700 ',
+        widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 transition hover:bg-gray-100 w-full',
+        widget_disabled_class: 'border-dashed text-gray-200 ',
+        widget_errors_class: 'border-double border-red-500 bg-red-50',
+    }) }}
+
+    {{ form_row(form.birthDate, {
+        row_class: 'mb-2',
+        label_class: 'font-medium block',
+        error_item_class: 'text-red-700 ',
+        widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 transition hover:bg-gray-100 w-full',
+        widget_disabled_class: 'border-dashed text-gray-200 ',
+        widget_errors_class: 'border-double border-red-500 bg-red-50',
+    }) }}
+
+    {{ form_row(form.image, {
+        label_class: 'font-medium block',
+    }) }}
+
 
     {% if edit %}
     {{ form_row(form.plainPassword, {
