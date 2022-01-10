@@ -5,7 +5,6 @@
 {% block content %}
 
     <div class="flex space-x-8 flex-wrap">
-
         <div class="bg-gray-100 w-56 px-4 py-5 rounded drop-shadow transition hover:scale-105">
             <div class="bg-[#CBD8E5] rounded-full relative h-44 w-44 m-auto flex">
                 <div class="bg-[#374779] rounded-full w-full h-full m-auto graph1"></div>
@@ -76,13 +75,8 @@
             document.querySelector(percentage).innerHTML = `${Math.round(pourcentage)}%`;
         }
 
-        for (let j = 1; j <= 2; j++) {
-            for (let i = 0; i <  0.1; i+= .1) {
-                setTimeout(function() {
-                    graph(i, `.graph${j}`, `.percentage${j}`);
-                }, 10 * i);
-            }
-        }
+        graph({{reservation_percentage}}, ".graph2", ".percentage2")
+        graph(0, ".graph1", ".percentage1")
 
 
 

@@ -19,15 +19,13 @@
         <tbody>
         {% set prix = 0 %}
         <tr class="h-5"></tr>
-        {% for article in articles %}
-            {% if article.quantite > 0 %}
+        {% for reservation in reservations %}
                 <tr class="border-b-2 border-[#C4C4C4] text-[#7C7C7C] transition font-bold hover:bg-[#E4E4E4]">
-                    <td class="px-3 py-1 ">{{ article.name }}</td>
-                    <td class="px-3 py-1 ">{{ article.quantite }}</td>
-                    <td class="px-3 py-1 ">{{ article.prix * article.quantite }}</td>
+                    <td class="px-3 py-1 ">{{ reservation.name }}</td>
+                    <td class="px-3 py-1 ">{{ reservation.quantity }}</td>
+                    <td class="px-3 py-1 ">{{ reservation.price }}</td>
                 </tr>
-                {%  set prix = prix + article.prix * article.quantite %}
-            {% endif %}
+                {%  set prix = prix + reservation.price %}
         {% else %}
             <tr>
                 <td>Pas d'article dans ce panier</td>
@@ -36,5 +34,4 @@
         </tbody>
     </table>
     <p class="font-bold text-right w-1/2 m-auto">Total : {{ prix }} €</p>
-
 {% endblock %}

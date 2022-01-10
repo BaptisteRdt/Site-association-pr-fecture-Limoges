@@ -16,21 +16,19 @@
         {% set prix = 0 %}
         <tr class="h-14">
         </tr>
-        {% for article in articles %}
-            {% if article.quantite > 0 %}
+        {% for reservation in reservations %}
                 <tr class="border-b-2 border-[#C4C4C4] text-[#7C7C7C] transition font-bold hover:bg-[#E4E4E4]">
-                    <td class="px-3 py-1 ">{{ article.name }}</td>
-                    <td class="px-3 py-1 ">{{ article.quantite }}</td>
-                    <td class="px-3 py-1 ">{{ article.prix * article.quantite }}</td>
+                    <td class="px-3 py-1 ">{{ reservation.name }}</td>
+                    <td class="px-3 py-1 ">{{ reservation.quantity }}</td>
+                    <td class="px-3 py-1 ">{{ reservation.price }}</td>
 
-                    {%  set prix = prix + article.prix * article.quantite %}
+                    {%  set prix = prix + reservation.price %}
                     <td class="px-3 py-1 text-center transition font-normal">
-                        <a class="hover:text-[#374779]" href="{{ path('confirm_purchase', {'id':article.id, 'user':user.id}) }}">✔</a>
-                        <a class="hover:text-[#374779]" href="{{ path('remove_reservation', {'id':article.id, 'user':user.id}) }}">🗑</a>
+                        <a class="hover:text-[#374779]" href="{{ path('confirm_purchase', {'id':reservation.id, 'user':user.id}) }}">✔</a>
+                        <a class="hover:text-[#374779]" href="{{ path('remove_reservation', {'id':reservation.id, 'user':user.id}) }}">🗑</a>
                     </td>
 
                 </tr>
-            {% endif %}
 
         {% else %}
             <tr>

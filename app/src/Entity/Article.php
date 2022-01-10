@@ -40,18 +40,18 @@ class Article
     private $quantite;
 
     /**
-     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="article")
-     */
-    private $users;
-
-    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $imageName;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="Article", orphanRemoval=true)
+     */
+    private $reservations;
+
     public function __construct()
     {
-        $this->users = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -107,33 +107,6 @@ class Article
         return $this;
     }
 
-    /**
-     * @return Collection|User[]
-     */
-    public function getUsers(): Collection
-    {
-        return $this->users;
-    }
-
-    public function addUser(User $user): self
-    {
-        if (!$this->users->contains($user)) {
-            $this->users[] = $user;
-            $user->addArticle($this);
-        }
-
-        return $this;
-    }
-
-    public function removeUser(User $user): self
-    {
-        if ($this->users->removeElement($user)) {
-            $user->removeArticle($this);
-        }
-
-        return $this;
-    }
-
     public function getImageName(): ?string
     {
         return $this->imageName;
@@ -142,6 +115,36 @@ class Article
     public function setImageName(?string $imageName): self
     {
         $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Reservation[]
+     */
+    public function getReservations(): Collection
+    {
+        return $this->reservations;
+    }
+
+    public function addReservation(Reservation $reservation): self
+    {
+        if (!$this->reservations->contains($reservation)) {
+            $this->reservations[] = $reservation;
+            $reservation->setArticle($this);
+        }
+
+        return $this;
+    }
+
+    public function removeReservation(Reservation $reservation): self
+    {
+        if ($this->reservations->removeElement($reservation)) {
+            // set the owning side to null (unless already changed)
+            if ($reservation->getArticle() === $this) {
+                $reservation->setArticle(null);
+            }
+        }
 
         return $this;
     }

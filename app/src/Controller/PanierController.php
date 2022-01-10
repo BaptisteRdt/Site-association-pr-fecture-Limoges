@@ -15,63 +15,17 @@ class PanierController extends AbstractController
     #[Route('/panier', name: 'panier')]
     public function index(EntityManagerInterface $em): Response
     {
-        $cart= $this->getUser()->getCart();
-        $articles= $em->getRepository(Article::class)->findBy(array('id' => array_keys($cart)));
+        $conn = $em->getConnection();
 
-        foreach ($articles as $article){
-            $article->setQuantite($cart[$article->getId()]);
-        }
+        $sql = '
+            SELECT a.name, r.quantity, r.price FROM reservation r, article a
+            WHERE r.article_id = a.id and r.user_id = ' . $this->getUser()->getId() . '  
+            ';
+        $stmt = $conn->query($sql)->fetchAllAssociative();
+
         return $this->render('panier/index.html.twig', [
             'controller_name' => 'PanierController',
-            'articles'=>$articles,
+            'reservations'=> $stmt,
         ]);
-    }
-
-
-    #[Route('/panier/add/{id}', name: 'panier_add')]
-    public function add($id, EntityManagerInterface $em){
-        $user = $this->getUser();
-        $cart = $user->getCart();
-
-        $article = $em->getRepository(Article::class)
-            ->findOneBy(['id' => +$id]);
-
-        if ($article && $article->getQuantite()>0){
-            if(!array_key_exists(+$id, $cart)){
-                $cart[+$id] = 1;
-            }else{
-                $cart[+$id] = $cart[+$id] +1;
-            }
-            $article->setQuantite($article->getQuantite()-1);
-        }
-
-
-        $user->setCart($cart);
-        $em->flush();
-
-        return $this->redirectToRoute('shop', [], Response::HTTP_SEE_OTHER);
-
-    }
-
-    #[Route('/panier/remove/{id}', name: 'panier_remove')]
-    public function remove($id, EntityManagerInterface $em){
-        $user = $this->getUser();
-        $cart = $user->getCart();
-
-        $article = $em->getRepository(Article::class)
-            ->findOneBy(['id' => +$id]);
-
-        if ($article){
-            if(array_key_exists(+$id, $cart)&& $cart[+$id]>0){
-                $cart[+$id] = $cart[+$id] -1;
-                $article->setQuantite($article->getQuantite()+1);
-            }
-        }
-
-        $user->setCart($cart);
-        $em->flush();
-
-        return $this->redirectToRoute('shop', [], Response::HTTP_SEE_OTHER);
-
     }
 }
