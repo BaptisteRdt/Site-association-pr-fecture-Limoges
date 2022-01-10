@@ -77,6 +77,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="user", orphanRemoval=true)
      */
     private $reservations;
+     * @ORM\Column(type="string", length=255)
+     */
+    private $ImageName;
+
+    /**
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    private $telephone;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $address;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $birthDate;
 
     public function __construct()
     {
@@ -238,6 +256,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->reservations[] = $reservation;
             $reservation->setUser($this);
         }
+    public function getImageName(): ?string
+    {
+        return $this->ImageName;
+    }
+
+    public function setImageName(string $ImageName): self
+    {
+        $this->ImageName = $ImageName;
 
         return $this;
     }
@@ -250,6 +276,38 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $reservation->setUser(null);
             }
         }
+    public function getTelephone(): ?string
+    {
+        return $this->telephone;
+    }
+
+    public function setTelephone(?string $telephone): self
+    {
+        $this->telephone = $telephone;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(string $address): self
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getBirthDate(): ?string
+    {
+        return $this->birthDate;
+    }
+
+    public function setBirthDate(string $birthDate): self
+    {
+        $this->birthDate = $birthDate;
 
         return $this;
     }

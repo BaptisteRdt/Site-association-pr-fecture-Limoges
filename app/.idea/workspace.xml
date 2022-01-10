@@ -6,15 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="4259b4be-24e1-4ae9-959f-98ec138558c4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/Version20211219184249.php" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/Version20211219184249.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/admin.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/article/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/article/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/office/_delete_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/office/_delete_form.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/office/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/office/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/office/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/office/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProfileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/ProfileType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ProfileType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/_form.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +67,6 @@
       <path value="$PROJECT_DIR$/vendor/webmozart/assert" />
       <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
       <path value="$PROJECT_DIR$/vendor/sebastian/code-unit-reverse-lookup" />
-      <path value="$PROJECT_DIR$/vendor/symfonycasts/reset-password-bundle" />
       <path value="$PROJECT_DIR$/vendor/sebastian/environment" />
       <path value="$PROJECT_DIR$/vendor/sebastian/global-state" />
       <path value="$PROJECT_DIR$/vendor/sebastian/resource-operations" />
@@ -175,6 +174,7 @@
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-mbstring" />
       <path value="$PROJECT_DIR$/vendor/symfony/cache-contracts" />
       <path value="$PROJECT_DIR$/vendor/phpstan/phpdoc-parser" />
+      <path value="$PROJECT_DIR$/vendor/symfonycasts/reset-password-bundle" />
     </include_path>
   </component>
   <component name="ProjectId" id="21rgOrRj0YUOe9cYf7my3KbsvCK" />
@@ -190,7 +190,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/public/ImageOffice" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -230,6 +230,8 @@
       <workItem from="1639586684704" duration="18195000" />
       <workItem from="1639654616714" duration="23864000" />
       <workItem from="1639936267622" duration="12690000" />
+      <workItem from="1641799186445" duration="10019000" />
+      <workItem from="1641817931191" duration="11274000" />
     </task>
     <servers />
   </component>
