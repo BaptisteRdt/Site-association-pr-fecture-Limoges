@@ -77,6 +77,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="user", orphanRemoval=true)
      */
     private $reservations;
+    /** 
      * @ORM\Column(type="string", length=255)
      */
     private $ImageName;
@@ -256,6 +257,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             $this->reservations[] = $reservation;
             $reservation->setUser($this);
         }
+    }
+
     public function getImageName(): ?string
     {
         return $this->ImageName;
@@ -276,6 +279,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $reservation->setUser(null);
             }
         }
+    }
+        
     public function getTelephone(): ?string
     {
         return $this->telephone;
