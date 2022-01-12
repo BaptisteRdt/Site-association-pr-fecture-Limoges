@@ -32,6 +32,12 @@
                 {% else %}
                     <li class="py-3 transition hover:scale-105  text-[#C4C4C4] hover:text-navbar-background"><a href="{{ path("news_index") }}">Articles</a></li>
                 {% endif %}
+
+                {% if currentPath == "/admin/contact/"  %}
+                    <li class="py-3 transition text-navbar-background"><a href="{{ path("contact_index") }}">Contacts</a></li>
+                {% else %}
+                    <li class="py-3 transition hover:scale-105  text-[#C4C4C4] hover:text-navbar-background"><a href="{{ path("contact_index") }}">Contacts</a></li>
+                {% endif %}
             </ul>
         </div>
 

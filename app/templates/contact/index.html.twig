@@ -1,43 +1,38 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin.html.twig' %}
 
-{% block title %}Contact index{% endblock %}
+{% block title %}Liste de contacts{% endblock %}
 
-{% block body %}
-    <h1>Contact index</h1>
+{% block content %}
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Firstname</th>
-                <th>Mailaddress</th>
-                <th>Subject</th>
-                <th>Message</th>
-                <th>actions</th>
-            </tr>
+    <table class="w-4/5 table">
+        <thead class="border-b-[3px] border-navbar-background">
+        <tr class="w-fit">
+            <th class="p-3 space-x-8 text-left">Id</th>
+            <th class="p-3 space-x-8 text-left">Nom</th>
+            <th class="p-3 space-x-8 text-left">Prénom</th>
+            <th class="p-3 space-x-8 text-left">Adresse e-mail</th>
+            <th class="p-3 space-x-8 text-left">Objet</th>
+            <th class="p-3 space-x-8 text-center">Actions</th>
+        </tr>
         </thead>
         <tbody>
         {% for contact in contacts %}
-            <tr>
-                <td>{{ contact.id }}</td>
-                <td>{{ contact.name }}</td>
-                <td>{{ contact.firstname }}</td>
-                <td>{{ contact.mailaddress }}</td>
-                <td>{{ contact.subject }}</td>
-                <td>{{ contact.message }}</td>
-                <td>
-                    <a href="{{ path('contact_show', {'id': contact.id}) }}">show</a>
-                    <a href="{{ path('contact_edit', {'id': contact.id}) }}">edit</a>
+            <tr class="border-b-2 border-[#C4C4C4] text-[#7C7C7C] transition font-medium hover:bg-[#E4E4E4]">
+                <td class="px-3 py-1 ">{{ contact.id }}</td>
+                <td class="px-3 py-1 ">{{ contact.name }}</td>
+                <td class="px-3 py-1 ">{{ contact.firstname }}</td>
+                <td class="px-3 py-1 ">{{ contact.mailaddress }}</td>
+                <td class="px-3 py-1 ">{{ contact.subject }}</td>
+                <td class="px-3 py-1 text-center transition font-normal">
+                    <a class="hover:text-[#374779]" href="{{ path('contact_show', {'id': contact.id}) }}">👁</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="5">Pas de demande de contact</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('contact_new') }}">Create new</a>
 {% endblock %}

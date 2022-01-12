@@ -12,11 +12,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\FormTypeInterface;
 
-
-#[Route('/contact')]
 class ContactController extends AbstractController
 {
-    #[Route('/index', name: 'contact_index', methods: ['GET'])]
+    #[Route('/admin/contact', name: 'contact_index', methods: ['GET'])]
     public function index(ContactRepository $contactRepository): Response
     {
         return $this->render('contact/index.html.twig', [
@@ -24,7 +22,7 @@ class ContactController extends AbstractController
         ]);
     }
 
-    #[Route('/', name: 'contact_new', methods: ['GET', 'POST'])]
+    #[Route('/contact', name: 'contact_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $contact = new Contact();
@@ -35,7 +33,7 @@ class ContactController extends AbstractController
             $entityManager->persist($contact);
             $entityManager->flush();
 
-            return $this->redirectToRoute('contact_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('contact_new', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('contact/new.html.twig', [
@@ -44,7 +42,7 @@ class ContactController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'contact_show', methods: ['GET'])]
+    #[Route('/admin/contact/{id}', name: 'contact_show', methods: ['GET'])]
     public function show(Contact $contact): Response
     {
         return $this->render('contact/show.html.twig', [
@@ -52,7 +50,7 @@ class ContactController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'contact_delete', methods: ['POST'])]
+    #[Route('/admin/contact/{id}', name: 'contact_delete', methods: ['POST'])]
     public function delete(Request $request, Contact $contact, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$contact->getId(), $request->request->get('_token'))) {
