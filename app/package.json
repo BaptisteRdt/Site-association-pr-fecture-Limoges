@@ -5,5 +5,8 @@
   "scripts": {
     "build:tailwind": "npx tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css --watch",
     "watch": "watch 'npm run build:tailwind' ./templates"
+  },
+  "dependencies": {
+    "@tailwindcss/line-clamp": "^0.3.0"
   }
 }

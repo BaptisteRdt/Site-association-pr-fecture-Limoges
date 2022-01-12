@@ -35,16 +35,18 @@ class ShopController extends AbstractController
             ->remove('price');
         $form->handleRequest($request);
 
+        $totalQuantity = $article->getQuantite();
+        $reservedQuantity = 0;
+        $reservationArticle = $entityManager->getRepository(Reservation::class)->findBy(['Article' =>$article]);
+            
+        for ($i=0; $i < count($reservationArticle); $i++) { 
+           $reservedQuantity += $reservationArticle[$i]->getQuantity();
+        }
+
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $quantity = $form->get('quantity')->getData();
-            $totalQuantity = $article->getQuantite();
-            $reservedQuantity = 0;
-            $reservationArticle = $entityManager->getRepository(Reservation::class)->findBy(['Article' => $article]);
-            
-            for ($i=0; $i < count($reservationArticle); $i++) { 
-               $reservedQuantity += $reservationArticle[$i]->getQuantity();
-            }
 
             if ($quantity > 0 && $quantity <= $totalQuantity - $reservedQuantity) {
                 $reservation->setUser($this->getUser());
@@ -53,9 +55,6 @@ class ShopController extends AbstractController
     
                 $entityManager->persist($reservation);
                 $entityManager->flush();
-    
-                $this->addFlash('success', 'Votre réservation a bien été prise en compte');
-               
             }  
             
             
@@ -67,6 +66,7 @@ class ShopController extends AbstractController
         return $this->renderForm('shop/detail.html.twig', [
             'article' => $article,
             'form' => $form,
+            'remainingQuantity' => $totalQuantity - $reservedQuantity,
         ]);
     }
 }

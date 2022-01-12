@@ -23,6 +23,13 @@ services:
       - ./app:/var/www/symfony_docker
     depends_on:
       - database
+  mailDev:
+    container_name: mailDev
+    image: maildev/maildev:latest
+    ports:
+      - '1080:80'
+      - '1025:25'
+    command: bin/maildev -w 80 -s 25 --hide-extensions STARTTLS
   nginx:
     container_name: nginx
     image: nginx:stable-alpine
@@ -34,3 +41,4 @@ services:
     depends_on:
       - php
       - database
+      - mailDev

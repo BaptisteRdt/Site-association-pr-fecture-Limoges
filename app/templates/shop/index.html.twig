@@ -4,25 +4,33 @@
 
 {% block body %}
 
-<h1 class="text-5xl my-8 text-center">Boutique de l'association</h1>
-<div class="text-right text-2xl mr-6">
-    <a class="font-bold" href="{{ path("panier") }}">Mes réservations</a>
+<h1 class="text-4xl mt-10 text-center font-medium underline decoration-[#374779]">Boutique de l'association</h1>
+
+<div class="font-medium transition text-[#7C7C7C] m-16 hover:text-[#37487b] text-lg text-right">
+    <a href="{{ path("panier") }}">Mes réservations ➝</a>
 </div>
 
 <div class="grid place-items-center">
-    <div class="w-4/5 flex flex-wrap justify-between text-center">
+    <div class="w-4/5 flex flex-wrap justify-around text-center">
         {% for article in articles %}
-            <div class="w-1/3 p-8">
-                <div class="drop-shadow transition  hover:scale-105 rounded-[16px] bg-gray-200">
-                    <a class="grid place-items-center p-4" href="{{path('boutique_detail', {id: article.id})}}">
-                        {% if article.imageName is null %}
-                        <img class="w-[200px] h-[200px]" src="{{ asset('/ImageArticle/article_default.png') }}"/>
-                        {% else %}
-                        <img class="w-[200px] h-[200px]" src="{{ asset('/ImageArticle/'~article.imageName) }}"/>
-                        {% endif %}
-                    </a>
+            <a class="group grid place-items-center p-4 drop-shadow transition h-80 w-80 overflow-hidden hover:scale-105 bg-gray-200 relative"
+                 href="{{path('boutique_detail', {id: article.id})}}">
+                {% if article.imageName is null %}
+                <div class="absolute w-full h-full grid place-items-center">
+                    <div class="m-auto text-4xl font-bold break-normal text-gray-400">
+                        {{ article.name }}
+                    </div>
                 </div>
-            </div>
+                {% else %}
+                <img class="max-w-full max-h-full" src="{{ asset('/ImageArticle/'~article.imageName) }}"/>
+                {% endif %}
+                <div class="absolute group-hover:drop-shadow-xl transition-all top-80 group-hover:top-0 left-0 w-full h-full bg-white grid place-items-center">
+                    <div class="relative m-auto text-lg font-medium break-normal">
+                        {{ article.name }}
+                    </div>
+                    <span class="absolute bottom-2 group-hover:underline transition group-hover:decoration-[#37487b]"> Réserver</span>
+                </div>
+            </a>
         {% else %}
             <td colspan="4">Pas de produits trouvés</td>
         {% endfor %}
