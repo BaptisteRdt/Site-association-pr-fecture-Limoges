@@ -6,15 +6,25 @@
   <component name="ChangeListManager">
     <list default="true" id="4259b4be-24e1-4ae9-959f-98ec138558c4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/ImageArticle/cabada6ed5be8c2485cfe9fd0ab9a38d.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/ImageOffice/2a4e2fb89072b0fc020f0069273fa167.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/ImageOffice/7e56be45b943eeb556fe7ecdce50c8a2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/ImageOffice/8c8ca87dfdddc451ffac9121508a2cca.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/ImageOffice/b8a8e26317309f6c05771e9796de55b4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/ImageOffice/cf94e39ebc02a2e39590b8ea27bfdf3a.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/ImageProfil/2c75bd76dd1c5b5efbc9a3b25564daab.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/ArticleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ArticleController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/OfficeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/OfficeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/ProfileController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/User.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/ProfileType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/ProfileType.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Form/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/UserType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/profile/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/_form.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/profile/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/user/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/user/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/user/show.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +34,13 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -184,6 +201,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -232,6 +250,10 @@
       <workItem from="1639936267622" duration="12690000" />
       <workItem from="1641799186445" duration="10019000" />
       <workItem from="1641817931191" duration="11868000" />
+      <workItem from="1641884805682" duration="12907000" />
+      <workItem from="1641904198370" duration="2516000" />
+      <workItem from="1641907229005" duration="10955000" />
+      <workItem from="1641971267822" duration="5337000" />
     </task>
     <servers />
   </component>

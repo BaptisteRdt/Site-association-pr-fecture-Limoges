@@ -80,8 +80,9 @@ class UserController extends AbstractController
         $form = $this->createForm(UserType::class, $user);
         $form->remove('password')
             ->add('plainPassword', PasswordType::class,[
-                'label' => 'Nouveau mot de passe'
-        ]);
+                'label' => 'Nouveau mot de passe',
+                'required' => false,
+                ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

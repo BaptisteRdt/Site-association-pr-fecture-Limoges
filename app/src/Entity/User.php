@@ -97,6 +97,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $birthDate;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $Gender;
+
     public function __construct()
     {
         $this->article = new ArrayCollection();
@@ -313,6 +318,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setBirthDate(string $birthDate): self
     {
         $this->birthDate = $birthDate;
+
+        return $this;
+    }
+
+    public function getGender(): ?string
+    {
+        return $this->Gender;
+    }
+
+    public function setGender(string $Gender): self
+    {
+        $this->Gender = $Gender;
 
         return $this;
     }

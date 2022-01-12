@@ -70,6 +70,11 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            if($article->getImageName() != null){
+                $filesystem = new Filesystem();
+                $filesystem->remove("ImageArticle/" .$article->getImageName());
+            }
+
             $image = $form->get("image")->getData();
             if ($image != null){
                 $name = md5(uniqid()).'.'.$image->guessExtension();
@@ -95,7 +100,6 @@ class ArticleController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$article->getId(), $request->request->get('_token'))) {
             if($article->getImageName() != null){
                 $filesystem = new Filesystem();
-                #dd("ImageArticle/" .$article->getImageName());
                 $filesystem->remove("ImageArticle/" .$article->getImageName());
             }
             $entityManager->remove($article);
