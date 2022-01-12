@@ -1,6 +1,6 @@
 {% extends 'admin.html.twig' %}
 
-{% block title %}Liste de contacts{% endblock %}
+{% block title %}Administration{% endblock %}
 
 {% block content %}
 
@@ -10,7 +10,7 @@
             <th class="p-3 space-x-8 text-left">Id</th>
             <th class="p-3 space-x-8 text-left">Nom</th>
             <th class="p-3 space-x-8 text-left">Prénom</th>
-            <th class="p-3 space-x-8 text-left">Adresse e-mail</th>
+            <th class="p-3 space-x-8 text-left">Mail</th>
             <th class="p-3 space-x-8 text-left">Objet</th>
             <th class="p-3 space-x-8 text-center">Actions</th>
         </tr>
@@ -29,7 +29,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">Pas de demande de contact</td>
+                <td colspan="5">Pas de demandes de contact</td>
             </tr>
         {% endfor %}
         </tbody>

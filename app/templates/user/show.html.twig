@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}User{% endblock %}
+{% block title %}Administration{% endblock %}
 
 {% block body %}
 
@@ -38,7 +38,7 @@
             </tr>
             <tr class="h-10"></tr>
         </table>
-        <a class="self-center mb-2 text-center btn btn-lg btn-primary text-white font-bold box-content h-5 w-48 p-4 border-2 border-[#374779] transition text-white bg-[#374779] hover:bg-[#CBD8E5] hover:text-[#374779]" href="{{ path('user_edit', {'id': user.id}) }}">modifier</a>
+        <a class="self-center mb-2 text-center btn btn-lg btn-primary text-white font-bold box-content h-5 w-48 p-4 border-2 border-[#374779] transition text-white bg-[#374779] hover:bg-[#CBD8E5] hover:text-[#374779]" href="{{ path('user_edit', {'id': user.id}) }}">MODIFIER</a>
         {{ include('user/_delete_form.html.twig') }}
         <a class="text-[#7C7C7C] transition hover:text-[#374779] font-medium mt-3 text-center" href="{{ path('user_index') }}">Retour</a>
 
