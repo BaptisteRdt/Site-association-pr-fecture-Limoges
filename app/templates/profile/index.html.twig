@@ -8,13 +8,22 @@
 
 
     {# class="flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto my-8 rounded-lg shadow-md bg-gray-100"> #}
-    <div class="flex flex-col justify-evenly h-fit  w-[65rem] m-auto my-8 rounded-lg shadow-md bg-gray-100">
-        <div class="align-start blur-sm w-[65rem]">
-            <img src="{{ asset('/ImageProfil/imageBackgroundProfile.png') }}"  alt="backgroundProfil">
+    <div class="flex flex-col justify-evenly h-fit overflow-hidden w-[65rem] m-auto my-8 rounded-lg shadow-md bg-gray-100 pb-4">
+
+        <div class="overflow-hidden">
+            <div class="align-start blur w-[65rem]">
+                <img src="{{ asset('/ImageProfil/imageBackgroundProfile.png') }}"  alt="backgroundProfil">
+            </div>
         </div>
 
-        <div class="w-28 h-28 -mt-14 z-50 mx-auto border border-gray-100 border-4 rounded-full">
-            <img class="rounded-full" src="{{ asset('/ImageProfil/'~user.imageName)}}"  alt="imageProfil">
+
+        <div class="w-28 h-28 -mt-14 z-50 mx-auto border border-gray-100 border-4 rounded-full relative">
+            {% if user.imageName is null %}
+                <img class="rounded-full" src="{{ asset('/ImageProfil/profil_default.png')}}"  alt="imageProfil">
+            {% else %}
+                <img class="rounded-full" src="{{ asset('/ImageProfil/'~user.imageName)}}"  alt="imageProfil">
+            {% endif %}
+            <a  href="{{ path('change_image')}}"><span class="bg-white text-lg h-[2.5rem] text-center leading-[2.25em] transition hover:scale-125 w-[2.5rem] rounded-full absolute -top-[.5rem] -right-[.5rem]">✏️</span></a>
         </div>
 
         <div class="pb-5">
@@ -23,15 +32,15 @@
         </div>
 
 
-        <div class="flex flex-row px-32">
-            <div class="w-[50%] border-r-4 p-3">
+        <div class="flex flex-row flex-wrap justify-center px-28">
+            <div class="basis-1/2 border-r-4 border-gray-300 pr-4">
                 <h1 class="font-bold text-2xl text-center mb-3">Informations générales</h1>
-                <table class="border border-black bg-white">
-                    <tr class=" border border-black">
+                <table class="border border-gray-300 bg-white">
+                    <tr class=" border border-gray-300">
                         <th class="p-4 w-[40%]">Nom et prénom</th>
                         <td class="p-4 w-[60%]">{{ fullName }}</td>
                     </tr>
-                    <tr class="border border-black">
+                    <tr class="border border-gray-300">
                         <th class="p-4 w-[40%]" >Mail</th>
                         {% set lengthArobaseSplit = user.mail|split('@') %}
                         {% set lengthMail1 = lengthArobaseSplit[0]|length %}
@@ -49,34 +58,51 @@
                         {% endfor %}
 
                         <td class="p-4 w-[60%]">{{ nvMail }}</td>
-                        <td>✏</td>
+                        <td><a class="text-xl" href="{{ path('verif_mdp')}}">✏</a></td>
                     </tr>
-                    <tr class=" border border-black">
+                    <tr class=" border border-gray-300">
                         <th class="p-4 w-[40%]">Mot de passe</th>
-                        <td class="p-4 w-[60%]">Changer le mot de passe</td>
+                        <td class="p-4 w-[60%] "><a class="text-navbar-background font-semibold underline" href="{{ path('verif_mail')}}">Changer le mot de passe</a></td>
                     </tr>
 
                 </table>
             </div>
 
-            <div class="w-[50%] p-3">
+            <div class="basis-1/2 pl-4">
                 <h1 class="font-bold text-2xl  text-center mb-3">Informations complémentaires</h1>
-                <table class="border border-black bg-white">
-                    <tr class="border border-black">
+                <table class="border border-gray-300 bg-white">
+                    <tr class="border border-gray-300">
                         <th class="p-4 w-[40%]" >Téléphone</th>
                         <td class="p-4 w-[60%]">{{ user.telephone }}</td>
-                        <td>✏</td>
+                        <td><a class="text-xl" href="{{ path('change_telephone')}}">✏</a></td>
                     </tr>
-                    <tr class="border border-black">
+                    <tr class="border border-gray-300">
                         <th class="p-4 w-[40%]">Adresse</th>
                         <td class="p-4 w-[60%]">{{ user.address }}</td>
-                        <td><a href="{{ path('verif_mail')}}">✏</a></td>
+                        <td><a class="text-xl" href="{{ path('change_address')}}">✏</a></td>
                     </tr>
-                    <tr class="border border-black">
-                        <th class="p-4 w-[40%]">Date de Naissance</th>
+                    <tr class="border border-gray-300">
+                        <th class="p-4 w-[40%]">Date de naissance</th>
                         <td class="p-4 w-[60%]">{{ user.birthDate }}</td>
                     </tr>
+                </table>
+            </div>
 
+            <div class="basis-1/2 py-5">
+                <h1 class="font-bold text-2xl text-center mb-3">Autres Informations</h1>
+                <table class="border border-gray-300 bg-white">
+                    <tr class="border border-gray-300">
+                        <th class="p-4 w-[50%]" >Sexe</th>
+                        <td class="p-4 w-[50%]">{{ user.gender }}</td>
+                    </tr>
+                    <tr class="border group border-gray-300">
+                        <th class="p-4 w-[50%]">Status d'adhésion</th>
+                        <td class="p-4 w-[50%]">A venir</td>
+                    </tr>
+                    <tr class="border border-gray-300">
+                        <th class="p-4 w-[50%]">Date de renouvellement</th>
+                        <td class="p-4 w-[50%]">A venir</td>
+                    </tr>
                 </table>
             </div>
 
@@ -88,9 +114,5 @@
             <p>{{ user.roles ? user.roles|json_encode : '' }}</p>
             #}
         </div>
-
-        <a href="{{ path('profile_edit') }}" class="self-center transition underline hover:text-blue-900 my-8">
-            Modifier profil
-        </a>
     </div>
 {% endblock %}

@@ -3,13 +3,20 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\VerifMdpType;
 use App\Form\ProfileType;
+use App\Form\ChangeAddressType;
+use App\Form\ChangeTelephoneType;
+use App\Form\ChangeImageType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 
 #[Route('/profil')]
 class ProfileController extends AbstractController
@@ -25,7 +32,7 @@ class ProfileController extends AbstractController
 
 
     #[Route('/verifMail', name: 'verif_mail', methods: ['GET','POST'])]
-    public function verifMail(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $passwordHasher): Response
+    public function verifMail(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $passwordHasher, ValidatorInterface $validator): Response
     {
         $user = $this->getUser();
         $entity = $em->getRepository(User::class)->findOneBy(['username' => $user->getUserIdentifier()]);
@@ -37,23 +44,156 @@ class ProfileController extends AbstractController
         $form = $this->createForm(ProfileType::class, $user);
         $form->handleRequest($request);
 
-        $userData = $form->getData();
-        $hash = $passwordHasher->hashPassword($userData, $userData->getPlainPassword());
-        if ($hash !== $user->getPassword()) {
-            
-        }
-
         if ($form->isSubmitted() && $form->isValid()) {
-            if ($hash !== $user->getPassword()) {
-
+            $userData = $form->getData();
+            if ($userData->getPlainPassword() !== null) {
+                $userData->setPassword($passwordHasher->hashPassword(
+                    $userData,
+                    $userData->getPlainPassword(),
+                )
+                );
             }
-
+            $em->flush();
             return $this->redirectToRoute('profile', [], Response::HTTP_SEE_OTHER);
         }
 
         $em->refresh($user);
 
         return $this->render('profile/edit.html.twig', [
+            'controller_name' => 'ProfileController',
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+    #[Route('/changeAddress', name: 'change_address', methods: ['GET','POST'])]
+    public function changeAddress(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $passwordHasher, ValidatorInterface $validator): Response
+    {
+        $user = $this->getUser();
+        $entity = $em->getRepository(User::class)->findOneBy(['username' => $user->getUserIdentifier()]);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find User entity.');
+        }
+
+        $form = $this->createForm(ChangeAddressType::class, $user);
+
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em->flush();
+            return $this->redirectToRoute('profile', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $em->refresh($user);
+
+        return $this->render('profile/editAddress.html.twig', [
+            'controller_name' => 'ProfileController',
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/changeTelephone', name: 'change_telephone', methods: ['GET','POST'])]
+    public function changeTelephone(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $passwordHasher, ValidatorInterface $validator): Response
+    {
+        $user = $this->getUser();
+        $entity = $em->getRepository(User::class)->findOneBy(['username' => $user->getUserIdentifier()]);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find User entity.');
+        }
+
+        $form = $this->createForm(ChangeTelephoneType::class, $user);
+
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $em->flush();
+            return $this->redirectToRoute('profile', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $em->refresh($user);
+
+        return $this->render('profile/editTelephone.html.twig', [
+            'controller_name' => 'ProfileController',
+            'form' => $form->createView(),
+        ]);
+    }
+
+
+    #[Route('/changeImage', name: 'change_image', methods: ['GET','POST'])]
+    public function changeImage(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $passwordHasher, ValidatorInterface $validator): Response
+    {
+        $user = $this->getUser();
+        $entity = $em->getRepository(User::class)->findOneBy(['username' => $user->getUserIdentifier()]);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find User entity.');
+        }
+
+        $form = $this->createForm(ChangeImageType::class, $user);
+
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            if($user->getImageName() != null){
+                $filesystem = new Filesystem();
+                $filesystem->remove("ImageProfil/" .$user->getImageName());
+            }
+
+
+            $image = $form->get("image")->getData();
+
+            if ($image != null){
+                $name = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move('ImageProfil', $name);
+
+                $user->setImageName($name);
+            }
+
+            $em->flush();
+            return $this->redirectToRoute('profile', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $em->refresh($user);
+
+        return $this->render('profile/editImage.html.twig', [
+            'controller_name' => 'ProfileController',
+            'form' => $form->createView(),
+        ]);
+    }
+
+    #[Route('/verifMdp', name: 'verif_mdp', methods: ['GET','POST'])]
+    public function verifMdp(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $passwordHasher, ValidatorInterface $validator): Response
+    {
+        $user = $this->getUser();
+        $entity = $em->getRepository(User::class)->findOneBy(['username' => $user->getUserIdentifier()]);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find User entity.');
+        }
+
+        $form = $this->createForm(VerifMdpType::class, [$user, $passwordHasher]);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $userData = $form->getData();
+            if ($userData["mail"] !== null) {
+                $user->setMail($userData["mail"]);
+            }
+            $em->flush();
+            return $this->redirectToRoute('profile', [], Response::HTTP_SEE_OTHER);
+        }
+
+        $em->refresh($user);
+
+        return $this->render('profile/editPassword.html.twig', [
             'controller_name' => 'ProfileController',
             'form' => $form->createView(),
         ]);

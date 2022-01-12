@@ -69,6 +69,17 @@ class UserType extends AbstractType
                 'label' => 'Adresse Postale'
             ])
 
+            ->add('gender', ChoiceType::class, [
+                'choices' => [
+                    'Homme' => 'Homme',
+                    'Femme'=> 'Femme',
+                    'Non-Binaire'=>'Non-Binaire'
+                ],
+                'expanded' => false,
+                'multiple' => false,
+                'label' => 'Sexe'
+            ])
+
             ->add('birthDate', TextType::class,[
                 'constraints' => [
                     new NotBlank([

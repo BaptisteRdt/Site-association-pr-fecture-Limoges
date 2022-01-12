@@ -7,6 +7,7 @@ use App\Form\OfficeType;
 use App\Repository\OfficeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -68,8 +69,12 @@ class OfficeController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $image = $form->get("image")->getData();
+            if($office->getImageName() != null){
+                $filesystem = new Filesystem();
+                $filesystem->remove("ImageOffice/" .$office->getImageName());
+            }
 
+            $image = $form->get("image")->getData();
             if ($image != null){
                 $name = md5(uniqid()).'.'.$image->guessExtension();
                 $image->move('ImageOffice', $name);
@@ -91,7 +96,13 @@ class OfficeController extends AbstractController
     #[Route('/{id}', name: 'office_delete', methods: ['POST'])]
     public function delete(Request $request, Office $office, EntityManagerInterface $entityManager): Response
     {
+
+
         if ($this->isCsrfTokenValid('delete'.$office->getId(), $request->request->get('_token'))) {
+            if($office->getImageName() != null){
+                $filesystem = new Filesystem();
+                $filesystem->remove("ImageOffice/" .$office->getImageName());
+            }
             $entityManager->remove($office);
             $entityManager->flush();
         }
