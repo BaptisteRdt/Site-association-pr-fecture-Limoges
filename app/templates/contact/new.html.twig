@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contactez Nous{% endblock %}
+
+{% block body %}
+
+    <class class="flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto my-8 rounded-lg shadow-md bg-gray-100">
+
+        <h1 class="flex flex-col justify-evenly w-[40rem] h-fit px-20 m-auto my-8 font-bold text-2xl">CONTACTEZ NOUS</h1>
+
+        {{ include('contact/_form.html.twig') }}
+
+    </class>
+{% endblock %}

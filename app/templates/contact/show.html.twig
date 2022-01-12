@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <div class=" flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto shadow-md bg-gray-100 py-8 my-8">
+
+        <table>
+            <tr>
+                <th class="text-right px-1 text-navbar-background font-semibold">Nom</th>
+                <td class="px-2">{{ contact.name }}</td>
+                <th class="text-right px-1 text-navbar-background font-semibold">Prénom</th>
+                <td class="px-2">{{ contact.firstname }}</td>
+            </tr>
+            <tr>
+                <th class="text-right px-1 text-navbar-background font-semibold">Mail</th>
+                <td class="px-2">{{ contact.mailaddress }}</td>
+            </tr>
+            <tr>
+                <th class="text-right border-y-5 px-1 text-navbar-background font-semibold">Objet</th>
+                <td class="px-2">{{ contact.subject }}</td>
+            </tr>
+            <tr>
+                <th class="text-right px-1 text-navbar-background font-semibold">Message</th>
+                <td class="px-2">{{ contact.message }}</td>
+            </tr>
+            <tr class="h-10"></tr>
+        </table>
+
+        {{ include('contact/_delete_form.html.twig') }}
+        <a class="text-[#7C7C7C] transition hover:text-[#374779] font-medium mt-3 text-center" href="{{ path('contact_index') }}">Retour</a>
+
+    </div>
+{% endblock %}
