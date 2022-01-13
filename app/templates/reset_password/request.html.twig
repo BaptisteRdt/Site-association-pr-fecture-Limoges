@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% form_theme requestForm 'tailwind_2_layout.html.twig' %}
+
+{% block title %}Réinitialisez votre mot de passe{% endblock %}
+
+{% block body %}
+{{ form_start(requestForm) }}
+<div class="flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto my-8 rounded-lg shadow-md bg-gray-100">
+    <h1 class="self-center text-4xl font-bold my-8">Réinitialisation</h1>
+        {{ form_row(requestForm.mail,{
+            row_class: 'mb-2',
+            label_class: 'font-medium block',
+            error_item_class: 'text-red-700 ',
+            widget_class: 'p-2 border rounded-md border-black bg-white focus:bg-gray-200 transition hover:bg-gray-100 w-full',
+            widget_disabled_class: 'border-dashed text-gray-200 ',
+            widget_errors_class: 'border-double border-red-500 bg-red-50',
+        }) }}
+        <div class="text-center">
+            <small class="text-center">
+                Nous allons envoyer un lien a cette adresse pour réinitialiser votre mot de passe.
+            </small>
+        </div>
+
+        <button class="self-center btn btn-lg btn-primary text-white font-bold box-content my-4 h-5 w-48 p-4 border-2 border-[#374779] transition text-white bg-[#374779] shadow-lg shadow-blue-900/50 hover:bg-[#CBD8E5] hover:text-[#374779] m-auto">ENVOYER</button>
+</div>
+{{ form_end(requestForm) }}
+{% endblock %}

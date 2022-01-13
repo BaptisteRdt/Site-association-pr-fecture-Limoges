@@ -9,6 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ContactType extends AbstractType
 {
@@ -16,15 +17,27 @@ class ContactType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
+                'constraints'=> [
+                    new NotBlank(['message'=>'Entrer le nom'])
+                ],
                 "label"=>'Nom'
             ])
             ->add('firstname', TextType::class, [
+                'constraints'=> [
+                    new NotBlank(['message'=>'Entrer le prénom'])
+                ],
                 "label"=>'Prénom'
             ])
             ->add('mailaddress', EmailType::class, [
+                'constraints'=> [
+                  new NotBlank(['message'=>'Entrer le mail'])
+                ],
                 "label"=>'Adresse mail'
             ])
             ->add('subject', TextType::class, [
+                'constraints'=> [
+                    new NotBlank(['message'=>'Objet'])
+                ],
                 "label"=>'Objet'
             ])
             ->add('message', TextAreaType::class, [
