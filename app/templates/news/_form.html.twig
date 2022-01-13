@@ -20,6 +20,14 @@
         widget_errors_class: 'border-double border-red-500 bg-red-50',
     }) }}
 
+    {{ form_row(form.image, {
+        row_class: 'mt-2',
+        label_class: 'font-medium block',
+        error_item_class: 'text-red-700 ',
+        widget_class: 'mb-2 p-2 border rounded-md border-black bg-white focus:bg-gray-200 transition hover:bg-gray-100 w-full',
+        widget_disabled_class: 'border-dashed text-gray-200 ',
+        widget_errors_class: 'border-double border-red-500 bg-red-50',
+    }) }}
 
     <button  class="my-4 self-center btn btn-lg btn-primary text-white font-bold box-content h-5 w-48 p-4 border-2 border-[#374779] transition text-white bg-[#374779] hover:bg-[#CBD8E5] hover:text-[#374779]">{{ button_label|default('AJOUTER') }}</button>
 </div>

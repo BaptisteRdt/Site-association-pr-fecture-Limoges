@@ -7,6 +7,7 @@ use App\Form\NewsType;
 use App\Repository\NewsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,6 +31,14 @@ class NewsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $image = $form->get("image")->getData();
+            if ($image != null){
+                $name = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move('ImageNews', $name);
+                $news->setImageName($name);
+            }
+
             $entityManager->persist($news);
             $entityManager->flush();
 
@@ -57,6 +66,20 @@ class NewsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            if($news->getImageName() != null){
+                $filesystem = new Filesystem();
+                $filesystem->remove("ImageNews/" .$news->getImageName());
+            }
+
+            $image = $form->get("image")->getData();
+            if ($image != null){
+                $name = md5(uniqid()).'.'.$image->guessExtension();
+                $image->move('ImageNews', $name);
+
+                $news->setImageName($name);
+            }
+
             $entityManager->flush();
 
             return $this->redirectToRoute('news_index', [], Response::HTTP_SEE_OTHER);
@@ -72,6 +95,10 @@ class NewsController extends AbstractController
     public function delete(Request $request, News $news, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$news->getId(), $request->request->get('_token'))) {
+            if($news->getImageName() != null){
+                $filesystem = new Filesystem();
+                $filesystem->remove("ImageNews/" .$news->getImageName());
+            }
             $entityManager->remove($news);
             $entityManager->flush();
         }

@@ -27,6 +27,11 @@ class News
      */
     private $textContent;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $imageName;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -52,6 +57,18 @@ class News
     public function setTextContent(?string $textContent): self
     {
         $this->textContent = $textContent;
+
+        return $this;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageName(string $imageName): self
+    {
+        $this->imageName = $imageName;
 
         return $this;
     }

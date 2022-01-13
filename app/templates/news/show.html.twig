@@ -7,6 +7,8 @@
         <h1 class="self-center text-4xl font-bold mb-8">{{ news.title }}</h1>
 
         <p class=" text-center px-1 text-navbar-background font-bold">id: <span class="font-normal text-black">{{ news.id }}</span></p>
+        <img src="{{ asset('/ImageNews/'~ news.imageName) }}"  alt="imageArticle">
+
         <p class=" text-center px-1 font-bold text-navbar-background">Contenu:</p>
         <p class=" text-justify px-1 font-medium text-[#7C7C7C]">{{ news.textContent }}</p>
 
