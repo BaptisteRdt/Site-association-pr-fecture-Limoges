@@ -16,20 +16,23 @@
             <a class="group grid place-items-center p-4 drop-shadow transition h-80 w-80 overflow-hidden hover:scale-105 bg-gray-200 relative"
                  href="{{path('boutique_detail', {id: article.id})}}">
                 {% if article.imageName is null %}
-                <div class="absolute w-full h-full grid place-items-center">
                     <div class="m-auto text-4xl font-bold break-normal text-gray-400">
                         {{ article.name }}
                     </div>
-                </div>
                 {% else %}
-                <img class="max-w-full max-h-full" src="{{ asset('/ImageArticle/'~article.imageName) }}"/>
+                    <img class="max-w-full max-h-full" src="{{ asset('/ImageArticle/'~article.imageName) }}"/>
                 {% endif %}
                 <div class="absolute group-hover:drop-shadow-xl transition-all top-80 group-hover:top-0 left-0 w-full h-full bg-white grid place-items-center">
-                    <div class="relative m-auto text-lg font-medium break-normal">
-                        {{ article.name }}
+                    <div class="flex flex-col relative m-auto text-xl font-medium break-normal">
+                        <p>{{ article.name }}</p>
+                        <p>{{ article.prix }} €</p>
+                        {% if article.quantite == 0 %}
+                            <span class="text-red-500 font-medium">Stock indisponible</span>
+                        {% endif %}
                     </div>
                     <span class="absolute bottom-2 group-hover:underline transition group-hover:decoration-[#37487b]"> Réserver</span>
-                </div>
+
+               </div>
             </a>
         {% else %}
             <td colspan="4">Pas de produits trouvés</td>
