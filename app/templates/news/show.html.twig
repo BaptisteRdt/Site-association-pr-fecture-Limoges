@@ -12,6 +12,10 @@
         <p class=" text-center px-1 font-bold text-navbar-background">Contenu:</p>
         <p class=" text-justify px-1 font-medium text-[#7C7C7C]">{{ news.textContent }}</p>
 
+        {% if news.isPinned == true %}
+            <p class=" text-center px-1 font-bold text-navbar-background">Cet article est épinglé sur la page d'accueil</p>
+        {% endif %}
+
 
         <p class="h-10"></p>
 

@@ -59,6 +59,18 @@ class NewsController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/isPinned', name: 'news_pin', methods: ['GET', 'POST'])]
+    public function pinned(Request $request, News $news, EntityManagerInterface $entityManager)
+    {
+       if ($news->getIsPinned()){
+           $news->setIsPinned(false);
+       }else{
+           $news->setIsPinned(true);
+       }
+        $entityManager->flush();
+        return $this->redirectToRoute('news_index', [], Response::HTTP_SEE_OTHER);
+    }
+
     #[Route('/{id}/edit', name: 'news_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, News $news, EntityManagerInterface $entityManager): Response
     {

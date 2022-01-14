@@ -32,6 +32,11 @@ class News
      */
     private $imageName;
 
+    /**
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $isPinned;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -69,6 +74,18 @@ class News
     public function setImageName(string $imageName): self
     {
         $this->imageName = $imageName;
+
+        return $this;
+    }
+
+    public function getIsPinned(): ?bool
+    {
+        return $this->isPinned;
+    }
+
+    public function setIsPinned(?bool $isPinned): self
+    {
+        $this->isPinned = $isPinned;
 
         return $this;
     }
