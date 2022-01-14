@@ -18,13 +18,13 @@
             </tr>
         </tbody>
     </table>
-    
+
     <a href="{{ path('article_edit', {'id': article.id}) }}" class=" self-center ">
         <button  class="my-4 btn btn-lg btn-primary text-white font-bold box-content h-5 w-48 p-4 border-2 border-[#374779] transition text-white bg-[#374779] hover:bg-[#CBD8E5] hover:text-[#374779]">{{ button_label|default('MODIFIER') }}</button>
     </a>
-    
+
     {{ include('article/_delete_form.html.twig') }}
-    
+
     <a href="{{ path('article_index') }}" class="my-8 self-center unmask hover:text-blue-900 mb-2 cursor-pointer transition underline">Retour à la liste des articles</a>
 </div>
 {% endblock %}

@@ -14,7 +14,7 @@ use Symfony\Component\Form\FormTypeInterface;
 
 class ContactController extends AbstractController
 {
-    #[Route('/admin/contact', name: 'contact_index', methods: ['GET'])]
+    #[Route('/admin/contact/', name: 'contact_index', methods: ['GET'])]
     public function index(ContactRepository $contactRepository): Response
     {
         return $this->render('contact/index.html.twig', [
@@ -22,7 +22,7 @@ class ContactController extends AbstractController
         ]);
     }
 
-    #[Route('/contact', name: 'contact_new', methods: ['GET', 'POST'])]
+    #[Route('/contact/', name: 'contact_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $contact = new Contact();
