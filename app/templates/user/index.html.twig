@@ -25,11 +25,18 @@
                 <td class="px-3 py-1 ">{{ user.id }}</td>
                 <td class="px-3 py-1 ">{{ user.username }}</td>
                 <td class="px-3 py-1 ">{{ user.mail }}</td>
-                <td class="px-3 py-1 ">false</td>
+                <td class="px-3 py-1 ">
+                    {% if user.roles|filter(role => role == "ROLE_ADHERENT")|first %}
+                        <span>Oui</span>
+                    {% else %}
+                        <span>Non</span>
+                    {% endif %}
+                </td>
                 <td class="px-3 py-1 text-center transition font-normal">
                     <a class="hover:text-[#374779]" href="{{ path('user_show', {'id': user.id}) }}">👁</a>
                     <a class="hover:text-[#374779]" href="{{ path('user_edit', {'id': user.id}) }}">📝</a>
                     <a class="hover:text-[#374779]" href="{{ path('show_cart', {'id': user.id}) }}">🛒</a>
+                    <a class="hover:text-[#374779]" href="{{ path('user_toggle_adhesion', {'id': user.id}) }}">🅰️</a>
                 </td>
             </tr>
         {% else %}

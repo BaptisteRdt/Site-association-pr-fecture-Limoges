@@ -26,10 +26,12 @@
                                 <li><a class="transition hover:underline font-semibold py-5 px-3 text-white" href="{{ path("app_login") }}">Connexion</a></li>
                                 {% endif %}
                             {% else %}
-                                {% if currentPath == "/boutique"  %}
-                                    <li><a class="transition underline underline-offset-8 font-semibold py-5 px-3 text-white" href="{{ path("shop") }}">Boutique</a></li>
-                                {% else %}
-                                <li><a class="transition hover:underline font-semibold py-5 px-3 text-white" href="{{ path("shop") }}">Boutique</a></li>
+                                {% if is_granted('ROLE_ADHERENT') %}
+                                    {% if currentPath == "/boutique"  %}
+                                        <li><a class="transition underline underline-offset-8 font-semibold py-5 px-3 text-white" href="{{ path("shop") }}">Boutique</a></li>
+                                    {% else %}
+                                        <li><a class="transition hover:underline font-semibold py-5 px-3 text-white"    href="{{ path("shop") }}">Boutique</a></li>
+                                    {% endif %}
                                 {% endif %}
                                 {% if is_granted('ROLE_ADMIN') %}
                                     {% if currentPath == "/admin"  %}
@@ -38,11 +40,11 @@
                                          <li><a class="transition hover:underline font-semibold py-5 px-3 text-white" href="{{ path("admin") }}">Administration</a></li>
                                     {% endif %}
                                {% endif %}
-                                 {% if currentPath == "/profil/"  %}
-                                     <li><a class="transition underline underline-offset-8 font-semibold py-5 px-3 text-white" href="{{ path("profile") }}">Profil</a></li>
-                                 {% else %}
-                                     <li><a class="transition hover:underline font-semibold py-5 px-3 text-white" href="{{ path("profile") }}">Profil</a></li>
-                                {%endif%}
+                                {% if currentPath == "/profil/"  %}
+                                    <li><a class="transition underline underline-offset-8 font-semibold py-5 px-3 text-white" href="{{ path("profile") }}">Profil</a></li>
+                                {% else %}
+                                    <li><a class="transition hover:underline font-semibold py-5 px-3 text-white" href="{{ path("profile") }}">Profil</a></li>
+                                {% endif %}
                                 <li><a class="transition hover:underline font-semibold py-5 px-3 text-white" href="{{ path("app_logout") }}">Déconnexion</a></li>
                             {% endif %}
                         </div>

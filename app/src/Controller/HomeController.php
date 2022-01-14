@@ -16,10 +16,6 @@ class HomeController extends AbstractController
 
         $entity = $em->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
 
-        if (!$entity) {
-            throw $this->createNotFoundException('Unable to find User entity.');
-        }
-
         $images =[];
         foreach($entity as $article){
             $imageName = $article->getImageName();
