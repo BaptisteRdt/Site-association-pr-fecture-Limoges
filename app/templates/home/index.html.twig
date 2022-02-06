@@ -4,23 +4,44 @@
 
 {% block body %}
     {% set i = 0 %}
+    <h1 class="text-4xl text-center my-4">Nos Dernières Actualités</h1>
+
     <div class="relative cursor-pointer flex flex-col justify-evenly w-[40rem] h-[20rem] m-auto my-8 rounded-lg shadow-md bg-gray-100 group items-center overflow-hidden select-none" id="slider">
         <div class="flex flex-row absolute top-0 left-0 w-full h-full slider transition-all duration-300" >
             {% for article in articles %}
-            <img class="w-full shrink-0 object-cover" src="{{ asset('/ImageNews/'~article.imageName)}}" alt="imageNews" onclick="window.location = window.location.origin + '{{ path('news_show', {id: article.id}) }}'">
+                <img class="w-full shrink-0 object-cover" src="{{ asset('/ImageNews/'~article.imageName)}}" alt="imageNews" onclick="window.location = window.location.origin + '{{ path('news_show', {id: article.id}) }}'">
             {% endfor  %}
         </div>
         <div class="group-hover:shadow-sm rounded-full ease-in absolute text-3xl bg-[#fff8] px-4 py-2  left-[1rem] group-hover:bg-white transition -rotate-90" id="precedent" onclick="ChangeSlide(-1)">^</div>
         <div class="group-hover:shadow-sm rounded-full ease-in absolute text-3xl bg-[#fff8] px-4 py-2  right-[1rem] group-hover:bg-white transition rotate-90" id="suivant" onclick="ChangeSlide(1)">^</div>
 
-    <div class="flex flex-row space-x-4 justify-center w-full z-3 absolute bottom-2">
-        {% for article in articles %}
-            <div class="h-4 w-4 bg-[#1F294570] rounded-full border-[#1F2945] border border-[3px] sliderDot" onclick="setSlide({{ i }})"></div>
-            {% set i = i + 1 %}
+        <div class="flex flex-row space-x-4 justify-center w-full z-3 absolute bottom-2">
+            {% for article in articles %}
+                <div class="h-4 w-4 bg-[#1F294570] rounded-full border-[#1F2945] border border-[3px] sliderDot" onclick="setSlide({{ i }})"></div>
+                {% set i = i + 1 %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="m-16 mx-40">
+        <div class="border-b-4 border-b-navbar-background mb-8">
+            <h1 class="text-4xl text-center mb-4">Nos Articles</h1>
+        </div>
+            {% for article in articles %}
+            {% if article.isPinned == true %}
+                <div class="flex flex-row w-[75rem] h-[30rem] items-center mx-[15rem] mb-8">
+                    <img class="w-[45rem] w-full shrink-0 object-cover h-full p-8 " src="{{ asset('/ImageNews/'~article.imageName)}}">
+                    <div class="flex flex-col items-center">
+                        <h2 class="text-3xl text-center mt-4 ">{{ article.title }}</h2>
+                        <div class="py-8 text-justify pr-8"> {{ article.textContent|length > 200 ? article.textContent|slice(0, 200) ~ '...'}}</div>
+                        <a href="{{ path('news_show', {id: article.id}) }}" class="rounded-md bg-[#1F2945] h-10 border hover:bg-navbar-background"><div class="p-2 text-white">En savoir plus</div></a>
+                    </div>
+                </div>
+                <div class="border-b-[1px] border-b-navbar-background mb-8"></div>
+            {% endif %}
         {% endfor %}
     </div>
 
-    </div>
 
     <script>
         let switchSlide, numero = 0, slideBy = 40, nbrImage = {{ articles|length }} -1;

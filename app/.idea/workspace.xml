@@ -6,17 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="4259b4be-24e1-4ae9-959f-98ec138558c4" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/ImageNews/070c199fd63892bb951afdceb97873aa.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/ImageNews/0ce05022acf4aef308e044490079baba.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/ImageNews/9169f81dbf80d915a211ccc05432a659.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/ImageNews/d73d1b787588ea9fdb17d85798be20d2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/ImageNews/e370394e34fb45e9b0f9573b54033ddb.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/NewsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/NewsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/News.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/News.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Form/NewsType.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Form/NewsType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/news/_form.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/news/_form.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/MailerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/MailerController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/home/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/mailer/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/mailer/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/news/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/news/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/news/show.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/news/show.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/profile/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/profile/index.html.twig" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -184,6 +181,8 @@
       <path value="$PROJECT_DIR$/vendor/symfony/cache-contracts" />
       <path value="$PROJECT_DIR$/vendor/phpstan/phpdoc-parser" />
       <path value="$PROJECT_DIR$/vendor/symfonycasts/reset-password-bundle" />
+      <path value="$PROJECT_DIR$/vendor/twig/cssinliner-extra" />
+      <path value="$PROJECT_DIR$/vendor/tijsverkoyen/css-to-inline-styles" />
     </include_path>
   </component>
   <component name="ProjectId" id="21rgOrRj0YUOe9cYf7my3KbsvCK" />
@@ -248,7 +247,8 @@
       <workItem from="1641971267822" duration="10590000" />
       <workItem from="1641990815579" duration="13757000" />
       <workItem from="1642057441552" duration="10622000" />
-      <workItem from="1642144582037" duration="4636000" />
+      <workItem from="1642144582037" duration="11194000" />
+      <workItem from="1642163080167" duration="8721000" />
     </task>
     <servers />
   </component>

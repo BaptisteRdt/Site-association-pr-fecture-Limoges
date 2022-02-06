@@ -96,6 +96,8 @@ class UserController extends AbstractController
                 $user->setImageName($name);
             }
 
+
+
             $user = $form->getData();
             if ($user->getPlainPassword() !== null) {
                     $user->setPassword($passwordHasher->hashPassword(

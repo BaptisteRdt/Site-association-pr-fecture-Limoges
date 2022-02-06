@@ -32,7 +32,7 @@
                     <a href="{{ path('news_edit', {'id': new.id}) }}">📝</a>
                     {% if new.isPinned == true %}
                         <a href="{{ path('news_pin', {'id': new.id}) }}">📍</a>
-                    {% else %}  
+                    {% else %}
                         <a href="{{ path('news_pin', {'id': new.id}) }}">🧷</a>
                     {% endif %}
                 </td>
