@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Association de la préfecture de la Haute-Vienne{% endblock %}
+
+{% block body %}
+    <div class="flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto my-8 rounded-lg shadow-md bg-gray-100">
+        <h1 class="self-center text-4xl font-bold my-8">Répondre au mail</h1>
+
+        {{
+        include('contact/_formReply.html.twig', {'button_label': 'REPONDRE'})
+        }}
+
+        <a href="{{ path('profile') }}" class="self-center transition underline hover:text-blue-900 my-8">Retourner à la liste des contacts</a>
+    </div>
+{% endblock %}

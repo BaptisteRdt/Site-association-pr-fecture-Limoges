@@ -1,0 +1,60 @@
+<style>
+
+    h1{
+        font-weight: bold;
+    }
+
+    #margin{
+        margin-top: 25px;
+    }
+
+    .emailBody{
+        width: 700px;
+        margin: 0px auto 20px auto;
+        display: block;
+    }
+
+    .emailBody, .footer{
+        text-align: center;
+    }
+    .footer{
+        background-color: #1F2945;
+        width: 700px ;
+        margin: auto;
+        display: block;
+    }
+
+    .footer div{
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+
+    .footer div div div div  p, .footer div div div div a{
+        color: white;
+    }
+    .footer div div div .spaceBot{
+        margin-bottom: 15px;
+        display: block;
+    }
+
+</style>
+
+<div class="emailBody">
+    <h1>Association de la préfecture</h1>
+
+    <p id="margin">Bonjour {{ firstname}}  {{ lastname }},</p>
+    <p>Vous venez de modifier votre adresse mail à l'adresse : <strong>{{ newMail }}</strong>.</p>
+
+    <strong>S'il s'agit de vous:</strong>
+
+    <p>Génial ! Vous pouvez ignorer cet email en toute sécurité.</p>
+
+    <strong>S'il ne s'agit pas de vous:</strong>
+
+    <p>Si vous n'êtes pas celui qui a changé votre adresse mail, veuillez envoyez un message depuis la page contact du site.</p>
+</div>
+
+<div class="footer">
+    {% include 'footer.html.twig' %}
+</div>
+

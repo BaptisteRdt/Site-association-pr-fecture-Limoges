@@ -1,0 +1,56 @@
+<style xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+
+    h1{
+        font-weight: bold;
+    }
+
+    #margin{
+        margin-top: 25px;
+    }
+
+    .emailBody{
+        width: 700px;
+        margin: 0px auto 20px auto;
+        display: block;
+    }
+
+    .emailBody, .footer{
+        text-align: center;
+    }
+    .footer{
+        background-color: #1F2945;
+        width: 700px ;
+        margin: auto;
+        display: block;
+    }
+
+    .footer div{
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+
+    .footer div div div div  p, .footer div div div div a{
+        color: white;
+    }
+    .footer div div div .spaceBot{
+        margin-bottom: 15px;
+        display: block;
+    }
+</style>
+
+<div class="emailBody">
+    <h1>Association de la préfecture</h1>
+
+    <p id="margin">Bonjour Prénom Nom,</p>
+    <p>Vous êtes désormais un adhérent de <a href="http://localhost:8080/">l'association</a>.</p>
+    <p>Félicitations 🥂🎇🥳🎉🎊🎉🥳🎇🥂 !!!</p>
+    <p>L'adhésion vous permet d'accéder à la boutique et ses prix avantageux ! </p>
+
+    <p>Votre status d'adhérent prendra fin respectivement le : <strong>Mettre Date</strong></p>
+
+    <p>Profitez bien !</p>
+</div>
+
+<div class="footer">
+    {% include 'footer.html.twig' %}
+</div>

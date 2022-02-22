@@ -6,10 +6,12 @@ use App\Entity\User;
 use App\Form\UserType;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -26,7 +28,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/new', name: 'user_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher, MailerInterface $mailer): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -46,6 +48,7 @@ class UserController extends AbstractController
             }
 
             $user->setCart(array());
+            $password = $form->getData()->getPassword();
             $form->getData()->setPassword(
                 $passwordHasher->hashPassword(
                     $user,
@@ -53,6 +56,20 @@ class UserController extends AbstractController
                 )
             );
 
+            $email = (new TemplatedEmail())
+                ->from('support@asso-prefecture.com')
+                ->to($user->getMail())
+                ->subject('Inscription sur le site de l\'association de la préfecture de Haute Vienne')
+
+                ->htmlTemplate('mailer/MailNewUser.html.twig')
+                ->context([
+                    'firstname' => $user->getFirstName(),
+                    'lastname' => $user->getLastName(),
+                    'username' => $user->getUsername(),
+                    'password' => $password,
+                ]);
+
+            $mailer->send($email);
 
             $entityManager->persist($user);
             $entityManager->flush();
@@ -119,9 +136,25 @@ class UserController extends AbstractController
     
 
     #[Route('/{id}', name: 'user_delete', methods: ['POST'])]
-    public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, User $user, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+
+            $email = (new TemplatedEmail())
+                ->from('support@asso-prefecture.com')
+                ->to($user->getMail())
+                ->subject('Suppression de votre compte sur le site de l\'association de la préfecture de Haute Vienne')
+
+                ->htmlTemplate('mailer/MailDeleteUser.html.twig')
+                ->context([
+                    'firstname' => $user->getFirstName(),
+                    'lastname' => $user->getLastName(),
+                    'username' => $user->getUsername(),
+                ]);
+
+            $mailer->send($email);
+
+
             $entityManager->remove($user);
             $entityManager->flush();
         }

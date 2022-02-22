@@ -6,8 +6,10 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\User;
 use App\Entity\Article;
 use App\Entity\Reservation;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
@@ -60,7 +62,7 @@ class AdminController extends AbstractController
     }
 
     #[Route('/admin/panier/confirm/{user}/{id}', name: 'confirm_purchase')]
-    public function confirm_purchase($id, User $user, EntityManagerInterface $em){
+    public function confirm_purchase($id, User $user, EntityManagerInterface $em, MailerInterface $mailer){
 
         $reservations = $user->getCart();
 
@@ -72,23 +74,98 @@ class AdminController extends AbstractController
 
         $article->setQuantite($article->getQuantite() - $reservation->getQuantity());
 
+
+        $reservationName = $reservation->getArticle()->getName();
+        $reservationQuantity = $reservation->getQuantity();
+        $reservationPrice = $reservation->getArticle()->getPrix();
+
+
+        $cart= $reservation->getUser()->getCart();
+        $articles= $em->getRepository(Article::class)->findBy(array('id' => array_keys($cart)));
+        foreach ($articles as $article){
+            $article->setQuantite($cart[$article->getId()]);
+        }
+
         $em->remove($reservation);
         $em->flush();
+
+        $conn = $em->getConnection();
+
+        $sql = '
+                SELECT a.name, r.quantity, r.price, r.id FROM reservation r, article a
+                WHERE r.article_id = a.id and r.user_id = ' . $reservation->getUser()->getId() . '
+                ';
+        $stmt = $conn->query($sql)->fetchAllAssociative();
+
+        $email = (new TemplatedEmail())
+            ->from('support@asso-prefecture.com')
+            ->to($user->getMail())
+            ->subject('Confirmation de votre réservation sur le site de l\'association de la préfecture de Haute Vienne')
+
+            ->htmlTemplate('mailer/MailConfirmPurchase.html.twig')
+            ->context([
+                'firstname' => $user->getFirstName(),
+                'lastname' => $user->getLastName(),
+                'articleName' => $reservationName,
+                'articleQuantity' =>$reservationQuantity,
+                'articlePrice' => $reservationPrice,
+                'articles' =>$stmt,
+            ]);
+        $mailer->send($email);
+
 
         return $this->redirectToRoute('show_cart', array('id'=>$user->getId()), Response::HTTP_SEE_OTHER);
     }
 
 
     #[Route('/admin/panier/remove/{user}/{id}', name: 'remove_reservation')]
-    public function remove_reservation($id, User $user, EntityManagerInterface $em){
+    public function remove_reservation($id, User $user, EntityManagerInterface $em, MailerInterface $mailer){
 
         $reservations = $user->getReservations();
 
         $reservation = $em->getRepository(Reservation::class)
             ->findOneBy(['id' => +$id]);
 
+        $cart= $reservation->getUser()->getCart();
+        $articles= $em->getRepository(Article::class)->findBy(array('id' => array_keys($cart)));
+        foreach ($articles as $article){
+            $article->setQuantite($cart[$article->getId()]);
+        }
+
+        $reservationName = $reservation->getArticle()->getName();
+        $reservationQuantity = $reservation->getQuantity();
+        $reservationPrice = $reservation->getArticle()->getPrix();
+
+
+
         $em->remove($reservation);
         $em->flush();
+
+        $conn = $em->getConnection();
+
+        $sql = '
+                SELECT a.name, r.quantity, r.price, r.id FROM reservation r, article a
+                WHERE r.article_id = a.id and r.user_id = ' . $reservation->getUser()->getId() . '
+                ';
+        $stmt = $conn->query($sql)->fetchAllAssociative();
+
+
+        $email = (new TemplatedEmail())
+            ->from('support@asso-prefecture.com')
+            ->to($user->getMail())
+            ->subject('Suppression de votre réservation sur le site de l\'association de la préfecture de Haute Vienne')
+
+            ->htmlTemplate('mailer/MailRemoveReservation.html.twig')
+            ->context([
+                'firstname' => $user->getFirstName(),
+                'lastname' => $user->getLastName(),
+                'articleName' => $reservationName,
+                'articleQuantity' =>$reservationQuantity,
+                'articlePrice' => $reservationPrice,
+                'articles' =>$stmt,
+            ]);
+        $mailer->send($email);
+
 
         return $this->redirectToRoute('show_cart', ['id'=>$user->getId()], Response::HTTP_SEE_OTHER);
     }

@@ -2,33 +2,32 @@
 
 namespace App\Form;
 
-use App\Entity\User;
+use App\Entity\Contact;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
-class ChangeTelephoneType extends AbstractType
+class ContactReplyType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('telephone', TextType::class,[
+            ->add('reply', TextAreaType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Entrer votre numéro de téléphone']),
+                        'message' => 'Entrer votre réponse']),
                 ],
-                'label' => 'Numéro de Téléphone',
-                'data'=>''
+                'label'=>'Message',
+                'data'=>'',
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => User::class,
+            'data_class' => Contact::class,
         ]);
     }
-
 }

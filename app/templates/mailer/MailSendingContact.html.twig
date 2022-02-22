@@ -1,0 +1,55 @@
+<style>
+
+    h1{
+        font-weight: bold;
+    }
+
+    #margin{
+        margin-top: 25px;
+    }
+
+    .emailBody{
+        width: 700px;
+        margin: 0px auto 20px auto;
+        display: block;
+    }
+
+    .emailBody, .footer{
+        text-align: center;
+    }
+    .footer{
+        background-color: #1F2945;
+        width: 700px ;
+        margin: auto;
+        display: block;
+    }
+
+    .footer div{
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+
+    .footer div div div div  p, .footer div div div div a{
+        color: white;
+    }
+    .footer div div div .spaceBot{
+        margin-bottom: 15px;
+        display: block;
+    }
+</style>
+
+<div class="emailBody">
+    <h1>Association de la préfecture</h1>
+
+    <p id="margin">Bonjour {{ firstname}} {{ lastname }},</p>
+    <p>Vous venez d'envoyer le message suivant aux administrateurs :</p>
+    <p>Objet : <strong>{{ subject }}</strong> </p>
+    <p><u>Contenu du message :</u> {{ content }}</p>
+
+    <p>Les administateurs de l'association essayeront d'y répondre le plus rapidement possible.</p>
+</div>
+
+<div class="footer">
+    {% include 'footer.html.twig' %}
+</div>
+

@@ -9,10 +9,12 @@ use App\Form\ChangeAddressType;
 use App\Form\ChangeTelephoneType;
 use App\Form\ChangeImageType;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -170,7 +172,7 @@ class ProfileController extends AbstractController
     }
 
     #[Route('/verifMdp', name: 'verif_mdp', methods: ['GET','POST'])]
-    public function verifMdp(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $passwordHasher, ValidatorInterface $validator): Response
+    public function verifMdp(EntityManagerInterface $em, Request $request, UserPasswordHasherInterface $passwordHasher, ValidatorInterface $validator, MailerInterface $mailer): Response
     {
         $user = $this->getUser();
         $entity = $em->getRepository(User::class)->findOneBy(['username' => $user->getUserIdentifier()]);
@@ -179,13 +181,41 @@ class ProfileController extends AbstractController
             throw $this->createNotFoundException('Unable to find User entity.');
         }
 
+        $oldMail = $user->getMail();
         $form = $this->createForm(VerifMdpType::class, [$user, $passwordHasher]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $userData = $form->getData();
             if ($userData["mail"] !== null) {
+                $newMail = $userData["mail"];
                 $user->setMail($userData["mail"]);
+
+                $email1 = (new TemplatedEmail())
+                    ->from('support@asso-prefecture.com')
+                    ->to($newMail)
+                    ->subject('Changement d\'adresse-mail de votre comptre sur le site de l\'association de la préfecture de Haute Vienne')
+
+                    ->htmlTemplate('mailer/MailEditMailNewAddress.html.twig')
+                    ->context([
+                        'firstname' => $user->getFirstname(),
+                        'lastname' => $user->getLastname(),
+                        'oldMail' => $oldMail,
+                    ]);
+                $mailer->send($email1);
+
+                $email2 = (new TemplatedEmail())
+                    ->from('support@asso-prefecture.com')
+                    ->to($oldMail)
+                    ->subject('Changement d\'adresse-mail de votre comptre sur le site de l\'association de la préfecture de Haute Vienne')
+
+                    ->htmlTemplate('mailer/MailEditMailOldAddress.html.twig')
+                    ->context([
+                        'firstname' => $user->getFirstname(),
+                        'lastname' => $user->getLastname(),
+                        'newMail' =>$newMail,
+                    ]);
+                $mailer->send($email2);
             }
             $em->flush();
             return $this->redirectToRoute('profile', [], Response::HTTP_SEE_OTHER);

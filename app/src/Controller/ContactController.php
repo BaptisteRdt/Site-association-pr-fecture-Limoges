@@ -4,13 +4,15 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
+use App\Form\ContactReplyType;
 use App\Repository\ContactRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\FormTypeInterface;
 
 class ContactController extends AbstractController
 {
@@ -23,13 +25,30 @@ class ContactController extends AbstractController
     }
 
     #[Route('/contact/', name: 'contact_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $contact->setDate(new \DateTime('now'));
+
+            $email = (new TemplatedEmail())
+                ->from('support@asso-prefecture.com')
+                ->to($form->getData()->getMailaddress())
+                ->subject('Demande de contact sur le site de l\'association')
+
+                ->htmlTemplate('mailer/MailSendingContact.html.twig')
+                ->context([
+                    'firstname' => $form->getData()->getFirstname(),
+                    'lastname' => $form->getData()->getName(),
+                    'content' => $form->getData()->getMessage(),
+                    'subject' =>$form->getData()->getSubject(),
+                ]);
+
+            $mailer->send($email);
+
             $entityManager->persist($contact);
             $entityManager->flush();
 
@@ -50,14 +69,45 @@ class ContactController extends AbstractController
         ]);
     }
 
-    #[Route('/admin/contact/{id}', name: 'contact_delete', methods: ['POST'])]
+    #[Route('/admin/contact/{id}/reply', name: 'contact_reply', methods: ['POST', 'GET'])]
+    public function reply(Request $request, EntityManagerInterface $em, Contact $contact, MailerInterface $mailer) : Response
+    {
+        $form = $this->createForm(ContactReplyType::class, $contact);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $email = (new TemplatedEmail())
+                ->from('support@asso-prefecture.com')
+                ->to($form->getData()->getMailaddress())
+                ->subject('Réponse du message du site de l\'association de la préfecture de Haute Vienne')
+
+                ->htmlTemplate('mailer/MailAnswerAdminContact.html.twig')
+                ->context([
+                    'firstname' => $contact->getFirstname(),
+                    'lastname' => $contact->getName(),
+                    'content' => $contact->getMessage(),
+                    'subject' =>$contact->getSubject(),
+                    'contentAdmin' => $contact->getReply(),
+                ]);
+            $mailer->send($email);
+            $em->remove($contact);
+            $em->flush();
+            return $this->redirectToRoute('contact_index',[], Response::HTTP_SEE_OTHER);
+        }
+        return $this->render('contact/reply.html.twig', [
+            'form' => $form->createView(),
+        ]);
+
+    }
+
+    #[Route('/admin/contact/delete/{id}', name: 'contact_delete')]
     public function delete(Request $request, Contact $contact, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$contact->getId(), $request->request->get('_token'))) {
             $entityManager->remove($contact);
             $entityManager->flush();
         }
-
         return $this->redirectToRoute('contact_index', [], Response::HTTP_SEE_OTHER);
     }
 }

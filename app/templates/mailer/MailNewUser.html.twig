@@ -1,0 +1,58 @@
+<style xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+
+    h1{
+        font-weight: bold;
+    }
+
+    #margin{
+        margin-top: 25px;
+    }
+
+    .emailBody{
+        width: 700px;
+        margin: 0px auto 20px auto;
+        display: block;
+    }
+
+    .emailBody, .footer{
+        text-align: center;
+    }
+    .footer{
+        background-color: #1F2945;
+        width: 700px ;
+        margin: auto;
+        display: block;
+    }
+
+    .footer div{
+        padding-top: 1px;
+        padding-bottom: 1px;
+    }
+
+    .footer div div div div  p, .footer div div div div a{
+        color: white;
+    }
+    .footer div div div .spaceBot{
+        margin-bottom: 15px;
+        display: block;
+    }
+</style>
+
+<div class="emailBody">
+    <h1>Association de la préfecture</h1>
+
+    <p id="margin">Bonjour {{ firstname}} {{ lastname }},</p>
+    <p>Votre compte vient d'être activé sur <a href="http://localhost:8080/">le site de l'association</a>.</p>
+    <p>Félicitations 🥂🎇🥳🎉🎊🎉🥳🎇🥂 !!!</p>
+
+    <p>Vous aurez besoin de l'identifiant et du mot de passe suivant pour vous connecter :</p>
+
+    <p>Identifiant : <strong{{ username }}</strong>  Mot de Passe : <strong>{{ password }} </strong></p>
+
+    <p>Ne communiquez pas ces informations à quelqu'un. Vous pourrez changer votre mot de passe depuis votre profil après vous être connecté.</p>
+</div>
+
+<div class="footer">
+    {% include 'footer.html.twig' %}
+</div>
+
