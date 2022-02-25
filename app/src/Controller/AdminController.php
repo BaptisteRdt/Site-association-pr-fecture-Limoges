@@ -6,6 +6,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\User;
 use App\Entity\Article;
 use App\Entity\Reservation;
+use App\Entity\ViewLog;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -30,10 +31,79 @@ class AdminController extends AbstractController
         $totalReservation = $repoReservations->createQueryBuilder('a')
             ->select('sum(a.quantity)')
             ->getQuery()
-            ->getSingleScalarResult(); 
+            ->getSingleScalarResult();
+            
+        $repoUsers = $em->getRepository(User::class);
+
+        $totalUser = $repoUsers->createQueryBuilder('a')
+            ->select('count(a.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        $totalAdherent = $repoUsers->createQueryBuilder('a')
+            ->select('count(a.id)')
+            ->where('a.roles LIKE :role')
+            ->setParameter('role', '%ROLE_ADHERENT%')
+            ->getQuery()
+            ->getSingleScalarResult();
+
+        $repoViewLog = $em->getRepository(ViewLog::class);
+        
+        $monthArray = array("Janvier", "Fevrier", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre");
+        
+        $dailyView = array();
+        $monthlyView = array();
+        $yearlyView = array();
+        
+        $today = new \DateTime("now");
+        $currentYear = $today->format('Y');
+        $currentMonth = $today->format('m');
+        $currentDay = $today->format('d');
+
+        for ($i = 0; $i < 24; $i++) {
+            $hour = $i < 10 ? '0'.$i : $i;
+            $dailyView[$i] = $repoViewLog->createQueryBuilder('a')
+                ->select('count(a)')
+                ->where('a.date LIKE :date')
+                ->setParameter('date', "$currentYear-$currentMonth-$currentDay $hour:%")
+                ->getQuery()
+                ->getSingleScalarResult();
+        }
+
+        for ($i = 1; $i <= date('t'); $i++) {
+            $day = $i < 10 ? '0'.$i : $i;
+            $monthlyView[$i] = $repoViewLog->createQueryBuilder('a')
+                ->select('count(a)')
+                ->where('a.date LIKE :date')
+                ->setParameter('date', "$currentYear-$currentMonth-$day %")
+                ->getQuery()
+                ->getSingleScalarResult();
+        }
+
+        for ($i = 1; $i <= 12; $i++) {
+            $month = $i < 10 ? '0'.$i : $i;
+            $yearlyView[$monthArray[$i-1]] = $repoViewLog->createQueryBuilder('a')
+                ->select('count(a)')
+                ->where('a.date LIKE :date')
+                ->setParameter('date', "$currentYear-$month-%")
+                ->getQuery()
+                ->getSingleScalarResult();
+        }
+
+        $totalView = $repoViewLog->createQueryBuilder('a')
+            ->select('count(a)')
+            ->getQuery()
+            ->getSingleScalarResult();
 
         return $this->render('admin/index.html.twig', [
-            'reservation_percentage' => $totalArticle == 0 ? 0 : 100 * $totalReservation / $totalArticle
+            'reservation_percentage' => $totalArticle == 0 ? 0 : 100 * $totalReservation / $totalArticle,
+            'user_percentage' => $totalUser == 0 ? 0 : 100 * $totalAdherent / $totalUser,
+            'daily_view' => $dailyView,
+            'monthly_view' => $monthlyView,
+            'yearly_view' => $yearlyView,
+            'total_view' => $totalView,
+            'total_article' => $totalArticle,
+            'total_user' => $totalUser,
         ]);
     }
 
