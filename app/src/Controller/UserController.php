@@ -19,6 +19,15 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 #[Route('/admin/user')]
 class UserController extends AbstractController
 {
+
+    private function registerVisit(EntityManagerInterface $entityManager)
+    {
+        $viewLog = new ViewLog();
+        $viewLog->setDate(new \DateTime("now", new \DateTimeZone("Europe/Paris")));
+        $entityManager->persist($viewLog);
+        $entityManager->flush();
+    }
+    
     #[Route('/', name: 'user_index', methods: ['GET'])]
     public function index(UserRepository $userRepository): Response
     {

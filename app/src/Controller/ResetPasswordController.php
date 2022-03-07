@@ -33,6 +33,14 @@ class ResetPasswordController extends AbstractController
         $this->entityManager = $entityManager;
     }
 
+    private function registerVisit(EntityManagerInterface $entityManager)
+    {
+        $viewLog = new ViewLog();
+        $viewLog->setDate(new \DateTime("now", new \DateTimeZone("Europe/Paris")));
+        $entityManager->persist($viewLog);
+        $entityManager->flush();
+    }
+
     /**
      * Display & process form to request a password reset.
      */

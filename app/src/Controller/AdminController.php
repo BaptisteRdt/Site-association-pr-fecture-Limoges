@@ -15,6 +15,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AdminController extends AbstractController
 {
+    private function registerVisit(EntityManagerInterface $entityManager)
+    {
+        $viewLog = new ViewLog();
+        $viewLog->setDate(new \DateTime("now", new \DateTimeZone("Europe/Paris")));
+        $entityManager->persist($viewLog);
+        $entityManager->flush();
+    }
+
     #[Route('/admin', name: 'admin')]
     public function index(EntityManagerInterface $em): Response
     {

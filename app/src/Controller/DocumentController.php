@@ -15,9 +15,21 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/admin/document')]
 class DocumentController extends AbstractController
 {
-    #[Route('/', name: 'document_index', methods: ['GET'])]
-    public function index(DocumentRepository $documentRepository): Response
+    private function registerVisit(EntityManagerInterface $entityManager)
     {
+        $viewLog = new ViewLog();
+        $viewLog->setDate(new \DateTime("now", new \DateTimeZone("Europe/Paris")));
+        $entityManager->persist($viewLog);
+        $entityManager->flush();
+    }
+
+    #[Route('/', name: 'document_index', methods: ['GET'])]
+    public function index(DocumentRepository $documentRepository, EntityManagerInterface $em): Response
+    {
+
+        $this->registerVisit($em);
+        $entity = $em->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
+
         return $this->render('document/index.html.twig', [
             'documents' => $documentRepository->findAll(),
         ]);
@@ -65,8 +77,11 @@ class DocumentController extends AbstractController
     }
 
     #[Route('/{id}', name: 'document_show', methods: ['GET'])]
-    public function show(Document $document): Response
+    public function show(Document $document, EntityManagerInterface $entityManager): Response
     {
+        $this->registerVisit($entityManager);
+        $entity = $entityManager->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
+
         return $this->render('document/show.html.twig', [
             'document' => $document,
         ]);

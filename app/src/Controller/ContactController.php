@@ -16,6 +16,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ContactController extends AbstractController
 {
+    private function registerVisit(EntityManagerInterface $entityManager)
+    {
+        $viewLog = new ViewLog();
+        $viewLog->setDate(new \DateTime("now", new \DateTimeZone("Europe/Paris")));
+        $entityManager->persist($viewLog);
+        $entityManager->flush();
+    }
+
     #[Route('/admin/contact/', name: 'contact_index', methods: ['GET'])]
     public function index(ContactRepository $contactRepository): Response
     {
@@ -27,6 +35,10 @@ class ContactController extends AbstractController
     #[Route('/contact/', name: 'contact_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
+
+        $this->registerVisit($entityManager);
+        $entity = $entityManager->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
+
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($request);

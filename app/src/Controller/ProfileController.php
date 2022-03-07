@@ -23,9 +23,20 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 #[Route('/profil')]
 class ProfileController extends AbstractController
 {
-    #[Route('/', name: 'profile', methods: ['GET'])]
-    public function index(): Response
+    private function registerVisit(EntityManagerInterface $entityManager)
     {
+        $viewLog = new ViewLog();
+        $viewLog->setDate(new \DateTime("now", new \DateTimeZone("Europe/Paris")));
+        $entityManager->persist($viewLog);
+        $entityManager->flush();
+    }
+
+    #[Route('/', name: 'profile', methods: ['GET'])]
+    public function index(EntityManagerInterface $entityManager): Response
+    {
+        $this->registerVisit($entityManager);
+        $entity = $entityManager->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
+
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'ProfileController',
             'user' => $this->getUser(),

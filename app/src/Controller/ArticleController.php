@@ -15,9 +15,20 @@ use Symfony\Component\Filesystem\Filesystem;
 #[Route('/admin/article')]
 class ArticleController extends AbstractController
 {
-    #[Route('/', name: 'article_index', methods: ['GET'])]
-    public function index(ArticleRepository $articleRepository): Response
+    private function registerVisit(EntityManagerInterface $entityManager)
     {
+        $viewLog = new ViewLog();
+        $viewLog->setDate(new \DateTime("now", new \DateTimeZone("Europe/Paris")));
+        $entityManager->persist($viewLog);
+        $entityManager->flush();
+    }
+
+    #[Route('/', name: 'article_index', methods: ['GET'])]
+    public function index(ArticleRepository $articleRepository, EntityManagerInterface $em): Response
+    {
+        $this->registerVisit($em);
+        $entity = $em->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
+
         return $this->render('article/index.html.twig', [
             'articles' => $articleRepository->findAll(),
         ]);
@@ -55,8 +66,11 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/{id}', name: 'article_show', methods: ['GET'])]
-    public function show(Article $article): Response
+    public function show(Article $article, EntityManagerInterface $em): Response
     {
+        $this->registerVisit($em);
+        $entity = $em->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
+
         return $this->render('article/show.html.twig', [
             'article' => $article,
         ]);

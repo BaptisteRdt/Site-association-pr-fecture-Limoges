@@ -23,7 +23,6 @@ class HomeController extends AbstractController
     public function index(EntityManagerInterface $em): Response
     {
         $this->registerVisit($em);
-        
         $entity = $em->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
 
         $images =[];

@@ -14,6 +14,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class NewsController extends AbstractController
 {
+    private function registerVisit(EntityManagerInterface $entityManager)
+    {
+        $viewLog = new ViewLog();
+        $viewLog->setDate(new \DateTime("now", new \DateTimeZone("Europe/Paris")));
+        $entityManager->persist($viewLog);
+        $entityManager->flush();
+    }
+
     #[Route('/admin/news/', name: 'news_index', methods: ['GET'])]
     public function index(NewsRepository $newsRepository): Response
     {
@@ -51,8 +59,11 @@ class NewsController extends AbstractController
     }
 
     #[Route('/news/{id}', name: 'news_show', methods: ['GET'])]
-    public function show(News $news): Response
+    public function show(News $news, EntityManagerInterface $entityManager): Response
     {
+        $this->registerVisit($entityManager);
+        $entity = $entityManager->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
+
         return $this->render('news/show.html.twig', [
             'news' => $news,
         ]);

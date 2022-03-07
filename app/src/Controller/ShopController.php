@@ -17,9 +17,20 @@ use App\Repository\ArticleRepository;
 
 class ShopController extends AbstractController
 {
-    #[Route('/boutique', name: 'shop')]
-    public function index(ArticleRepository $articleRepository): Response
+
+    private function registerVisit(EntityManagerInterface $entityManager)
     {
+        $viewLog = new ViewLog();
+        $viewLog->setDate(new \DateTime("now", new \DateTimeZone("Europe/Paris")));
+        $entityManager->persist($viewLog);
+        $entityManager->flush();
+    }
+
+    #[Route('/boutique', name: 'shop')]
+    public function index(ArticleRepository $articleRepository, EntityManagerInterface $entityManager): Response
+    {
+        $this->registerVisit($entityManager);
+        $entity = $entityManager->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
 
         return $this->render('shop/index.html.twig', [
             'controller_name' => 'ShopController',
@@ -30,6 +41,10 @@ class ShopController extends AbstractController
     #[Route('/boutique/{id}', name: 'boutique_detail', methods: ['GET', 'POST'])]
     public function show(Article $article, Request $request, EntityManagerInterface $entityManager, MailerInterface $mailer): Response
     {
+
+        $this->registerVisit($entityManager);
+        $entity = $entityManager->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
+        
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation)
             ->remove('user')
