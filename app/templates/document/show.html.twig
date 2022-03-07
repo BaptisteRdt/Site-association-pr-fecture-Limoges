@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Document{% endblock %}
+
+{% block body %}
+    <div class="flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto my-8 rounded-lg shadow-md bg-gray-100">
+        <h1 class="self-center text-4xl font-bold my-8">Document</h1>
+
+        <table class="table self-center m-2">
+            <tbody>
+                <tr>
+                    <th class="p-2">Titre</th>
+                    <td class="p-2">{{ document.title }}</td>
+                </tr>
+                <tr>
+                    <th class="p-2">Description</th>
+                    <td class="p-2">{{ document.description }}</td>
+                </tr>
+                <tr>
+                    <th class="p-2">PDF</th>
+                    <td class="p-2">
+                        <embed src="{{ asset('/FileDocument/'~document.documentName) }}" type="application/pdf" width="500px" height="300px"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="p-2">Status de la visibilité</th>
+                        {% if document.ispinned %}
+                            <td class="p-2">Epinglé</td>
+                        {% else %}
+                            <td class="p-2">Non Epinglé</td>
+                        {% endif %}
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="{{ path('document_edit', {'id': document.id}) }}" class=" self-center ">
+            <button  class="my-4 btn btn-lg btn-primary text-white font-bold box-content h-5 w-48 p-4 border-2 border-[#374779] transition text-white bg-[#374779] hover:bg-[#CBD8E5] hover:text-[#374779]">{{ button_label|default('MODIFIER') }}</button>
+        </a>
+
+        {{ include('document/_delete_form.html.twig') }}
+
+        <a href="{{ path('document_index') }}" class="my-8 self-center unmask hover:text-blue-900 mb-2 cursor-pointer transition underline">Retour à la liste des documents</a>
+    </div>
+{% endblock %}

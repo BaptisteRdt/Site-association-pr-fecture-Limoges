@@ -1,7 +1,7 @@
 <div class="text-center">
 
-    <form method="post" action="{{ path('article_delete', {'id': article.id}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer cet article ?');">
-        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ article.id) }}">
+    <form method="post" action="{{ path('document_delete', {'id': document.id}) }}" onsubmit="return confirm('Etes-vous sûr de vouloir supprimer ce document ?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ document.id) }}">
         <button class="self-center btn btn-lg btn-primary text-white font-bold box-content h-5 w-48 p-4 border-2 border-[#C83C3C] transition text-white bg-[#C83C3C] hover:bg-[#FFA9A9] hover:text-[#AC2D2D]">SUPPRIMER</button>
     </form>
 

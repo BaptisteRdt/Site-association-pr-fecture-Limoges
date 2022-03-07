@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration{% endblock %}
+
+{% block body %}
+
+    <div class=" py-4 mt-16 flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto shadow-md bg-gray-100">
+
+        <h1 class="self-center text-4xl font-bold my-8">Ajouter un document</h1>
+
+        {{ include('document/_form.html.twig') }}
+
+        <a href="{{ path('document_index') }}" class="self-center transition underline hover:text-blue-900 my-8">Retour à la liste des documents</a>
+    </div>
+
+
+{% endblock %}
