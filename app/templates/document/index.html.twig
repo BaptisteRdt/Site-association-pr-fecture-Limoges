@@ -24,7 +24,7 @@
             <tr class="border-b-2 border-[#C4C4C4] text-[#7C7C7C] transition font-medium hover:bg-[#E4E4E4]">
                 <td class="px-3 py-1 ">{{ document.id }}</td>
                 <td class="px-3 py-1 ">{{ document.title }}</td>
-                <td class="px-3 py-1 ">{{ document.description|length > 50 ? document.description|slice(0, 50) ~ '...' : document.description  }} }}</td>
+                <td class="px-3 py-1 ">{{ document.description|length > 50 ? document.description|slice(0, 50) ~ '...' : document.description  }}</td>
                 <td class="px-3 py-1 ">{{ document.documentName }}</td>
 
                 <td class="px-3 py-1 text-center transition font-normal">
@@ -35,6 +35,13 @@
                     {% else %}
                         <a href="{{ path('document_pin', {'id': document.id}) }}">🧷</a>
                     {% endif %}
+
+                    {% if document.isAdherent != true %}
+                        <a href="{{ path('document_adherent', {'id': document.id}) }}">🅰️</a>
+                    {% else %}
+                        <a href="{{ path('document_adherent', {'id': document.id}) }}">🚹</a>
+                    {% endif %}
+
                 </td>
             </tr>
         {% else %}

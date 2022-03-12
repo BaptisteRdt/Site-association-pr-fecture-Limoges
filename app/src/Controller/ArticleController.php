@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
+use App\Entity\ViewLog;
 use App\Form\ArticleType;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,7 +28,6 @@ class ArticleController extends AbstractController
     public function index(ArticleRepository $articleRepository, EntityManagerInterface $em): Response
     {
         $this->registerVisit($em);
-        $entity = $em->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
 
         return $this->render('article/index.html.twig', [
             'articles' => $articleRepository->findAll(),

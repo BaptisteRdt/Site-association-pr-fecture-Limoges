@@ -27,9 +27,9 @@
         <div class="border-b-4 border-b-navbar-background mb-8">
             <h1 class="text-4xl text-center mb-4">Nos Articles</h1>
         </div>
-            {% for article in articles %}
+        {% for article in articles %}
             {% if article.isPinned == true %}
-                <div class="flex flex-row w-[75rem] h-[30rem] items-center mx-[15rem] mb-8">
+                <div class="flex flex-row w-[75rem] h-[30rem] items-center mb-8">
                     <img class="w-[45rem] w-full shrink-0 object-cover h-full p-8 " src="{{ asset('/ImageNews/'~article.imageName)}}">
                     <div class="flex flex-col items-center">
                         <h2 class="text-3xl text-center mt-4 ">{{ article.title }}</h2>
@@ -41,7 +41,6 @@
             {% endif %}
         {% endfor %}
     </div>
-
 
     <script>
         let switchSlide, numero = 0, slideBy = 40, nbrImage = {{ articles|length }} -1;

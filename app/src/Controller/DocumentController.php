@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ViewLog;
 use App\Entity\Document;
 use App\Form\DocumentType;
 use App\Repository\DocumentRepository;
@@ -28,7 +29,6 @@ class DocumentController extends AbstractController
     {
 
         $this->registerVisit($em);
-        $entity = $em->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
 
         return $this->render('document/index.html.twig', [
             'documents' => $documentRepository->findAll(),
@@ -76,11 +76,23 @@ class DocumentController extends AbstractController
         return $this->redirectToRoute('document_index', [], Response::HTTP_SEE_OTHER);
     }
 
+    #[Route('/{id}/isAdherent', name: 'document_adherent', methods: ['GET', 'POST'])]
+    public function adherent(Request $request, Document $document, EntityManagerInterface $entityManager)
+    {
+        if ($document->getIsAdherent()){
+            $document->setIsAdherent(false);
+        }else{
+            $document->setIsAdherent(true);
+        }
+        $entityManager->flush();
+        return $this->redirectToRoute('document_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+
     #[Route('/{id}', name: 'document_show', methods: ['GET'])]
     public function show(Document $document, EntityManagerInterface $entityManager): Response
     {
         $this->registerVisit($entityManager);
-        $entity = $entityManager->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
 
         return $this->render('document/show.html.twig', [
             'document' => $document,

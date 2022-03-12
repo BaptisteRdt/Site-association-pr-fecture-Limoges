@@ -22,19 +22,27 @@ class DocumentRepository extends ServiceEntityRepository
     // /**
     //  * @return Document[] Returns an array of Document objects
     //  */
-    /*
-    public function findByExampleField($value)
+    public function allDocumentPinned()
     {
         return $this->createQueryBuilder('d')
-            ->andWhere('d.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('d.ispinned = true')
+            ->andWhere('d.isAdherent = false')
             ->orderBy('d.id', 'ASC')
-            ->setMaxResults(10)
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
+    public function allDocumentPinnedAndAdherent()
+    {
+        return $this->createQueryBuilder('d')
+            ->andWhere('d.ispinned = true')
+            ->andWhere('d.isAdherent = true')
+            ->orderBy('d.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 
     /*
     public function findOneBySomeField($value): ?Document

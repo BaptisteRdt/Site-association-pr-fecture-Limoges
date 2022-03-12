@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ViewLog;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,7 +23,6 @@ class BureauController extends AbstractController
     public function index(OfficeRepository $officeRepository, EntityManagerInterface $em): Response
     {
         $this->registerVisit($em);
-        $entity = $em->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
 
         return $this->render('bureau/index.html.twig', [
             'controller_name' => 'BureauController',

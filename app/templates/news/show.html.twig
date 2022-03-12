@@ -3,14 +3,12 @@
 {% block title %}Association de la préfecture de la Haute-Vienne{% endblock %}
 
 {% block body %}
-    <div class=" flex flex-col justify-evenly w-[40rem] h-fit px-32 m-auto shadow-md bg-gray-100 py-8 my-8">
+    <div class=" flex flex-col justify-evenly w-[80%] h-fit px-32 m-auto shadow-md bg-gray-100 py-8 my-8">
         <h1 class="self-center text-4xl font-bold mb-8">{{ news.title }}</h1>
 
-        <p class=" text-center px-1 text-navbar-background font-bold">id: <span class="font-normal text-black">{{ news.id }}</span></p>
-        <img src="{{ asset('/ImageNews/'~ news.imageName) }}"  alt="imageArticle">
+        <img src="{{ asset('/ImageNews/'~ news.imageName) }}" class="w-auto max-h-[300px] grow-0 self-center"  alt="imageArticle">
 
-        <p class=" text-center px-1 font-bold text-navbar-background">Contenu:</p>
-        <p class=" text-justify px-1 font-medium text-[#7C7C7C]">{{ news.textContent }}</p>
+        <p class="text-justify px-1 mt-4 font-medium text-[#7C7C7C]">{{ news.textContent|raw }}</p>
 
         {% if news.isPinned == true %}
             <p class=" text-center px-1 font-bold text-navbar-background">Cet article est épinglé sur la page d'accueil</p>

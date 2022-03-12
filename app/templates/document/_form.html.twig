@@ -26,6 +26,8 @@
     }) }}
 
     {{ form_row(form.isPinned)}}
+    {{ form_row(form.isAdherent)}}
+
     <button class="self-center btn btn-lg btn-primary mb-6 text-white font-bold box-content h-5 w-48 p-4 border-2 border-[#374779] transition text-white bg-[#374779] hover:bg-[#CBD8E5] hover:text-[#374779]">{{ button_label|default('AJOUTER') }}</button>
 </div>
 {{ form_end(form) }}

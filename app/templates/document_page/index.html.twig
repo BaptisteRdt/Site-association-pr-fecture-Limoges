@@ -3,18 +3,43 @@
 {% block title %}Hello DocumentPageController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <!--|length > 200 ? documentPinned.description|slice(0, 200) ~ '...'-->
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+<div class="">
+    <div class="m-16 mx-60">
+        <div class="border-b-4 border-b-navbar-background mb-8">
+            <h1 class="text-4xl text-center mb-4">Tous les documents</h1>
+        </div>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/var/www/symfony_docker/src/Controller/DocumentPageController.php'|file_link(0) }}">src/Controller/DocumentPageController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/var/www/symfony_docker/templates/document_page/index.html.twig'|file_link(0) }}">templates/document_page/index.html.twig</a></code></li>
-    </ul>
+        <div class="flex flex-col justify-center mb-2">
+            <h2 class="text-3xl underline text-center ">Document disponible pour tous</h2>
+                {% for documentPinned in documentPinneds %}
+                    <div class="w-[100%] flex flex-row items-center">
+                        <div class="flex flex-col w-1/2">
+                            <div class="text-2xl mb-2">{{ documentPinned.title }}</div>
+                            <div class="text-justify"> {{ documentPinned.description}}</div>
+                        </div>
+                        <a href="" class="m-auto rounded-md bg-[#1F2945] h-10 border hover:bg-navbar-background"><div class="p-2 text-white">Télécharger le pdf</div></a>
+                    </div>
+                    <div class="border-b-[1px]  border-b-navbar-background my-4"></div>
+                {% endfor %}
+
+            <h2 class="text-3xl underline text-center ">Document disponible pour les adhérents</h2>
+            {% if documentAdherents|length > 0 %}
+                {% for documentAdherent in documentAdherents %}
+                    <div class="w-[100%] flex flex-row items-center">
+                        <div class="flex flex-col w-1/2">
+                            <div class="text-2xl mb-2">{{ documentAdherent.title }}</div>
+                            <div class="text-justify"> {{ documentAdherent.description}}</div>
+                        </div>
+                        <a href="" class="m-auto rounded-md bg-[#1F2945] h-10 border hover:bg-navbar-background"><div class="p-2 text-white">Télécharger le pdf</div></a>
+                    </div>
+                    <div class="border-b-[1px] border-b-navbar-background my-4"></div>
+                {% endfor %}
+            {% else %}
+                <div class="text-center m-3">Pas de documents disponible pour les adhérents ou vous n'êtes pas encore adhérents à l'association</div>
+            {% endif %}
+        </div>
+    </div>
 </div>
 {% endblock %}

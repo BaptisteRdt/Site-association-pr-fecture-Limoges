@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ViewLog;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Form\ContactReplyType;
@@ -37,7 +38,6 @@ class ContactController extends AbstractController
     {
 
         $this->registerVisit($entityManager);
-        $entity = $entityManager->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
 
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);

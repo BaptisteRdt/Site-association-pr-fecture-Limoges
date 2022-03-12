@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ViewLog;
 use App\Entity\Office;
 use App\Form\OfficeType;
 use App\Repository\OfficeRepository;
@@ -27,7 +28,6 @@ class OfficeController extends AbstractController
     public function index(OfficeRepository $officeRepository, EntityManagerInterface $entityManager): Response
     {
         $this->registerVisit($entityManager);
-        $entity = $entityManager->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
 
         return $this->render('office/index.html.twig', [
             'offices' => $officeRepository->findAll(),

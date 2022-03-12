@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ViewLog;
 use App\Entity\News;
 use App\Form\NewsType;
 use App\Repository\NewsRepository;

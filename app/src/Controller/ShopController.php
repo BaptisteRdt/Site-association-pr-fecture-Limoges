@@ -43,8 +43,7 @@ class ShopController extends AbstractController
     {
 
         $this->registerVisit($entityManager);
-        $entity = $entityManager->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
-        
+
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation)
             ->remove('user')

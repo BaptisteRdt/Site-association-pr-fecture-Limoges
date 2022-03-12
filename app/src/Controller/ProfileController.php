@@ -35,7 +35,6 @@ class ProfileController extends AbstractController
     public function index(EntityManagerInterface $entityManager): Response
     {
         $this->registerVisit($entityManager);
-        $entity = $entityManager->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
 
         return $this->render('profile/index.html.twig', [
             'controller_name' => 'ProfileController',

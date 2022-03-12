@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ViewLog;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,7 +27,6 @@ class PanierController extends AbstractController
         $conn = $em->getConnection();
 
         $this->registerVisit($em);
-        $entity = $em->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
 
         $sql = '
             SELECT a.name, r.quantity, r.price FROM reservation r, article a

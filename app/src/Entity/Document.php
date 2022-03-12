@@ -37,6 +37,11 @@ class Document
      */
     private $ispinned;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isAdherent;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Document
     public function setIspinned(bool $ispinned): self
     {
         $this->ispinned = $ispinned;
+
+        return $this;
+    }
+
+    public function getIsAdherent(): ?bool
+    {
+        return $this->isAdherent;
+    }
+
+    public function setIsAdherent(bool $isAdherent): self
+    {
+        $this->isAdherent = $isAdherent;
 
         return $this;
     }

@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\News;
+use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -25,7 +26,7 @@ class NewsType extends AbstractType
                 ],
                 'label' => 'Titre de l\'article'
             ])
-            ->add('textContent', TextareaType::class,[
+            ->add('textContent', CKEditorType::class,[
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Entrer le contenu de votre article']),
