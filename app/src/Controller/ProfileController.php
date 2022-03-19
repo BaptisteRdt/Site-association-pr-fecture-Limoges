@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\ViewLog  ;
 use App\Form\VerifMdpType;
 use App\Form\ProfileType;
 use App\Form\ChangeAddressType;

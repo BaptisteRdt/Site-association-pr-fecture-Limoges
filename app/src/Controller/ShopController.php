@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Entity\Reservation;
+use App\Entity\ViewLog;
 use App\Form\ReservationType;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -30,7 +31,6 @@ class ShopController extends AbstractController
     public function index(ArticleRepository $articleRepository, EntityManagerInterface $entityManager): Response
     {
         $this->registerVisit($entityManager);
-        $entity = $entityManager->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
 
         return $this->render('shop/index.html.twig', [
             'controller_name' => 'ShopController',

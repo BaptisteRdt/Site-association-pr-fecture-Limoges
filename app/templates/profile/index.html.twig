@@ -95,17 +95,32 @@
                         <th class="p-4 w-[50%]" >Sexe</th>
                         <td class="p-4 w-[50%]">{{ user.gender }}</td>
                     </tr>
-                    <tr class="border group border-gray-300">
-                        <th class="p-4 w-[50%]">Status d'adhésion</th>
-                        <td class="p-4 w-[50%]">A venir</td>
-                    </tr>
-                    <tr class="border border-gray-300">
-                        <th class="p-4 w-[50%]">Date de renouvellement</th>
-                        <td class="p-4 w-[50%]">A venir</td>
-                    </tr>
+                    {% if user.roles|filter(role => role == "ROLE_ADHERENT")|first %}
+                        <tr class="border group border-gray-300">
+                            <th class="p-4 w-[50%]">Status d'adhésion</th>
+                            <td class="p-4 w-[50%]">Adhérent</td>
+                        </tr>
+                        <tr class="border border-gray-300">
+                            <th class="p-4 w-[50%]">Date de renouvellement</th>
+                            {% set date = 'now'|date('d-m-Y') %}
+                            {% set dateSplit = date|split('-') %}
+                            {% set day = dateSplit[0] %}
+                            {% set month = dateSplit[1] %}
+                            {% set year = dateSplit[2] +1 %}
+                            <td class="p-4 w-[50%]">{{ day }}-{{ month }}-{{ year }}</td>
+                        </tr>
+                    {% else %}
+                        <tr class="border group border-gray-300">
+                            <th class="p-4 w-[50%]">Status d'adhésion</th>
+                            <td class="p-4 w-[50%]">Non adhérent</td>
+                        </tr>
+                        <tr class="border border-gray-300">
+                            <th class="p-4 w-[50%]">Date de renouvellement</th>
+                            <td class="p-4 w-[50%]">Pas de date prévue</td>
+                        </tr>
+                    {% endif %}
                 </table>
             </div>
-
             {#
             <p class="font-medium">Renouvellement de l'adhésion</p>
             <p class="mb-6 p-2 rounded-md bg-white text-black">{{ user.dateRenewal }}</p>
