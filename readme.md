@@ -156,6 +156,17 @@ Il faut lier le projet symfony avec la base de données, pour ça, copier le fic
 - `127.0.0.1:3306` : database
 - `db_name` : symfony
 
+Il faut également modifier une ligne afin d'activer les mail :
+
+```bash
+MAILER_DSN=gmail+smtp://USERNAME:PASSWORD@default
+```
+
+En remplacant 
+
+- `USERNAME` : par le nom d'utilisateur d'un compte gmail
+- `PASSWORD` : par le mot de passe de ce compte
+
 > en cas de problèmes reconstruisez les conteneurs
 
 Maintenant votre application est liée a votre base de données. Cependant, votre base de données est vide, elle ne contient pas les tables dont l'application symfony a besoin. Pour resoudre ce probleme, vous devez vous placer dans le conteneur php 
@@ -184,6 +195,7 @@ Pour terminer votre installation, il ne reste plus qu'un utilisateur admin a cr�
 > TODO 
 
  Félicitation, votre projet est prêt, tout est bon 🎉!!!
+ Les identifiants du compte administrateur par default sont `admin` et `admin`.
 
 > En cas d'erreur, contactez un membre de l'équipe de dev !
 
