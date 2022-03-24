@@ -1,6 +1,7 @@
 # Projet Tuteuré
-
+<!-- 
 > TODO: description / images
+-->
 
 ## Technologies utilisées
 
@@ -11,11 +12,12 @@
 - PHP-FPM
 - Docker
 - Tailwindcss (3.0)
+<!-- 
 
 ### Pourquoi utilisons-nous ces technologies ?
 
 > TODO
-
+-->
 ## Structure du projet
 
 ```text
