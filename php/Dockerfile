@@ -24,11 +24,5 @@ RUN npm install i -g watch
 RUN cd /var/www/symfony_docker
 RUN npm install
 
-# ajout des package composer
-RUN composer install
-
-# ajout du compte admin defaut
-RUN php bin/console app:add:admin
-
-RUN 1 0 1 1 * php bin/console app:remove:adherent > etc/cron.d/remove_adherent
-CMD ["crontab", "-e", "etc/cron.d/remove_adherent"]
+RUN echo "1 0 1 1 * php bin/console app:remove:adherent" > remove_adherent_cron
+CMD ["crontab", "-e", "remove_adherent_cron"]
