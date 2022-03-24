@@ -1,6 +1,7 @@
 # Projet Tuteuré
-
+<!-- 
 > TODO: description / images
+-->
 
 ## Technologies utilisées
 
@@ -11,11 +12,12 @@
 - PHP-FPM
 - Docker
 - Tailwindcss (3.0)
+<!-- 
 
 ### Pourquoi utilisons-nous ces technologies ?
 
 > TODO
-
+-->
 ## Structure du projet
 
 ```text
@@ -162,7 +164,7 @@ Il faut lier le projet symfony avec la base de données, pour ça, copier le fic
 Il faut également modifier une ligne afin d'activer les mail :
 
 ```bash
-MAILER_DSN=gmail+smtp://USERNAME:PASSWORD@@localhost?verify_peer=0
+MAILER_DSN=gmail+smtp://USERNAME:PASSWORD@localhost?verify_peer=0
 ```
 
 En remplacant
