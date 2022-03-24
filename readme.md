@@ -109,7 +109,7 @@ On y retrouve plusieurs informations :
 
 Voir documentation : [docker ps](https://docs.docker.com/engine/reference/commandline/ps/)
 
-À ce niveau, vos 3 conteneurs sont allumés, vous pouvez donc tenter de vous connecter sur [localhost:8080](http://localhost:8080), normalement il y a une erreur :
+À ce niveau, vos 3 conteneurs sont allumés, vous pouvez donc tenter de vous connecter sur [localhost:8080](http://localhost:8080), il peut y avoir une erreur, si ce n'est pas le cas, passez a la suite [ici](#-fichier-.env). Si l'erreur ressemble a ça :
 
 ```bash
 Fatal error: Uncaught Error: Failed opening required '/var/www/symfony_docker/vendor/autoload_runtime.php'...
@@ -149,6 +149,8 @@ Voir documentation : [composer install](https://getcomposer.org/doc/03-cli.md#in
 
 Normalement, l'installation des dépendances devrait prendre quelques secondes, voir quelques minutes. Une fois l'installation des dépendances terminée, vous pouvez tenter de vous reconnecter sur [localhost:8080](http://localhost:8080) Et normalement, cette erreur disparaît. Cependant, il reste quelques petites manipulations à faire.
 
+##### Fichier .env
+
 Il faut lier le projet symfony avec la base de données, pour ça, copier le fichier `/app/.env` et renommez le en `/app/.env.local` et dans ce dernier décommenter la ligne correspondante a l'URL de connexion pour MySQL (ligne 30) en remplacant les valeurs suivantes :
 
 - `db_user` : root
@@ -159,13 +161,15 @@ Il faut lier le projet symfony avec la base de données, pour ça, copier le fic
 Il faut également modifier une ligne afin d'activer les mail :
 
 ```bash
-MAILER_DSN=gmail+smtp://USERNAME:PASSWORD@default
+MAILER_DSN=gmail+smtp://USERNAME:PASSWORD@@localhost?verify_peer=0
 ```
 
 En remplacant 
 
-- `USERNAME` : par le nom d'utilisateur d'un compte gmail
-- `PASSWORD` : par le mot de passe de ce compte
+- `USERNAME` : par l'adresse mail
+- `PASSWORD` : par le mot de passe du compte
+
+Et en autorisant les applications moins sécurisé a se connecter. [ici](https://www.google.com/settings/security/lesssecureapps)
 
 > en cas de problèmes reconstruisez les conteneurs
 
