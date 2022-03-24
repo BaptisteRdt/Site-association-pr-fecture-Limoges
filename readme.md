@@ -48,6 +48,7 @@ PROJET-TUT
 ## Démarrer
 
 ### installation
+
 Pour commencer, installer docker depuis le [site officiel](https://docs.docker.com/get-docker/).
 
 Puis clonez le répertoire sur votre machine  
@@ -164,7 +165,7 @@ Il faut également modifier une ligne afin d'activer les mail :
 MAILER_DSN=gmail+smtp://USERNAME:PASSWORD@@localhost?verify_peer=0
 ```
 
-En remplacant 
+En remplacant
 
 - `USERNAME` : par l'adresse mail
 - `PASSWORD` : par le mot de passe du compte
@@ -173,7 +174,7 @@ Et en autorisant les applications moins sécurisé a se connecter. [ici](https:/
 
 > en cas de problèmes reconstruisez les conteneurs
 
-Maintenant votre application est liée a votre base de données. Cependant, votre base de données est vide, elle ne contient pas les tables dont l'application symfony a besoin. Pour resoudre ce probleme, vous devez vous placer dans le conteneur php 
+Maintenant votre application est liée a votre base de données. Cependant, votre base de données est vide, elle ne contient pas les tables dont l'application symfony a besoin. Pour resoudre ce probleme, vous devez vous placer dans le conteneur php.
 
 ```bash
 docker exec -it php bash
@@ -192,14 +193,17 @@ Puis il vous faut executer la commande suivante
 ```bash
 php bin/console doctrine:migration:migrate
 ```
+
 Voir documentation : [doctrine](https://www.doctrine-project.org/projects/doctrine-migrations/en/3.3/index.html)
 
-Pour terminer votre installation, il ne reste plus qu'un utilisateur admin a créer, pour cela, executez les commandes suivantes (sur la machine hôtes, pas dans un conteneur):
- 
-> TODO 
+Pour terminer votre installation, il ne reste plus qu'un utilisateur admin a créer, pour cela, executez les commandes suivantes (dans le conteneur php):
 
- Félicitation, votre projet est prêt, tout est bon 🎉!!!
+ ```bash
+ php bin/console app:add:admin
+ ```
+
  Les identifiants du compte administrateur par default sont `admin` et `admin`.
+ Félicitation, votre projet est prêt, tout est bon 🎉!!!
 
 > En cas d'erreur, contactez un membre de l'équipe de dev !
 
@@ -226,7 +230,7 @@ Pour modifier le css, etant donner que dans notre projet, nous utilisont [tailwi
 npm install
 ```
 
-Voir documentation : [npm install ](https://docs.npmjs.com/cli/v8/commands/npm-install)
+Voir documentation : [npm install](https://docs.npmjs.com/cli/v8/commands/npm-install)
 
 maintenant, il ne reste plus qu'a demarrer tailwind pour qu'il genere le css en tant réel, pour cela il faut executer le script npm
 
