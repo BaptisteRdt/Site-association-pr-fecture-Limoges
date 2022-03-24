@@ -69,7 +69,6 @@ class ArticleController extends AbstractController
     public function show(Article $article, EntityManagerInterface $em): Response
     {
         $this->registerVisit($em);
-        $entity = $em->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
 
         return $this->render('article/show.html.twig', [
             'article' => $article,

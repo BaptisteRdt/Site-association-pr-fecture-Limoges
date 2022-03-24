@@ -63,7 +63,6 @@ class NewsController extends AbstractController
     public function show(News $news, EntityManagerInterface $entityManager): Response
     {
         $this->registerVisit($entityManager);
-        $entity = $entityManager->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
 
         return $this->render('news/show.html.twig', [
             'news' => $news,

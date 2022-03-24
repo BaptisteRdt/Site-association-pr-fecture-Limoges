@@ -68,7 +68,6 @@ class OfficeController extends AbstractController
     public function show(Office $office, EntityManagerInterface $entityManager): Response
     {
         $this->registerVisit($entityManager);
-        $entity = $entityManager->getRepository(News::class)->findBy(array(), array('id' => 'DESC'),5 ,0);
 
         return $this->render('office/show.html.twig', [
             'office' => $office,
